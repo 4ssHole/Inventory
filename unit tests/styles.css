@@ -93,7 +93,9 @@ input[type='checkbox'] {
 }
 
 nav {
+    margin-bottom: 1em;
     width: 100%;
+    height: 1.5em;
     color: white;
 }
 
@@ -128,7 +130,7 @@ nav ul li a:hover {
 }
 
 .sticky+.NavBarSpacer {
-    margin-top: 5em; /* VALUE IS DEPENDANT ON THE NAVBAR SIZE */
+    margin-top: 4em;
 }
 
 th a {
@@ -206,6 +208,11 @@ tr td div {
     vertical-align: middle;
 }
 
+.categoryContainerForm {
+    margin: 1em .25em 0 1em;
+    display: inline-block;
+}
+
 .button {
     color: black;
     text-decoration: none;
@@ -273,8 +280,4 @@ tr td div {
     border: none;
     margin: 0 .25em;
     text-decoration: none;
-}
-
-.tablecontrols{
-    margin: 1em;
 }

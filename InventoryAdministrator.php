@@ -44,8 +44,8 @@
   DisplayNavBar();
 ?>
 <p class="NavBarSpacer">
-<div>  
-  <form class="categoryContainerForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<div class="tablecontrols">  
+  <form style="display: inline" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <label for="TableCategory">Category :</label>
       <select id="TableCategory" name="SelectTable" class="inputbox" onChange="this.form.submit()">
         <option value="All items">All Items</option>
@@ -63,6 +63,38 @@
   <form method="post" style="display: inline;" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <a name="ShowDeleteConfirm" class="NewButton" href="#ConfirmDelete">Delete Selected Items</a>
     <a name="NewCategory" class="NewButton" href="#NewCategory">Modify Categories</a>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content"> ADD TO TABLE
+        <form method="post">
+          <?php 
+            $integerCounting = 0;
+            $ColumnsForSqlInsert = $valueBuffer = null ;
+
+            foreach($addArray as $header){
+              
+              echo '<br>';
+              
+              if($header =="Category"){
+                echo '<select class="inputbox" name="addFieldNumber'.$integerCounting.'">';
+                foreach($categoryNameArray as $item){
+                    if($item==$_SESSION["FilterValue"]) echo '<option value="'.$item.'" selected>' .$item. '</option>';
+                    echo '<option value="'.$item.'" >' .$item. '</option>';
+                }
+                echo '</select>';
+              }
+              else {
+                echo '<input class="inputbox" type="text" name="addFieldNumber'.$integerCounting.'" placeholder="'.$header.'">';
+              } 
+              
+              $ColumnsForSqlInsert .= '`'.$header.'`,';
+              $integerCounting++;
+            }
+          ?>
+          <input type="submit" value="submit" name="AddButtonClicked">
+        </form>    
+      </div>
+    </div>
   
   <div id="ConfirmDelete" class="overlay">
     <div class="popup">
@@ -91,46 +123,13 @@
       </div>
     </div>
   </div>
-
-  <div id="myModal" class="modal">
-    <div class="modal-content"> ADD TO TABLE
-      <form method="post">
-        <?php 
-          $integerCounting = 0;
-          $ColumnsForSqlInsert = $valueBuffer = null ;
-
-          foreach($addArray as $header){
-            
-            echo '<br>';
-            
-            if($header =="Category"){
-              echo '<select class="inputbox" name="addFieldNumber'.$integerCounting.'">';
-              foreach($categoryNameArray as $item){
-                  if($item==$_SESSION["FilterValue"]) echo '<option value="'.$item.'" selected>' .$item. '</option>';
-                  echo '<option value="'.$item.'" >' .$item. '</option>';
-              }
-              echo '</select>';
-            }
-            else {
-              echo '<input class="inputbox" type="text" name="addFieldNumber'.$integerCounting.'" placeholder="'.$header.'">';
-            } 
-            
-            $ColumnsForSqlInsert .= '`'.$header.'`,';
-            $integerCounting++;
-          }
-        ?>
-        <input type="submit" value="submit" name="AddButtonClicked">
-      </form>    
-    </div>
-  </div>
-
 </div>
 
 <div class="tableAndLower">
 <div class="TableContainer" style="margin:1em;">
   
   <table id="customers">
-  <tbody><tr><th><input onClick="CheckBoxAll(this)" type="checkbox"></th>
+  <tr><th><input onClick="CheckBoxAll(this)" type="checkbox"></th>
     <?php  
       if($_SESSION["FilterValue"] != 'All items')
         $tableitems = mysqli_query($connection, "SELECT * FROM `! list of all items` WHERE Category ='".$_SESSION["FilterValue"]."';");
@@ -146,41 +145,14 @@
 
         foreach ($tableHeaderNamesArray as $item){ //data 
             echo '<td>
-                  <label class="button">'.$row[$item].'</label>
-                   <div id="popup1" class="overlay"><div class="popup"><br><a class="close" href="">&times;</a>';
-                  
-            $selectedItemData = mysqli_query($connection, 
-              "SELECT * FROM `! list of all items` WHERE `Item Number` = \"".$_GET['id1']."\"");
- 
-            $int = 0;
-            while ($row23 = mysqli_fetch_array($selectedItemData)){
-              echo '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'>';
-              foreach ($tableHeaderNamesArray as $item23){
-                if($tableHeaderNamesArray[$int]=="Date Updated"||$tableHeaderNamesArray[$int]=="Date Added"){}
-                else if($tableHeaderNamesArray[$int]=="Category"){
-                  echo 'Category <select class="inputbox" name="ModifyAttribute'.$int.'">';
-
-                  foreach($categoryNameArray as $s){
-                    if($s==$_SESSION["FilterValue"]) echo '<option value="'.$s.'" selected>' .$s. '</option>';
-                    else echo '<option value="'.$s.'">' .$s. '</option>';
-                  }
-                  echo '</select><br>';
-                }
-                else echo $tableHeaderNamesArray[$int].' <input class="inputbox" type="text" name="ModifyAttribute'.$int.'" placeholder="'.$row23[$item23].'"><br>'; 
-                $int++;
-              }
-              echo '<br>type, in the fields that need to be modified
-            <input type="submit" name="ChangeRow" class="LargeSubmitButton" value="Confirm"></div></form>';
-            }
-            echo '</div>';
+                  <label class="button">'.$row[$item].'</label>'; //shit code #0
         }
         echo '</tr>';
       }
     ?>
-</form>
-</tbody>
-</table>
 
+</table>
+</form>
 
 <?php 
   if(isset($_POST['AddButtonClicked'])){
