@@ -10,8 +10,8 @@
 <head>
   <meta charset="utf-8">
   <title>fook uff</title>
-  <script src="jQuery331.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <script src="../jQuery331.js"></script>
+  <link rel="stylesheet" href="../styles.css">
 </head>
 
 <body>
@@ -39,7 +39,7 @@
 <div class="TableContainer" style="margin:1em;">
   
     <table id="customers">
-        <tr><th><input onClick="CheckBoxAll(this)" type="checkbox"></th>
+
         <?php  
             if($_SESSION["FilterValue"] != 'All items')  
             $tableitems = mysqli_query($connection, "SELECT * FROM `! list of all items` WHERE Category ='".$_SESSION["FilterValue"]."';");
@@ -47,7 +47,7 @@
             foreach($tableHeaderNamesArray as $tableheader)  echo '<th>'.$tableheader.'</th>'; //header
 
             while ($row = mysqli_fetch_array($tableitems)) { //row
-                echo '<tr id="'.$row[0].'"><td><input type="checkbox" name="checklist[]" value="'.$row[0].'" class="ItemCheckboxes"></td>';
+                echo '<tr id="'.$row[0].'">';
                 foreach ($tableHeaderNamesArray as $item) echo '<td><label class="button">'.$row[$item].'</label>';//data
                 echo '</tr>';
             }

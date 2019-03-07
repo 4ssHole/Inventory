@@ -2,8 +2,8 @@
   session_start();
   ob_start();
 
-  include("Connection.php");
-  include("NavBar.php"); 
+  include("../Connection.php");
+  include("../NavBar.php"); 
   date_default_timezone_set("Asia/Manila");
 ?>
 <!doctype html>
@@ -12,8 +12,8 @@
 <head>
   <meta charset="utf-8">
   <title>fook uff</title>
-  <script src="jQuery331.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <script src="../jQuery331.js"></script>
+  <link rel="stylesheet" href="../styles.css">
 </head>
 
 <body>
@@ -81,7 +81,7 @@
     </table>
 </div>
 
-<script src="jquery.color-2.1.2.min.js"></script>
+<script src="../jquery.color-2.1.2.min.js"></script>
 <script> 
   var header = document.getElementById("myHeader");
   var sticky = header.offsetTop;
