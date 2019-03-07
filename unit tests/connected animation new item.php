@@ -43,29 +43,26 @@
 
   DisplayNavBar();
 ?>
-<p class="NavBarSpacer">
-<div>  
-  <form class="categoryContainerForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <label for="TableCategory">Category :</label>
-      <select id="TableCategory" name="SelectTable" class="inputbox" onChange="this.form.submit()">
-        <option value="All items">All Items</option>
-      </select>
-    </form>
+<p class="NavBarSpacer"></p>
 
+<div class="categoryContainerForm">
+  <label for="TableCategory">Category :</label>
+    <select id="TableCategory" name="SelectTable" class="inputbox" onChange="this.form.submit()">
+      <option value="All items">All Items</option>
+    </select>
     <button id="addItem" class="NewButton">Add Item</button>
-    <div id="addDialog"> 
-        <label for="date">date</label>
-        <input type="date" id="date">
+</div>
 
-        <label for="name">name</label>
-        <input type="text" id="name">
-
-        <label for="email">email</label>
-        <input type="email" id="email">
-
-        <label for="address">address</label>
-        <input type="text" id="address">
-    </div>
+<div id="addDialog"> 
+  <div class="grid-item">
+    <label for="date">date</label>
+  </div>
+  <div class="grid-item">
+    1
+  </div>
+  <div class="grid-item">
+    132
+  </div>
 </div>
 
 <div class="TableContainer" style="margin:1em;">
@@ -87,14 +84,41 @@
     </table>
 </div>
 
+<script src="jquery.color-2.1.2.min.js"></script>
 <script> 
+  var header = document.getElementById("myHeader");
+  var sticky = header.offsetTop;
+  window.onscroll = function() {
+    console.log("a");
+    if (window.pageYOffset > sticky) header.classList.add("sticky");
+    else header.classList.remove("sticky");
+  };
+
     $(document).ready(function(){
-        var dialog = $("#addDialog");  
-        //dialog.hide();
-        $("#addItem").click(function(){
-            dialog.show();
-            dialog.animate({fontSize: '3em'}, "slow");
-        });
+      var dialog = $("#addDialog");  
+
+      $("#addItem").click(function(){
+        if($("#addDialog").is(":visible")){
+          dialog.animate(
+            {
+              color: '#fff',
+              backgroundColor: '#000000'
+            }, 
+            250, 
+            function() { 
+              dialog.hide(); 
+            }
+          );     
+        }
+        else{
+          dialog.show();
+          dialog.animate(
+            {
+              color: '#000',
+              backgroundColor: '#ffffff'
+            }, 250);
+        }
+      });
     });
 </script>
 </body>

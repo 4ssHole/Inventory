@@ -2,58 +2,20 @@
     margin: 0;
     padding: 0;
 }
-
+#addDialog{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: black;
+    color: white;   
+    width: 100vw;
+    overflow: hidden;
+}
+.grid-item{
+    padding: 1em;
+}
 body {
     font-family: 'Segoe UI Light';
     background-color: #e2e2e2;
-}
-
-/* The Modal (background) */
-
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.57);
-}
-
-/* Modal Content/Box */
-
-.modal-content {
-    box-shadow: 0px 0px 75px 16px rgba(0, 0, 0, 0.57);
-    background-color: #000000;
-    position: fixed;
-    color: white;
-    bottom: 0;
-    padding: 20px;
-    width: 100%;
-    /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-
-.close {
-    color: rgb(255, 255, 255);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover, .close:focus {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    cursor: pointer;
 }
 
 .logo {
@@ -80,22 +42,8 @@ input[type='checkbox'] {
     margin: .75em;
 }
 
-@media screen and (max-width: 750px) {
-    .hideOnSmall {
-        display: none;
-    }
-    .button {
-        padding: .1em;
-    }
-    .navicons {
-        font-size: .8em;
-    }
-}
-
 nav {
-    margin-bottom: 1em;
     width: 100%;
-    height: 1.5em;
     color: white;
 }
 
@@ -183,16 +131,6 @@ tr td div {
     font-weight: normal;
 }
 
-.LargeSubmitButton {
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
-    font-size: larger;
-    background: black;
-    color: white;
-    padding: .5em;
-    border: none;
-}
 
 .inputbox {
     background: #e2e2e2;
@@ -209,67 +147,7 @@ tr td div {
 }
 
 .categoryContainerForm {
-    margin: 1em .25em 0 1em;
-    display: inline-block;
-}
-
-.button {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    padding: .75em 0;
-}
-
-.button:hover {
-    color: rgb(87, 85, 85);
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.8);
-    /* background with opacity  */
-    visibility: hidden;
-    opacity: 0;
-    z-index: 100;
-}
-
-.overlay:target {
-    visibility: visible;
-    opacity: 1;
-}
-
-.popup {
-    top: 25%;
-    margin: 0 auto;
-    padding: 1em;
-    background: rgb(235, 235, 235);
-    width: 50%;
-    height: 15em;
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    top: .5em;
-    right: .75em;
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-}
-
-.popup .close:hover {
-    color: rgb(0, 0, 0);
-}
-
-.popup .content {
-    max-height: 50%;
-    overflow: auto;
+    margin: 1em;
 }
 
 .NewButton {
