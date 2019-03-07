@@ -32,13 +32,10 @@
   $tableitems = mysqli_query($connection, "SELECT * FROM items");
   
   while ($property = mysqli_fetch_field($tableitems)) {
-    if($property->name == "Item Number");
-    else{
       array_push($tableHeaderNamesArray, $property->name);
       if($property->name!="Date Updated"&&$property->name !="Date Added"){
         array_push($addArray, $property->name);
       }
-    } 
   }
 
   DisplayNavBar();
