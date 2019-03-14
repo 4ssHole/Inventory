@@ -13,7 +13,7 @@
   <meta charset="utf-8">
   <title>fook uff</title>
   <script src="../jQuery331.js"></script>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="stylesTesting.css">
 </head>
 
 <body>
@@ -86,7 +86,6 @@
   var header = document.getElementById("myHeader");
   var sticky = header.offsetTop;
   window.onscroll = function() {
-    console.log("a");
     if (window.pageYOffset > sticky) header.classList.add("sticky");
     else header.classList.remove("sticky");
   };
@@ -99,12 +98,10 @@
           dialog.animate(
             {
               color: '#fff',
-              backgroundColor: '#000000'
+              backgroundColor: '#000000',
+              height: '0'
             }, 
-            250, 
-            function() { 
-              dialog.hide(); 
-            }
+            250, function() { dialog.hide(); }
           );     
         }
         else{
@@ -112,8 +109,11 @@
           dialog.animate(
             {
               color: '#000',
-              backgroundColor: '#ffffff'
-            }, 250);
+              backgroundColor: '#ffffff',
+              height: dialog.get(0).scrollHeight
+            }, 
+            250, function(){ dialog.height('auto'); }
+          );
         }
       });
     });

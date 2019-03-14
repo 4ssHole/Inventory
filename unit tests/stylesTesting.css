@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+body {
+    font-family: 'Segoe UI Light';
+    background-color: #e2e2e2;
+}
+
+.categoryContainerForm{
+    margin: 1em;
+}
+
+.logo {
+    overflow: hidden;
+    text-align: left;
+    margin: .75em;
+    font-family: 'Segoe UI Semibold';
+    font-size: 1.5em;
+}
+
+.logo a {
+    float: left;
+    display: block;
+    color: black;
+    text-decoration: none;
+}
+
+.SearchBar {
+    float: right;
+    padding: .25em;
+}
+
+input[type='checkbox'] {
+    margin: .75em;
+}
+
+@media screen and (max-width: 750px) {
+    .hideOnSmall {
+        display: none;
+    }
+    .button {
+        padding: .1em;
+    }
+    .navicons {
+        font-size: .8em;
+    }
+}
+
+nav {
+    color: white;
+}
+
+nav ul {
+    font-size: 1.2em;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: black;
+}
+
+nav ul li {
+    float: left;
+    list-style: none;
+}
+
+nav ul li a {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: .5em;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #464646;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky+.NavBarSpacer {
+    margin-top: 5em; /* VALUE IS DEPENDANT ON THE NAVBAR SIZE */
+}
+
+th a {
+    color: white;
+    align-items: center;
+    text-decoration: none;
+}
+
+th a:hover {
+    background-color: #464646;
+}
+
+td {
+    max-width: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+tr td div {
+    overflow: hidden;
+    color: rgb(0, 0, 0);
+    text-overflow: ellipsis;
+}
+
+.navicons {
+    margin-right: .45em;
+    width: 1.25em;
+    height: 1.25em;
+}
+
+#customers {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: rgb(180, 190, 215);
+}
+
+#customers th {
+    padding: .5em 0;
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.NewButton {
+    font-size: .8em;
+    background: black;
+    color: white;
+    padding: .5em;
+    border: none;
+    margin: 0 .25em;
+    text-decoration: none;
+}
