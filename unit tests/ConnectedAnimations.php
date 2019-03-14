@@ -62,7 +62,7 @@
   </div>
 </div>
 
-<div class="TableContainer" style="margin:1em;">
+<div class="TableContainer" style="margin:0 1em 1em 1em;">
   
     <table id="customers">
         <tr><th><input onClick="CheckBoxAll(this)" type="checkbox"></th>
@@ -82,6 +82,7 @@
 </div>
 
 <script src="../jquery.color-2.1.2.min.js"></script>
+<script src="../jquery.easing.1.3.js"></script>
 <script> 
   var header = document.getElementById("myHeader");
   var sticky = header.offsetTop;
@@ -94,25 +95,29 @@
       var dialog = $("#addDialog");  
 
       $("#addItem").click(function(){
-        if($("#addDialog").is(":visible")){
+        if($("#addDialog").is(":visible"))
+        {
           dialog.animate(
             {
+              height: 0,
               color: '#fff',
-              backgroundColor: '#000000',
-              height: '0'
+              backgroundColor: '#000',
+              margin: '0em 1em'
             }, 
-            250, function() { dialog.hide(); }
-          );     
+            250, 'easeInQuart', function(){ dialog.hide(); }
+          );  
         }
-        else{
+        else
+        {
           dialog.show();
           dialog.animate(
             {
+              height: dialog.get(0).scrollHeight,
               color: '#000',
-              backgroundColor: '#ffffff',
-              height: dialog.get(0).scrollHeight
+              backgroundColor: '#fff',
+              margin: '1em'
             }, 
-            250, function(){ dialog.height('auto'); }
+            250, 'easeOutQuart', function(){ dialog.height('auto'); }
           );
         }
       });

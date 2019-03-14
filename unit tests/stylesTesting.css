@@ -3,17 +3,17 @@
     padding: 0;
 }
 
-
-
 body {
     font-family: 'Segoe UI Light';
     background-color: #e2e2e2;
+}
+#addDialog{
+    margin: 0em 1em;
 }
 
 .categoryContainerForm{
     margin: 1em;
 }
-
 .logo {
     overflow: hidden;
     text-align: left;
@@ -29,25 +29,8 @@ body {
     text-decoration: none;
 }
 
-.SearchBar {
-    float: right;
-    padding: .25em;
-}
-
 input[type='checkbox'] {
     margin: .75em;
-}
-
-@media screen and (max-width: 750px) {
-    .hideOnSmall {
-        display: none;
-    }
-    .button {
-        padding: .1em;
-    }
-    .navicons {
-        font-size: .8em;
-    }
 }
 
 nav {
