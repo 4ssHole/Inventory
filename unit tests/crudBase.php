@@ -15,35 +15,21 @@
 </head>
 
 <body>
+<button id="refresh" class="NewButton">refresh</button>
 <div class="TableContainer" style="margin:1em;">
   
     <table id="customers">
-
-        <?php  
-          $tableHeaderNamesArray = array();
-
-          $tableitems = mysqli_query($connection, "SELECT * FROM items");
-
-          while ($property = mysqli_fetch_field($tableitems)) {
-            array_push($tableHeaderNamesArray, $property->name);
-          }  
-          
-          foreach($tableHeaderNamesArray as $tableheader)  
-          echo '<th>'.$tableheader.'</th>'; //header
-
-          while ($row = mysqli_fetch_array($tableitems)) { //row
-              echo '<tr id="'.$row[0].'">';
-              
-              foreach ($tableHeaderNamesArray as $item) 
-              echo '<td>'.$row[$item].'</td>';  //data
-
-              echo '</tr>';
-          }
-        ?>
     </table>
+    
 </div>
 <script> 
+$(document).ready(function(){
+  $("#customers").load("ajax.php");
 
+  $("#refresh").click(function(){
+    $("#customers").load("ajax.php");
+  });
+});
 </script>
 </body>
 </html>

@@ -91,37 +91,37 @@
     else header.classList.remove("sticky");
   };
 
-    $(document).ready(function(){
-      var dialog = $("#addDialog");  
+  $(document).ready(function(){
+    var dialog = $("#addDialog");  
 
-      $("#addItem").click(function(){
-        if($("#addDialog").is(":visible"))
-        {
-          dialog.animate(
-            {
-              height: 0,
-              color: '#fff',
-              backgroundColor: '#000',
-              margin: '0em 1em'
-            }, 
-            250, 'easeInQuart', function(){ dialog.hide(); }
-          );  
-        }
-        else
-        {
-          dialog.show();
-          dialog.animate(
-            {
-              height: dialog.get(0).scrollHeight,
-              color: '#000',
-              backgroundColor: '#fff',
-              margin: '1em'
-            }, 
-            250, 'easeOutQuart', function(){ dialog.height('auto'); }
-          );
-        }
-      });
+    $("#addItem").click(function(){
+      if($("#addDialog").is(":visible"))
+      {
+        dialog.animate(
+          {
+            height: 0,
+            color: '#fff',
+            backgroundColor: '#000',
+            margin: '0em 1em'
+          }, 
+          250, 'easeInQuart', function(){ dialog.hide(); }
+        );  
+      }
+      else
+      {
+        dialog.show();
+        dialog.animate(
+          {
+            height: dialog.get(0).scrollHeight,
+            color: '#000',
+            backgroundColor: '#fff',
+            margin: '1em'
+          }, 
+          250, 'easeOutQuart', function(){ dialog.height('auto'); }
+        );
+      }
     });
+  });
 </script>
 </body>
 </html>
