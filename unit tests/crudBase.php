@@ -25,12 +25,15 @@
   <input type="text">
 
   <h1>Read</h1>
-  <table id="customers"></table>
+  <form action="">
+    <table id="customers"></table>
+  </form>
+  
+ 
+  <h1>Update</h1>
   
   <h1>Delete</h1>
   <button id="Delete" class="NewButton">Delete</button>
-
-  <h1>Update</h1>
 
 </div>
 <script> 
@@ -38,8 +41,31 @@ $(document).ready(function(){
   $("#customers").load("ajax.php");
 
   $("#refresh").click(function(){
-    $("#customers").load("ajax.php");
+    reloadTable();
   });
+
+  $("#Create").click(function(){
+    
+    $.ajax({
+      url:'ajax.1.php',
+      type: 'post',
+    }).done(function( result ) {
+      reloadTable();
+    });
+
+  });
+
+
+  function reloadTable(){
+    $.ajax({
+    url:"ajax.php",
+    success:function(data)
+    {
+      $('#customers').html(data);
+    }
+    })
+  }
+
 });
 </script>
 </body>
