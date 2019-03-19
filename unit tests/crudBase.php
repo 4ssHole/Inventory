@@ -22,14 +22,11 @@
 
   <h1>Create</h1>
   <button id="Create" class="NewButton">Create</button>
-  <input type="text">
-
-  <h1>Read</h1>
-  <form action="">
-    <table id="customers"></table>
-  </form>
+  <input id="info" name="info" type="text">
   
- 
+  <h1>Read</h1>
+  <table id="customers"></table>
+  
   <h1>Update</h1>
   
   <h1>Delete</h1>
@@ -38,19 +35,26 @@
 </div>
 <script> 
 $(document).ready(function(){
-  $("#customers").load("ajax.php");
+  reloadTable();
+});
 
-  $("#refresh").click(function(){
+$("#refresh").click(function(){
     reloadTable();
   });
 
   $("#Create").click(function(){
     
+    console.log($('#info').val());
+
+    var params = {'info':$("#info").val()};
+
     $.ajax({
       url:'ajax.1.php',
+      data: params,
       type: 'post',
-    }).done(function( result ) {
-      reloadTable();
+      success:function(){
+        reloadTable(); 
+      }
     });
 
   });
@@ -59,14 +63,13 @@ $(document).ready(function(){
   function reloadTable(){
     $.ajax({
     url:"ajax.php",
+    type: 'post',
     success:function(data)
     {
       $('#customers').html(data);
     }
     })
   }
-
-});
 </script>
 </body>
 </html>
