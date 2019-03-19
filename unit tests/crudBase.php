@@ -15,12 +15,23 @@
 </head>
 
 <body>
-<button id="refresh" class="NewButton">refresh</button>
+
 <div class="TableContainer" style="margin:1em;">
+
+  <button id="refresh" class="NewButton">refresh</button>
+
+  <h1>Create</h1>
+  <button id="Create" class="NewButton">Create</button>
+  <input type="text">
+
+  <h1>Read</h1>
+  <table id="customers"></table>
   
-    <table id="customers">
-    </table>
-    
+  <h1>Delete</h1>
+  <button id="Delete" class="NewButton">Delete</button>
+
+  <h1>Update</h1>
+
 </div>
 <script> 
 $(document).ready(function(){

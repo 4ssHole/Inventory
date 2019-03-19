@@ -10,6 +10,7 @@ body {
 #addDialog{
     margin: 0em 1em;
 }
+
 .categoryContainerForm{
     margin: 1em;
 }
@@ -26,10 +27,6 @@ body {
     display: block;
     color: black;
     text-decoration: none;
-}
-
-input[type='checkbox'] {
-    margin: .75em;
 }
 
 nav {
@@ -70,27 +67,10 @@ nav ul li a:hover {
     margin-top: 5em; /* VALUE IS DEPENDANT ON THE NAVBAR SIZE */
 }
 
-th a {
-    color: white;
-    align-items: center;
-    text-decoration: none;
-}
-
-th a:hover {
-    background-color: #464646;
-}
-
 td {
-    max-width: 1em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-tr td div {
-    overflow: hidden;
-    color: rgb(0, 0, 0);
-    text-overflow: ellipsis;
 }
 
 .navicons {

@@ -1,4 +1,4 @@
-<?php   
+<?php
     session_start();
     ob_start();
 
@@ -28,16 +28,17 @@
 ?>
 
 <script> 
-    var first = $("#customers tr td:first-child")  
 
-    console.log(
-        first.map(function(){
-            return $(this).text();
-        })
-    );
-
+    var itemcodes = $("#customers tr td:first-child").map(function(){
+        return $(this).text();
+    })
   
-    var markup = "<td><input type='checkbox'</td>";
-    $("#customers tr").prepend(markup);
-   
+    $("#customers tr").slice(1).prepend("<td><input type='checkbox'></td>");
+    $("#customers tr:first-child").prepend("<th><input type='checkbox'></th>");
+    
+    $("#customers tr td:first-child input[type='checkbox']").each(function(i){  
+        $(this).val(itemcodes[i]);
+    })
+
+
 </script>
