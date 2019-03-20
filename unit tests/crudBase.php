@@ -28,6 +28,8 @@
   <table id="customers"></table>
   
   <h1>Update</h1>
+  <button id="Update" class="NewButton">Update</button>
+  <input id="infoUpdate" name="infoUpdate" type="text">
   
   <h1>Delete</h1>
   <button id="Delete" class="NewButton">Delete</button>
@@ -49,7 +51,7 @@ $("#refresh").click(function(){
     var params = {'info':$("#info").val()};
 
     $.ajax({
-      url:'ajax.1.php',
+      url:'addItem.php',
       data: params,
       type: 'post',
       success:function(){
@@ -62,7 +64,7 @@ $("#refresh").click(function(){
 
   function reloadTable(){
     $.ajax({
-    url:"ajax.php",
+    url:"table.php",
     type: 'post',
     success:function(data)
     {
