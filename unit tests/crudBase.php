@@ -23,6 +23,7 @@
   <h1>Create</h1>
   <button id="Create" class="NewButton">Create</button>
   <input id="info" name="info" type="text">
+  <input id="Brand" name="Brand" type="text">
   
   <h1>Read</h1>
   <table id="customers"></table>
@@ -36,19 +37,25 @@
 
 </div>
 <script> 
-$(document).ready(function(){
-  reloadTable();
-});
+  $(document).ready(function(){
+    reloadTable();
+  });
 
-$("#refresh").click(function(){
+  $("#refresh").click(function(){
     reloadTable();
   });
 
   $("#Create").click(function(){
-    
-    console.log($('#info').val());
 
-    var params = {'info':$("#info").val()};
+    $("input").each(function(){
+      console.log($(this).val());
+    });
+
+    var params = 
+    {
+      'info':$("#info").val(),
+      'Brand':$("#Brand").val()
+    };
 
     $.ajax({
       url:'addItem.php',

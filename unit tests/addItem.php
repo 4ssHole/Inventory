@@ -9,7 +9,7 @@
     $columns = implode(', ', $tableMeta);
     $values = ':'.implode(', :', $tableMeta);
     
-    $data = array($_POST['info'], $_POST['info'], $_POST['info']);
+    $data = array($_POST['info'], $_POST['Brand'], $_POST['info']);
     
     $STH = $pdo->prepare("INSERT INTO items ({$columns}) VALUES ({$values})");
     $STH->execute(array_values($data));
