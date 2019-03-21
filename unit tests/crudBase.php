@@ -1,8 +1,6 @@
 <?php   
   session_start();
   ob_start();
-
-  include("../Connection.php");
 ?>
 <!doctype html>
 <html>
@@ -15,16 +13,15 @@
 </head>
 
 <body>
-
 <div class="TableContainer" style="margin:1em;">
 
   <button id="refresh" class="NewButton">refresh</button>
 
-  <h1>Create</h1>
-  <button id="Create" class="NewButton">Create</button>
-  <input id="info" name="info" type="text">
-  <input id="Brand" name="Brand" type="text">
-  
+  <div id="Create-container">
+    <h1>Create</h1>
+    <button id="Create" class="NewButton">Create</button>
+  </div>
+
   <h1>Read</h1>
   <table id="customers"></table>
   
@@ -36,30 +33,33 @@
   <button id="Delete" class="NewButton">Delete</button>
 
 </div>
-<script> 
-  $(document).ready(function(){
-    reloadTable();
-  });
+<script>
 
-  $("#refresh").click(function(){
-    reloadTable();
-  });
-
+  var ColumnNames = []; 
+  
   $("#Create").click(function(){
 
-    $("input").each(function(){
+    $(":text").each(function(){
       console.log($(this).val());
     });
 
-    var params = 
+    for(var i = 0;i<=ColumnNames.length();i++){
+      paramsJson
+    }
+
+    var paramsJson = 
     {
       'info':$("#info").val(),
       'Brand':$("#Brand").val()
-    };
+    };  
+    
+    $(":checkbox:checked").each(function(){
+      console.log($(this).val());
+    });
 
     $.ajax({
       url:'addItem.php',
-      data: params,
+      data: paramsJson,
       type: 'post',
       success:function(){
         reloadTable(); 
@@ -68,16 +68,41 @@
 
   });
 
+  $(document).ready(function(){
+    reloadTable();
 
+
+  });
+
+  
+
+  $("#refresh").click(function(){
+    reloadTable();
+  });
+  
   function reloadTable(){
     $.ajax({
-    url:"table.php",
-    type: 'post',
-    success:function(data)
-    {
-      $('#customers').html(data);
-    }
+      url:"table.php",
+      type: 'post',
+      success:function(data){$('#customers').html(data);}
     })
+    
+    $.ajax({
+      type: 'post',
+      url: 'ColumnNames.php',
+      dataType: 'json',
+      cache: false,
+      success: function(result) { 
+        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);     
+        for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#Create-container');
+        }
+    })
+
+  }
+
+  function createInputs(data,target) {
+    $(target).append(
+      '<label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
   }
 </script>
 </body>

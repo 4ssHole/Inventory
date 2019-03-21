@@ -4,14 +4,14 @@
 
     include("../Connection.php");
 
-    $tableHeaderNamesArray = array();
+    $HeadersArray = array();
     $stmt = $pdo->query("SELECT * FROM items");
 ?>
 <tr>
     <?php 
         for ($i = 0; $i < $stmt->columnCount(); $i++) {
             $col = $stmt->getColumnMeta($i);    
-            array_push($tableHeaderNamesArray, $col['name']); 
+            array_push($HeadersArray, $col['name']); 
             echo '<th>'.$col['name'].'</th>';   //table header
         } 
     ?>
@@ -20,7 +20,7 @@
     while ($row = $stmt->fetch()) {
         echo '<tr>';
 
-        foreach ($tableHeaderNamesArray as $item) 
+        foreach ($HeadersArray as $item) 
         echo '<td>'.$row[$item].'</td>';    //row
 
         echo '</tr>';
