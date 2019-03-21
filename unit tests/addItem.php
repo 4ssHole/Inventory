@@ -17,8 +17,6 @@
     $columns = implode(', ', $tableMeta);
     $values = ':'.implode(', :', $tableMeta);
 
-    $data = array($_POST['itemcode'], $_POST['Brand'], $_POST['Model'], $_POST['Price'], $_POST['Quantity']);
-    
     $STH = $pdo->prepare("INSERT INTO items ({$columns}) VALUES ({$values})");
     $STH->execute(array_values($data));
 ?>
