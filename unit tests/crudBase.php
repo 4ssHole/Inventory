@@ -34,50 +34,40 @@
 
 </div>
 <script>
+  $(":checkbox:checked").each(function(){ console.log($(this).val()); });
 
   var ColumnNames = []; 
-  
+  var paramsJson = {};
+
   $("#Create").click(function(){
-
-    $(":text").each(function(){
-      console.log($(this).val());
-    });
-
-    for(var i = 0;i<=ColumnNames.length();i++){
-      paramsJson
-    }
-
-    var paramsJson = 
-    {
-      'info':$("#info").val(),
-      'Brand':$("#Brand").val()
-    };  
+    for(var i = 0;i<ColumnNames.length;i++) paramsJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
     
-    $(":checkbox:checked").each(function(){
-      console.log($(this).val());
-    });
-
     $.ajax({
       url:'addItem.php',
       data: paramsJson,
       type: 'post',
-      success:function(){
-        reloadTable(); 
-      }
+      success:function(){reloadTable();}  
     });
-
   });
 
   $(document).ready(function(){
     reloadTable();
-
-
   });
-
-  
 
   $("#refresh").click(function(){
     reloadTable();
+
+    $.ajax({
+      type: 'post',
+      url: 'ColumnNames.php',
+      dataType: 'json',
+      cache: false,
+      success: function(result) { 
+        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);     
+        }
+    })
+
+    for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#Create-container');
   });
   
   function reloadTable(){
@@ -86,23 +76,11 @@
       type: 'post',
       success:function(data){$('#customers').html(data);}
     })
-    
-    $.ajax({
-      type: 'post',
-      url: 'ColumnNames.php',
-      dataType: 'json',
-      cache: false,
-      success: function(result) { 
-        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);     
-        for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#Create-container');
-        }
-    })
-
   }
 
   function createInputs(data,target) {
     $(target).append(
-      '<label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
+      '<label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text"><br>');
   }
 </script>
 </body>
