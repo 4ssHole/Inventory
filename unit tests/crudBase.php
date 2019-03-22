@@ -39,6 +39,31 @@
   var ColumnNames = []; 
   var paramsJson = {};
 
+  function reloadTable(){
+    $.ajax({
+      url:"table.php",
+      type: 'post',
+      success:function(data){$('#customers').html(data);}
+    })
+  }
+
+  function createInputs(data,target) {
+    $(target).append('<label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text"><br>');
+  }
+
+  function addTextboxes() {
+    $.ajax({
+      type: 'post',
+      url: 'ColumnNames.php',
+      dataType: 'json',
+      cache: false,
+      success: function(result) { 
+        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);
+        for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#Create-container');     
+        }
+    })
+  }
+
   $("#Create").click(function(){
     for(var i = 0;i<ColumnNames.length;i++) paramsJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
     
@@ -50,38 +75,26 @@
     });
   });
 
+  $("#Delete").click(function(){
+    for(var i = 0;i<ColumnNames.length;i++) paramsJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
+    
+    $.ajax({
+      url:'removeItem.php',
+      data: paramsJson,
+      type: 'post',
+      success:function(){reloadTable();}  
+    });
+  });
+
   $(document).ready(function(){
     reloadTable();
+    addTextboxes();
   });
 
   $("#refresh").click(function(){
-    reloadTable();
-
-    $.ajax({
-      type: 'post',
-      url: 'ColumnNames.php',
-      dataType: 'json',
-      cache: false,
-      success: function(result) { 
-        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);     
-        }
-    })
-
-    for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#Create-container');
+    reloadTable();    
   });
   
-  function reloadTable(){
-    $.ajax({
-      url:"table.php",
-      type: 'post',
-      success:function(data){$('#customers').html(data);}
-    })
-  }
-
-  function createInputs(data,target) {
-    $(target).append(
-      '<label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text"><br>');
-  }
 </script>
 </body>
 </html>
