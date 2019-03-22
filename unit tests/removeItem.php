@@ -4,19 +4,7 @@
 
     include("../Connection.php");
 
-    $data = $tableMeta = array();
+    $data = implode(', ', array(1,2,3,4));
     
-    $stmt = $pdo->query("DELETE FROM items WHERE itemcode IN ( )");
-
-    for ($i = 0; $i < $stmt->columnCount(); $i++) {
-        $col = $stmt->getColumnMeta($i);    
-        array_push($tableMeta, $col['name']);
-        array_push($data, $_POST[$col['name']]);
-    }
-    
-    $columns = implode(', ', $tableMeta);
-    $values = ':'.implode(', :', $tableMeta);
-
-    $STH = $pdo->prepare("INSERT INTO items ({$columns}) VALUES ({$values})");
-    $STH->execute(array_values($data));
+    $stmt = $pdo->query("DELETE FROM items WHERE itemcode IN (".$data.")");
 ?>

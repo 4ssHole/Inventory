@@ -48,7 +48,7 @@
   }
 
   function createInputs(data,target) {
-    $(target).append('<label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text"><br>');
+    $(target).append('<br><label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
   }
 
   function addTextboxes() {
