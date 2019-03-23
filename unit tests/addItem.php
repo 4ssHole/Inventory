@@ -1,7 +1,4 @@
 <?php
-    session_start();
-    ob_start();
-
     include("../Connection.php");
 
     $data = $tableMeta = array();
@@ -16,7 +13,7 @@
     
     $columns = implode(', ', $tableMeta);
     $values = ':'.implode(', :', $tableMeta);
-
-    $STH = $pdo->prepare("INSERT INTO items ({$columns}) VALUES ({$values})");
+    
+    $STH = $pdo->prepare("INSERT INTO items (".implode(', ', $tableMeta).") VALUES (:".implode(', :', $tableMeta).")");
     $STH->execute(array_values($data));
 ?>

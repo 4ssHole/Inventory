@@ -17,6 +17,7 @@
 
   <button id="refresh" class="NewButton">refresh</button>
 
+  <div id="test"></div>
   <div id="Create-container">
     <h1>Create</h1>
     <button id="Create" class="NewButton">Create</button>
@@ -34,15 +35,13 @@
 
 </div>
 <script>
-  $(":checkbox:checked").each(function(){ console.log($(this).val()); });
 
+  var addJson = {};
   var ColumnNames = []; 
-  var paramsJson = {};
 
   function reloadTable(){
     $.ajax({
       url:"table.php",
-      type: 'post',
       success:function(data){$('#customers').html(data);}
     })
   }
@@ -65,24 +64,34 @@
   }
 
   $("#Create").click(function(){
-    for(var i = 0;i<ColumnNames.length;i++) paramsJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
-    
+    for(var i = 0;i<ColumnNames.length;i++) addJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
     $.ajax({
       url:'addItem.php',
-      data: paramsJson,
+      data: addJson,
       type: 'post',
-      success:function(){reloadTable();}  
+      success:function(data){reloadTable();$('#test').html(data);}  
     });
   });
 
   $("#Delete").click(function(){
-    for(var i = 0;i<ColumnNames.length;i++) paramsJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
+    var deleteArray = [];
     
+    $(":checkbox:checked").each(function(){ 
+      deleteArray.push('"'+$(this).val()+'"'); 
+    });
+      
+    for(var i=0;i<deleteArray.length;i++){
+      console.log(deleteArray[i]);
+    }
+
     $.ajax({
       url:'removeItem.php',
-      data: paramsJson,
+      data: {deleteItems:deleteArray},
       type: 'post',
-      success:function(){reloadTable();}  
+      success:function(data){
+        reloadTable();
+        $('#test').html(data);
+      }  
     });
   });
 
@@ -98,3 +107,6 @@
 </script>
 </body>
 </html>
+
+<!-- todo insert all checked items into deleteArray -->
+<!-- todo update function -->
