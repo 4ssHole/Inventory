@@ -11,9 +11,6 @@
         array_push($data, $_POST[$col['name']]);
     }
     
-    $columns = implode(', ', $tableMeta);
-    $values = ':'.implode(', :', $tableMeta);
-    
     $STH = $pdo->prepare("INSERT INTO items (".implode(', ', $tableMeta).") VALUES (:".implode(', :', $tableMeta).")");
     $STH->execute(array_values($data));
 ?>
