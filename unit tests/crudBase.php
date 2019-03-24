@@ -96,12 +96,10 @@
     $("#Update").click(function(){
       var updateArray = [];
       var selectItem = 'a';
-
+      
       for(var i = 0;i<ColumnNames.length;i++) {
         updateArray.push(ColumnNames[i]+'=\''+$("#"+ColumnNames[i]).val()+'\''); 
       }
-
-      console.log(updateArray);
 
       $.ajax({
         url:'updateItem.php',
@@ -122,6 +120,10 @@
       reloadTable();    
     });
     
+    $("td").click(function(){
+      console.log("test : "+$(this,":checkbox").val());
+    })
+
     $(document).ready(function(){
       reloadTable();
       addTextboxes();
