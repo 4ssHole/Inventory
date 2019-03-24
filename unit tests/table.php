@@ -40,5 +40,28 @@
         $(this).val(itemcodes[i]);
     })
 
+    $("#customers tr").click(function(){
+        console.log("test : "+$(this).find(":checkbox").val());
 
+        var updateArray = [];
+        var selectItem = $(this).find(":checkbox").val();
+        
+        for(var i = 0;i<ColumnNames.length;i++) {
+            if($("#"+ColumnNames[i]).val()!= "") updateArray.push(ColumnNames[i]+'=\''+$("#"+ColumnNames[i]).val()+'\''); 
+        }
+
+        $.ajax({
+            url:'updateItem.php',
+            data: 
+            {
+            updateItems:updateArray,
+            selectedItem:selectItem,
+            },
+            type: 'post',
+            success:function(data){
+            reloadTable();
+            $('#test').html(data);
+            }  
+        });
+    })
 </script>

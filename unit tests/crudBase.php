@@ -25,7 +25,8 @@
     </div>
 
     <h1>Read</h1>
-    <table id="customers"></table>
+    <table id="customers">
+    </table>
     
     <h1>Update</h1>
     <button id="Update" class="NewButton">Update</button>
@@ -78,7 +79,7 @@
     $("#Delete").click(function(){
       var deleteArray = [];
       
-      $(":checkbox:checked").each(function(){ 
+      $("#customers :checkbox:checked").each(function(){ 
         deleteArray.push('"'+$(this).val()+'"'); 
       });
 
@@ -93,36 +94,32 @@
       });
     });
 
-    $("#Update").click(function(){
-      var updateArray = [];
-      var selectItem = 'a';
+    // $("#Update").click(function(){
+    //   var updateArray = [];
+    //   var selectItem = 'a';
       
-      for(var i = 0;i<ColumnNames.length;i++) {
-        updateArray.push(ColumnNames[i]+'=\''+$("#"+ColumnNames[i]).val()+'\''); 
-      }
+    //   for(var i = 0;i<ColumnNames.length;i++) {
+    //     updateArray.push(ColumnNames[i]+'=\''+$("#"+ColumnNames[i]).val()+'\''); 
+    //   }
 
-      $.ajax({
-        url:'updateItem.php',
-        data: 
-        {
-          updateItems:updateArray,
-          selectedItem:selectItem,
-        },
-        type: 'post',
-        success:function(data){
-          reloadTable();
-          $('#test').html(data);
-        }  
-      });
-    });
+    //   $.ajax({
+    //     url:'updateItem.php',
+    //     data: 
+    //     {
+    //       updateItems:updateArray,
+    //       selectedItem:selectItem,
+    //     },
+    //     type: 'post',
+    //     success:function(data){
+    //       reloadTable();
+    //       $('#test').html(data);
+    //     }  
+    //   });
+    // });
 
     $("#refresh").click(function(){
       reloadTable();    
     });
-    
-    $("td").click(function(){
-      console.log("test : "+$(this,":checkbox").val());
-    })
 
     $(document).ready(function(){
       reloadTable();
