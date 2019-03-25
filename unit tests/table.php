@@ -28,7 +28,8 @@
 ?>
 
 <script> 
-    var rowOptionsNumber = 0;
+
+    var selectItem = '';
     var itemcodes = $("#customers tr td:first-child").map(function(){
         return $(this).text();
     })
@@ -43,41 +44,43 @@
     $("#customers tr td:first-child input[type='checkbox']").click(function(e) { e.stopPropagation(); });
       
     $("#customers tr").click(function(){
+        
         $(this).unbind("click");
         selectItem = $(this).find(":checkbox").val();
 
-        $('<tr><td colspan = '+6+'><div id="rowOptions'"></div></td></tr>').insertAfter($(this).closest('tr'));
+        $('<tr><td colspan=6><div id="rowOptions"></div></td></tr>').insertAfter($(this).closest('tr'));
         
         for(var i = 0; i < ColumnNames.length; i++) {
-            $('#rowOptions').append('<input class="editTest" id="'+ColumnNames[i]'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
+            $('#rowOptions').append('<input class="editTest" id="'+ColumnNames[i]+'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
         }
 
         $('#rowOptions').append('<button id="Update" class="NewButton">Update</button>');     
     })
-    var selectItem = '';
+
     
     $(document).on('click', '#Update',function(){
-      var updateArray = [];
-        
-      console.log("clicked");   
-      
-      for(var i = 0;i<ColumnNames.length;i++) {
-          //todo insert values to update into update array everything else doesnt work
-      }
+        var updateArray = [];
 
-      $.ajax({
-        url:'updateItem.php',
-        data: 
-        {
-          updateItems:updateArray,
-          selectedItem:selectItem,
-        },
-        type: 'post',
-        success:function(data){
-          reloadTable();
-          $('#test').html(data);
-        }  
-     });
+
+        for(var i = 0;i<ColumnNames.length;i++) {
+            if($("#"+ColumnNames[i]+".editTest").val() != ''){
+                updateArray.push(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editTest").val()+"' ");
+            }
+        }
+
+        $.ajax({
+            url:'updateItem.php',
+            data: 
+            {
+                updateItems:updateArray,
+                selectedItem:selectItem,
+            },
+            type: 'post',
+            success:function(data){
+                reloadTable();
+                $('#test').html(data);
+            }  
+        });
     });
 
 </script>
