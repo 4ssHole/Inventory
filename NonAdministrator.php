@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <title>Inventory System</title>
   <script src="jQuery331.js"></script>
-  <link rel="stylesheet" href="astyles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>

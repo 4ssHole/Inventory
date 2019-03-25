@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <title>Item Requests</title>
   <script src="jQuery331.js"></script>
-  <link rel="stylesheet" href="astyles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <?php include("Connection.php"); ?>
 <?php include("NavBar.php");?>
