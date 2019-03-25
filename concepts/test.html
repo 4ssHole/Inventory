@@ -1,0 +1,17 @@
+<head><meta http­equiv="Content­Type" content="text/html; charset=UTF­8" />
+<title>Button Fun</title> 
+<meta name="viewport" content="width=device­width, initial­scale=1">  
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body>
+<script>  
+$(document).ready(function(){ var counter=0;     
+$("h3").text("Hello World");        
+$("button").click(function(){counter++; 
+$("h3").text("Hello My Cool World: " + counter); 
+$("button").text("New Text");});    });
+</script>
+<button >My Cool Button</button>
+<h3>Hi There</h3>
+</body>
+</html>
