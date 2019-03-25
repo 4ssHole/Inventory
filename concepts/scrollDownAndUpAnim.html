@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Scroll Activated Animation</title>
+    <style type="text/css">
+        body {
+            font-family: Raleway, Arial;
+        }
+
+        .content {
+            height: 600px;
+        }
+
+        .about {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 100px 0;
+            transform-style: preserve-3d;
+            transform: perspective(800px);
+        }
+
+        .about h2 {
+            text-transform: uppercase;
+            font-size: 50px;
+            font-weight: 400;
+        }
+
+        .about h2,.about p {
+            transition: all 0.8s ease;
+        }
+
+        .about.hidden h2 {
+            opacity: 0;
+            transform: translate3d(0, 0, 400px) rotateY(-40deg);
+        }
+
+        .about.hidden p {
+            opacity: 0;
+            transform: translate3d(0, 0, 400px) rotateY(40deg);
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="about">
+        <h2>This is heading</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, beatae.</div>    
+            <div class="content"></div>
+            
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var aboutEl = $('div.about'),
+                aboutElOffset = 1,
+                documentEl = $(document);
+            documentEl.on('scroll', function () {
+                if (documentEl.scrollTop() < aboutElOffset && aboutEl.hasClass('hidden')) aboutEl.removeClass('hidden');
+                if (documentEl.scrollTop() > aboutElOffset && !aboutEl.hasClass('hidden')) aboutEl.addClass('hidden');
+            }
+            );
+        })();
+    </script>
+</body>
+</html>
