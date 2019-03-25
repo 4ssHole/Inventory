@@ -11,6 +11,9 @@ body {
     text-align: center;
     font-family: 'Segoe UI Light';
     background-color: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     border: none;
 }
 #addDialog{

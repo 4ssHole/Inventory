@@ -44,23 +44,45 @@
       
     $("#customers tr").click(function(){
         $(this).unbind("click");
+        selectItem = $(this).find(":checkbox").val();
 
-        rowOptionsNumber++;
-        $('<tr><td colspan = '+6+'><div id="rowOptions'+rowOptionsNumber+'"></div></td></tr>').insertAfter($(this).closest('tr'));
+        $('<tr><td colspan = '+6+'><div id="rowOptions'"></div></td></tr>').insertAfter($(this).closest('tr'));
         
-        console.log("test : "+$(this).find(":checkbox").val());
-        loadOptions();        
+        for(var i = 0; i < ColumnNames.length; i++) {
+            $('#rowOptions').append('<input class="editTest" id="'+ColumnNames[i]'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
+        }
 
-        // $( "#foo" ).bind( "click", function() {
-        //   alert( "The quick brown fox jumps over the lazy dog." );
-        // });
+        $('#rowOptions').append('<button id="Update" class="NewButton">Update</button>');     
     })
+    var selectItem = '';
+    
+    $(document).on('click', '#Update',function(){
+      var updateArray = [];
+        
+      console.log("clicked");   
+      
+      for(var i = 0;i<ColumnNames.length;i++) {
+          //todo insert values to update into update array everything else doesnt work
+      }
 
-    function makeOptions(data,target) {
-        $(target).append('<input class="editTest" id="'+data+'" name="'+data+'" placeholder="'+data+'" type="text">');
-    }
+      $.ajax({
+        url:'updateItem.php',
+        data: 
+        {
+          updateItems:updateArray,
+          selectedItem:selectItem,
+        },
+        type: 'post',
+        success:function(data){
+          reloadTable();
+          $('#test').html(data);
+        }  
+     });
+    });
 
-    function loadOptions() {
-        for(var i = 0; i < ColumnNames.length; i++) makeOptions(ColumnNames[i],'#rowOptions'+rowOptionsNumber);     
-    }
 </script>
+
+/*
+    todo adding edit options and binding them to one row
+    maybe use item code to identify belonging row
+*/

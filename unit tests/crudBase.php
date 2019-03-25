@@ -29,7 +29,7 @@
     </table>
     
     <h1>Update</h1>
-    <button id="Update" class="NewButton">Update</button>
+    <!-- <button id="Update" class="NewButton">Update</button> -->
     <input id="infoUpdate" name="infoUpdate" type="text">
     
     <h1>Delete</h1>
@@ -93,29 +93,6 @@
         }  
       });
     });
-
-    // $("#Update").click(function(){
-    //   var updateArray = [];
-    //   var selectItem = 'a';
-      
-    //   for(var i = 0;i<ColumnNames.length;i++) {
-    //     updateArray.push(ColumnNames[i]+'=\''+$("#"+ColumnNames[i]).val()+'\''); 
-    //   }
-
-    //   $.ajax({
-    //     url:'updateItem.php',
-    //     data: 
-    //     {
-    //       updateItems:updateArray,
-    //       selectedItem:selectItem,
-    //     },
-    //     type: 'post',
-    //     success:function(data){
-    //       reloadTable();
-    //       $('#test').html(data);
-    //     }  
-    //   });
-    // });
 
     $("#refresh").click(function(){
       reloadTable();    
