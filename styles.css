@@ -37,6 +37,20 @@ input[type='checkbox'] {
     white-space: nowrap;
     border: none;
 }
+.addBar{
+    padding: .5em 0;
+    color: #000;
+    font-family: 'Segoe UI Light';
+    font-size: 16px;
+    font-weight: normal;
+
+    text-align: center;
+    background-color: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
+}
 
 @media screen and (max-width: 750px) {
     .hideOnSmall {
@@ -89,28 +103,6 @@ nav ul li a:hover {
     margin-top: 5em; /* VALUE IS DEPENDANT ON THE NAVBAR SIZE */
 }
 
-th a {
-    color: white;
-    align-items: center;
-    text-decoration: none;
-}
-
-th a:hover {
-    background-color: #464646;
-}
-
-td {
-    max-width: 1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-tr td div {
-    overflow: hidden;
-    color: rgb(0, 0, 0);
-    text-overflow: ellipsis;
-}
 
 .navicons {
     margin-right: .45em;
@@ -118,27 +110,33 @@ tr td div {
     height: 1.25em;
 }
 
-#customers {
+.newTable {
     border-collapse: collapse;
     text-align: center;
     width: 100%;
 }
 
-#customers tr:nth-child(even) {
+.newTable tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-#customers tr:hover {
+.newTable tr:hover {
     background-color: rgb(180, 190, 215);
 }
 
-#customers th {
+.newTable th {
     padding: .5em 0;
     background-color: rgb(0, 0, 0);
     color: #ffffff;
     font-weight: normal;
 }
 
+.newTable td {
+    height: 2.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .LargeSubmitButton {
     position: absolute;
     bottom: 1em;

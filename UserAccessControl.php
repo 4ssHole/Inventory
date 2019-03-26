@@ -51,7 +51,7 @@ if(!empty($_POST['SelectTable'])) $_SESSION["InitialUserTypeValue"]= $_POST['Sel
 
 <div class="TableContainer" style="margin:1em;">
   
-  <table id="customers">
+  <table id="users" class="newTable">
   <tr>
   <th>
     <input onClick="CheckBoxAll(this)" type="checkbox">

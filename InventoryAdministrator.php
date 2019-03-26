@@ -20,30 +20,40 @@
 
 <div class="logo">SCIENCE LABORATORY</div>
 
-<?php DisplayNavBar();
-echo $_SESSION['UserNumber'];
-
-?>
+<?php DisplayNavBar();?>
 <div id="test"></div>
 <p class="NavBarSpacer">
 <div class="tablecontrols">  
 
-  <a id="Create" class="NewButton">Add Item</a>
-  <a id="Delete" class="NewButton">Delete Selected Items</a>
-  <a name="NewCategory" class="NewButton">Modify Categories</a>
+  <button id="addButton" class="NewButton">Add Item</button>
+  <button id="Delete" class="NewButton">Delete Selected Items</button>
+  <button name="NewCategory" class="NewButton">Modify Categories</button>
 
 </div>
 
 <div class="tableAndLower">
   <div class="TableContainer" style="margin:1em;">
-    <table id="customers"></table>
+    <table id="customers" class="newTable"></table>
   </div>
 </div>
 
+<script src="../jquery.color-2.1.2.min.js"></script>
+<script src="../jquery.easing.1.3.js"></script>
 <script> 
   var ColumnNames = []; 
 
-  $("#Create").click(function(){
+  $(document).on('click', "#addButton", function(){
+
+    $('<tr id="Generated"><td colspan=7><div id="addBar"></div></td></tr>').insertAfter($('#customers tr:first-child').closest('tr'));
+    
+    for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#addBar');     
+    $('#addBar').append('<button id="Create" class="NewButton">Add</button>');
+
+  })
+
+
+  $(document).on('click', "#Create", function(){
+    console.log("rest");
     var addJson = {};
     
     for(var i = 0;i<ColumnNames.length;i++) addJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
@@ -78,22 +88,7 @@ echo $_SESSION['UserNumber'];
   });
 
   $(document).ready(function(){
-    reloadTable();
-    addTextboxes();
-  });
-
-  function reloadTable(){
-    $.ajax({
-      url:"../ajax/table.php",
-      success:function(data){$('#customers').html(data);}
-    })
-  }
-
-  function createInputs(data,target) {
-    $(target).append('<br><label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
-  }
-
-  function addTextboxes() {
+    reloadTable();  
     $.ajax({
       type: 'post',
       url: '../ajax/ColumnNames.php',
@@ -101,11 +96,26 @@ echo $_SESSION['UserNumber'];
       cache: false,
       success: function(result) { 
         for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);
-        for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#Create-container');     
-        }
-    })
+      }
+    });
+  });
+
+  function reloadTable(){
+    var tableName = "items";
+
+    $.ajax({
+      url:"../ajax/table.php",
+      data: {selectedTable:tableName},
+      type: 'post',
+      success:function(data){
+        $('#customers').html(data);
+      }
+    });
   }
 
+  function createInputs(data,target) {
+    $(target).append('<br><label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
+  }
 
   window.onscroll = function() {
     var header = document.getElementById("myHeader");

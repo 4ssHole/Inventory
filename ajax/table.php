@@ -6,11 +6,9 @@
 
     $HeadersArray = array();
 
-    $test = "  WHERE Brand=\"Mexico\"";
+    echo $_POST['selectedTable'];
 
-    echo "SELECT * FROM items WHERE Brand=\"Mexico\"";
-
-    $stmt = $pdo->query("SELECT * FROM items" );
+    $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']);
 ?>
 <tr>
     <?php 
@@ -36,7 +34,8 @@
 
     var selectItem = '';
     
-    $("#customers tr").on("click",(function(){  
+    $("#customers tr").slice(1).on("click",(
+        function(){  
             if($(this).closest('tr').next('tr').find("#rowOptions"+$(this).find(":checkbox").val()).length !== 1){
                 selectItem = $(this).find(":checkbox").val();
 
@@ -108,16 +107,15 @@
     });
 
     $(document).on('click', '#RequestItem',function(){
-        console.log("send item request to administrator queue");
-
         var requestedValue = $(this).val();
 
         $.ajax({
-        url:'../ajax/requestItem.php',
-        data: {requestedItem:requestedValue},
-        type: 'post',
-        success:function(data){
-            $('#test').html(data);}  
+            url:'../ajax/requestItem.php',
+            data: {requestedItem:requestedValue},
+            type: 'post',
+            success:function(data){
+                $('#test').html(data);
+            }  
         });
     });
 
