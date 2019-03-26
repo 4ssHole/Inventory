@@ -1,3 +1,6 @@
+<?php
+  include("Connection.php");
+?>
 <!doctype html>
 <html>
 
@@ -11,26 +14,28 @@
   </style>
 </head>
 
-<?php    
+<?php
 
 if(isset($_POST["RegisterButton"]))
 {
-  echo "SELECT * FROM users WHERE UserName = '$_POST[userName]';";
 
-  $check="SELECT * FROM users WHERE UserName = '$_POST[userName]';";
-  $rs = mysqli_query($Users,$check);
-  $data = mysqli_fetch_array($rs, MYSQLI_NUM);
-    
-  if($data[0] > 1) {
-      echo "User already exists<br/>";
-  }
-  else
-  {
-    $insert="INSERT INTO users(UserName,Password,Privilege,FirstName,LastName)
-    values('".$_POST[userName]."','".$_POST['password']."','user','".$_POST[firstName]."','".$_POST[lastName]."')";
-    mysqli_query($Users,$insert);
-    header("location:index.php");
-  }
+  $email = $_POST['userName'];
+  $stmt = $pdo->prepare("SELECT * FROM users WHERE UserName=?");
+  $stmt->execute([$email]); 
+  $user = $stmt->fetch();
+  if ($user) {
+    echo "User already exists<br/>";
+  } else {
+    $insert="INSERT INTO users(UserName,Password,FirstName,LastName)
+    values('".$_POST['userName']."','".$_POST['password']."','".$_POST[firstName]."','".$_POST[lastName]."')";
+
+    $STH = $pdo->prepare($insert);
+    $STH->execute();
+    //header("location:index.php");
+  } 
+
+  $stmt = $pdo->prepare('SELECT * FROM users WHERE UserName="'.$_POST['userName'].'"');
+
 }
 ?>
 <body>
