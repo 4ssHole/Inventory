@@ -43,24 +43,31 @@
 
     $("#customers tr td:first-child input[type='checkbox']").click(function(e) { e.stopPropagation(); });
       
-    $("#customers tr").click(function(){
-        
-        $(this).unbind("click");
-        selectItem = $(this).find(":checkbox").val();
+    $("#customers tr").on("click",(function(){        
+        if($(this).closest('tr').next('tr').find("#rowOptions").length !== 1){
+            selectItem = $(this).find(":checkbox").val();
+            
+            console.log('#rowOptions'+' [value="'+selectItem+'"]');
 
-        $('<tr><td colspan=6><div id="rowOptions"></div></td></tr>').insertAfter($(this).closest('tr'));
-        
-        for(var i = 0; i < ColumnNames.length; i++) {
-            $('#rowOptions').append('<input class="editTest" id="'+ColumnNames[i]+'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
-        }
 
-        $('#rowOptions').append('<button id="Update" class="NewButton">Update</button>');     
-    })
+            html = $('<tr id="Generated"><td colspan=6><div id="rowOptions'+selectItem+'"></div></td></tr>')
+            html.insertAfter($(this).closest('tr'));
 
+            for(var i = 0; i < ColumnNames.length; i++) {
+                $('#rowOptions'+selectItem).append('<input class="editTest" id="'+ColumnNames[i]+'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
+            }
+            
+            $('#rowOptions'+selectItem).append('<button id="Update" class="NewButton">Update</button><button id="Close" class="NewButton">Close</button>');  
+        }   
+    }));
     
+
+    $(document).on('click', '#Close',function(){
+        $(this).parent().parent().parent().remove();   
+    });
+
     $(document).on('click', '#Update',function(){
         var updateArray = [];
-
 
         for(var i = 0;i<ColumnNames.length;i++) {
             if($("#"+ColumnNames[i]+".editTest").val() != ''){

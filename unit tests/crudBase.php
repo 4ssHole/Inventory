@@ -28,10 +28,6 @@
     <table id="customers">
     </table>
     
-    <h1>Update</h1>
-    <!-- <button id="Update" class="NewButton">Update</button> -->
-    <input id="infoUpdate" name="infoUpdate" type="text">
-    
     <h1>Delete</h1>
     <button id="Delete" class="NewButton">Delete</button>
 
