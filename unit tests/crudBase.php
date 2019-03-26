@@ -38,7 +38,7 @@
 
     function reloadTable(){
       $.ajax({
-        url:"table.php",
+        url:"../ajax/table.php",
         success:function(data){$('#customers').html(data);}
       })
     }
@@ -50,7 +50,7 @@
     function addTextboxes() {
       $.ajax({
         type: 'post',
-        url: 'ColumnNames.php',
+        url: '../ajax/ColumnNames.php',
         dataType: 'json',
         cache: false,
         success: function(result) { 
@@ -65,7 +65,7 @@
       
       for(var i = 0;i<ColumnNames.length;i++) addJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
       $.ajax({
-        url:'addItem.php',
+        url:'../ajax/addItem.php',
         data: addJson,
         type: 'post',
         success:function(data){reloadTable();$('#test').html(data);}  
@@ -80,7 +80,7 @@
       });
 
       $.ajax({
-        url:'removeItem.php',
+        url:'../ajax/removeItem.php',
         data: {deleteItems:deleteArray},
         type: 'post',
         success:function(data){

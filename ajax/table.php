@@ -44,7 +44,7 @@
     $("#customers tr td:first-child input[type='checkbox']").click(function(e) { e.stopPropagation(); });
       
     $("#customers tr").on("click",(function(){        
-        if($(this).closest('tr').next('tr').find("#rowOptions").length !== 1){
+        if($(this).closest('tr').next('tr').find("#rowOptions"+$(this).find(":checkbox").val()).length !== 1){
             selectItem = $(this).find(":checkbox").val();
             
             console.log('#rowOptions'+' [value="'+selectItem+'"]');
@@ -69,7 +69,7 @@
         var deleteArray = ["'"+$(this).val()+"'"];
 
         $.ajax({
-            url:'removeItem.php',
+            url:'../ajax/removeItem.php',
             data: {deleteItems:deleteArray},
             type: 'post',
             success:function(data){
@@ -94,7 +94,7 @@
         }
 
         $.ajax({
-            url:'updateItem.php',
+            url:'../ajax/updateItem.php',
             data: 
             {
                 updateItems:updateArray,
