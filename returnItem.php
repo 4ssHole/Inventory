@@ -53,14 +53,11 @@
     });
   });
 
-  $(document).on('click', '#RequestItem',function(){
-      var requestedValue = $(this).val();
-
+  $(document).on('click', '#Return',function(){
       $.ajax({
-          url:'../ajax/requestItem.php',
+          url:'../ajax/handleRequest.php',
           data: {
-            requestedItem:requestedValue,
-            quantityProvided:$('#Quantity-request'+selectItem).val()
+            borrowid:$(this).val()
             },
           type: 'post',
           success:function(data){
@@ -70,14 +67,15 @@
       $(this).closest('tr').remove();
   });
 
-
-
   function reloadTable(){
-    tableName = "items";
+    tableName = "return";
 
     $.ajax({
       url:"../ajax/table.php",
-      data: {selectedTable:tableName},
+      data: {
+        selectedTable:tableName
+        
+      },
       type: 'post',
       success:function(data){
         $('#customers').html(data);

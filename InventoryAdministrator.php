@@ -40,7 +40,7 @@
 <script src="../jquery.color-2.1.2.min.js"></script>
 <script src="../jquery.easing.1.3.js"></script>
 <script> 
-  var ColumnNames = []; 
+  var ColumnNames = [];
 
   $(document).on('click', "#addButton", function(){
     if($("#Generated-addBar").length !== 1){
@@ -54,7 +54,6 @@
     }
   })
 
-
   $(document).on('click', "#Create", function(){
     console.log("rest");
     var addJson = {};
@@ -67,6 +66,45 @@
       success:function(data){reloadTable();$('#test').html(data);}  
     });
   });
+
+  $(document).on('click', "#singleDelete", function(){
+      var deleteArray = ["'"+$(this).val()+"'"];
+
+      $.ajax({
+          url:'../ajax/removeItem.php',
+          data: {deleteItems:deleteArray},
+          type: 'post',
+          success:function(data){
+          reloadTable();
+          $('#test').html(data);
+          }  
+      });
+  });
+
+  $(document).on('click', '#Update',function(){
+      var updateArray = [];
+
+      for(var i = 0;i<ColumnNames.length;i++) {
+          if($("#"+ColumnNames[i]+".editBar").val() != ''){
+              updateArray.push(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editBar").val()+"' ");
+          }
+      }
+
+      $.ajax({
+          url:'../ajax/updateItem.php',
+          data: 
+          {
+              updateItems:updateArray,
+              selectedItem:selectItem,
+          },
+          type: 'post',
+          success:function(data){
+              reloadTable();
+              $('#test').html(data);
+          }  
+      });
+  });
+
 
   $("#Delete").click(function(){
     var deleteArray = [];
@@ -100,7 +138,7 @@
   });
 
   function reloadTable(){
-    var tableName = "items";
+    tableName = "items";
 
     $.ajax({
       url:"../ajax/table.php",

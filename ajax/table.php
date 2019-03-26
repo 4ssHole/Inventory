@@ -6,9 +6,13 @@
 
     $HeadersArray = array();
 
-    echo $_POST['selectedTable'];
-
-    $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']);
+    
+    if($_POST['selectedTable'] == "return"){
+        $stmt = $pdo->query("SELECT * FROM borrowed WHERE UserNumber = ".$_SESSION['UserNumber']." AND request = 'approved'");
+    }
+    else{    
+        $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']);
+    }
 ?>
 <tr>
     <?php 
@@ -31,7 +35,8 @@
 ?>
 
 <script> 
-
+    var accessLevel = <?php echo "'".$_SESSION['Privilege']."';";?>
+    var selectedTable = <?php echo "'".$_POST['selectedTable']."';";?>
     var selectItem = '';
     
     $("#customers tr").slice(1).on("click",(
@@ -39,17 +44,56 @@
             if($(this).closest('tr').next('tr').find("#rowOptions"+$(this).find(":checkbox").val()).length !== 1){
                 selectItem = $(this).find(":checkbox").val();
 
-                $('<tr id="Generated"><td colspan=7><div id="rowOptions'+selectItem+'"></div></td></tr>').insertAfter($(this).closest('tr'));
+                if(accessLevel=="admin"){
+                    if(selectedTable=="borrowed"){
+                        $(` <tr id="Generated">
+                            <td colspan=9>
+                                <div id="rowOptions`+selectItem+`">
+                                    <button id="Approve" class="NewButton" value="`+selectItem+`">Approve</button>
+                                    <button id="Deny" class="NewButton" value="`+selectItem+`">Deny</button>
+                                    <button id="Remove" class="NewButton" value="`+selectItem+`">Remove</button>
+                                </div>
+                            </td>
+                        </tr>`).insertAfter($(this).closest('tr'));
+                    }
+                    else if(selectedTable=="items"){
+                        $(` <tr id="Generated">
+                            <td colspan=7>
+                                <div id="rowOptions`+selectItem+`">
+                                    <button id="Update" class="NewButton">Update</button>
+                                    <button id="RequestItem" class="NewButton" value="`+selectItem+`">Request Item</button>
+                                    <button id="singleDelete" class="NewButton" value="`+selectItem+`">Delete</button>
+                                </div>
+                            </td>
+                        </tr>`).insertAfter($(this).closest('tr'));
 
-                for(var i = 0; i < ColumnNames.length; i++) {
-                    $('#rowOptions'+selectItem).append('<input class="editBar" id="'+ColumnNames[i]+'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
+                        for(var i = ColumnNames.length-1; i >= 0; i--) {
+                            $('#rowOptions'+selectItem).prepend('<input class="editBar" id="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
+                        }
+                    }
                 }
-                
-                $('#rowOptions'+selectItem).append(
-                    '<button id="Update" class="NewButton">Update</button>'+
-                    '<button id="RequestItem" class="NewButton" value="'+selectItem+'">Request Item</button>'+
-                    '<button id="singleDelete" class="NewButton" value="'+selectItem+'">Delete</button>'
-                )
+                else{
+                    if(selectedTable=="return"){
+                        $(` <tr id="tr`+selectItem+`">
+                                <td colspan=9>
+                                    <button id="Return" value="`+selectItem+`">Return</button>
+                                </td>
+                            </tr>`
+                        ).insertAfter($(this).closest('tr'));
+                    }
+                    else{
+                        $(` <tr id="tr`+selectItem+`">
+                                <td colspan=7>
+                                    <div id="rowOptions`+selectItem+`">
+                                        <label for="Quantity-request">Quantity</label>
+                                        <input id="Quantity-request`+selectItem+`" class="" type="number"/>`+`
+                                        <button id="RequestItem" class="NewButton" value="`+selectItem+`">Request Item</button>`+`
+                                    </div>
+                                </td>
+                            </tr>`
+                        ).insertAfter($(this).closest('tr'));
+                    }
+                }
             }   
             else{
                 $(this).closest('tr').next().remove();
@@ -65,58 +109,9 @@
     $("#customers tr:first-child").prepend("<th><input type='checkbox' id='checkAll'></th>");
     $("#customers tr td:first-child input[type='checkbox']").each(function(i){  $(this).val(itemcodes[i]); })
     $("#customers input[type='checkbox']").click(function(e) { e.stopPropagation(); })
-      
 
-    $(document).on('click', "#singleDelete", function(){
-        var deleteArray = ["'"+$(this).val()+"'"];
 
-        $.ajax({
-            url:'../ajax/removeItem.php',
-            data: {deleteItems:deleteArray},
-            type: 'post',
-            success:function(data){
-            reloadTable();
-            $('#test').html(data);
-            }  
-        });
-    });
 
-    $(document).on('click', '#Update',function(){
-        var updateArray = [];
-
-        for(var i = 0;i<ColumnNames.length;i++) {
-            if($("#"+ColumnNames[i]+".editBar").val() != ''){
-                updateArray.push(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editBar").val()+"' ");
-            }
-        }
-
-        $.ajax({
-            url:'../ajax/updateItem.php',
-            data: 
-            {
-                updateItems:updateArray,
-                selectedItem:selectItem,
-            },
-            type: 'post',
-            success:function(data){
-                reloadTable();
-                $('#test').html(data);
-            }  
-        });
-    });
-
-    $(document).on('click', '#RequestItem',function(){
-        var requestedValue = $(this).val();
-
-        $.ajax({
-            url:'../ajax/requestItem.php',
-            data: {requestedItem:requestedValue},
-            type: 'post',
-            success:function(data){
-                $('#test').html(data);
-            }  
-        });
-    });
 
     $(document).on('click', '#checkAll',function(){
         console.log("checkall not implemented");

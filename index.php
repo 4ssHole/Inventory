@@ -42,7 +42,7 @@
     }
     if($count == 1)  //if data found is 1
     {
-      if($row[3] == "admin")
+      if($_SESSION["Privilege"] == "admin")
         header("location:InventoryAdministrator.php");
       else header("location:NonAdministrator.php");
     }
