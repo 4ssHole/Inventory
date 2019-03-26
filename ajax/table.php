@@ -35,35 +35,35 @@
     })
   
     $("#customers tr").slice(1).prepend("<td><input type='checkbox'></td>");
-    $("#customers tr:first-child").prepend("<th><input type='checkbox'></th>");
+    $("#customers tr:first-child").prepend("<th><input type='checkbox' id='checkAll'></th>");
     
     $("#customers tr td:first-child input[type='checkbox']").each(function(i){  
         $(this).val(itemcodes[i]);
     })
 
-    $("#customers tr td:first-child input[type='checkbox']").click(function(e) { e.stopPropagation(); });
+    //$("#customers input[type='checkbox']").dblclick(function(e) { e.stopPropagation(); });
+
+    $(document).on('click', ':checkbox',function(e){
+        e.stopPropagation();
+    });
       
-    $("#customers tr").on("click",(function(){        
+    $("#customers tr").on("click",(function(){  
         if($(this).closest('tr').next('tr').find("#rowOptions"+$(this).find(":checkbox").val()).length !== 1){
             selectItem = $(this).find(":checkbox").val();
-            
-            console.log('#rowOptions'+' [value="'+selectItem+'"]');
 
-
-            html = $('<tr id="Generated"><td colspan=6><div id="rowOptions'+selectItem+'"></div></td></tr>')
-            html.insertAfter($(this).closest('tr'));
+            $('<tr id="Generated"><td colspan=6><div id="rowOptions'+selectItem+'"></div></td></tr>').insertAfter($(this).closest('tr'));
 
             for(var i = 0; i < ColumnNames.length; i++) {
-                $('#rowOptions'+selectItem).append('<input class="editTest" id="'+ColumnNames[i]+'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
+                $('#rowOptions'+selectItem).append('<input class="editBar" id="'+ColumnNames[i]+'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
             }
             
             $('#rowOptions'+selectItem).append(
                 '<button id="Update" class="NewButton">Update</button>'+
                 '<button id="Close" class="NewButton">Close</button>'+
                 '<button id="singleDelete" class="NewButton" value="'+selectItem+'">sDelete</button>'
-            );  
-        }   
-    }));
+            )};   
+        }
+    ));
 
     $(document).on('click', "#singleDelete", function(){
         var deleteArray = ["'"+$(this).val()+"'"];
@@ -78,7 +78,6 @@
             }  
         });
     });
-    
 
     $(document).on('click', '#Close',function(){
         $(this).parent().parent().parent().remove();   
@@ -88,8 +87,9 @@
         var updateArray = [];
 
         for(var i = 0;i<ColumnNames.length;i++) {
-            if($("#"+ColumnNames[i]+".editTest").val() != ''){
-                updateArray.push(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editTest").val()+"' ");
+            if($("#"+ColumnNames[i]+".editBar").val() != ''){
+                updateArray.push(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editBar").val()+"' ");
+                console.log(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editBar").val()+"' ");
             }
         }
 
@@ -106,6 +106,10 @@
                 $('#test').html(data);
             }  
         });
+    });
+
+    $(document).on('click', '#checkAll',function(){
+        console.log("dsa");
     });
 
 </script>

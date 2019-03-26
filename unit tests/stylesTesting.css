@@ -7,15 +7,8 @@ body {
     font-family: 'Segoe UI Light';
     background-color: #e2e2e2;
 }
-.editTest{
-    text-align: center;
-    font-family: 'Segoe UI Light';
-    background-color: transparent;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border: none;
-}
+
+
 #addDialog{
     margin: 0em 1em;
 }

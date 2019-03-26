@@ -59,44 +59,20 @@
       </select>
     </form>
 
-  <a id="myBtn" class="NewButton">Add Item</a>
-  <a name="ShowDeleteConfirm" class="NewButton">Delete Selected Items</a>
+  <a id="Create" class="NewButton">Add Item</a>
+  <a id="Delete" class="NewButton">Delete Selected Items</a>
   <a name="NewCategory" class="NewButton">Modify Categories</a>
 
 </div>
 
 <div class="tableAndLower">
-<div class="TableContainer" style="margin:1em;">
-  
-  <table id="customers"></table>
-
+  <div class="TableContainer" style="margin:1em;">
+    <table id="customers"></table>
+  </div>
+</div>
 
 <script> 
   var ColumnNames = []; 
-
-  function reloadTable(){
-    $.ajax({
-      url:"../ajax/table.php",
-      success:function(data){$('#customers').html(data);}
-    })
-  }
-
-  function createInputs(data,target) {
-    $(target).append('<br><label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
-  }
-
-  function addTextboxes() {
-    $.ajax({
-      type: 'post',
-      url: '../ajax/ColumnNames.php',
-      dataType: 'json',
-      cache: false,
-      success: function(result) { 
-        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);
-        for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#Create-container');     
-        }
-    })
-  }
 
   $("#Create").click(function(){
     var addJson = {};
@@ -137,8 +113,29 @@
     addTextboxes();
   });
 
+  function reloadTable(){
+    $.ajax({
+      url:"../ajax/table.php",
+      success:function(data){$('#customers').html(data);}
+    })
+  }
 
+  function createInputs(data,target) {
+    $(target).append('<br><label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
+  }
 
+  function addTextboxes() {
+    $.ajax({
+      type: 'post',
+      url: '../ajax/ColumnNames.php',
+      dataType: 'json',
+      cache: false,
+      success: function(result) { 
+        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);
+        for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#Create-container');     
+        }
+    })
+  }
 
   var header = document.getElementById("myHeader");
   var sticky = header.offsetTop;
@@ -146,30 +143,6 @@
     if (window.pageYOffset > sticky) header.classList.add("sticky");
     else header.classList.remove("sticky");
   };
-
-  function CheckBoxAll(source) { 
-    checkboxes = document.getElementsByClassName("ItemCheckboxes");  
-    for(var i=0, n=checkboxes.length;i<n;i++) checkboxes[i].checked = source.checked;
-  }
-
-  var modal = document.getElementById('myModal');
-  var btn = document.getElementById("myBtn");
-  var span = document.getElementsByClassName("close")[0];
-
-  btn.onclick = function() {
-      modal.style.display = "block";
-  }
-
-  span.onclick = function() {
-      modal.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-
 
 </script>
 </body>

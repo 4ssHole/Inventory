@@ -8,54 +8,6 @@ body {
     background-color: #e2e2e2;
 }
 
-/* The Modal (background) */
-
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.57);
-}
-
-/* Modal Content/Box */
-
-.modal-content {
-    box-shadow: 0px 0px 75px 16px rgba(0, 0, 0, 0.57);
-    background-color: #000000;
-    position: fixed;
-    color: white;
-    bottom: 0;
-    padding: 20px;
-    width: 100%;
-    /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-
-.close {
-    color: rgb(255, 255, 255);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover, .close:focus {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .logo {
     overflow: hidden;
     text-align: left;
@@ -71,13 +23,19 @@ body {
     text-decoration: none;
 }
 
-.SearchBar {
-    float: right;
-    padding: .25em;
-}
 
 input[type='checkbox'] {
     margin: .75em;
+}
+
+.editBar{
+    text-align: center;
+    font-family: 'Segoe UI Light';
+    background-color: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
 }
 
 @media screen and (max-width: 750px) {
