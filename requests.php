@@ -38,11 +38,12 @@
   });
 
   function reloadTable(){
-    tableName = "borrowed";
-
     $.ajax({
       url:"../ajax/table.php",
-      data: {selectedTable:tableName},
+      data: {
+        selectedTable:"borrowed",
+        page:"requests-user"
+      },
       type: 'post',
       success:function(data){
         $('#customers').html(data);
@@ -50,46 +51,6 @@
     });
   }
 
-  $(document).on('click', "#Approve", function(){
-    $.ajax({
-      url:"../ajax/handleRequest.php",
-      data: {
-        decision:"approve",
-        borrowid: $(this).val()
-      },
-      type: 'post',
-      success:function(data){
-        reloadTable();
-      }
-    })
-  });
-  $(document).on('click', "#Deny", function(){
-    $.ajax({
-      url:"../ajax/handleRequest.php",
-      data: {
-        decision:"deny",
-        borrowid:$(this).val(),
-        remarks:"test"
-        },
-      type: 'post',
-      success:function(data){
-        reloadTable();
-      }
-    })
-  });
-  $(document).on('click', "#Remove", function(){
-    $.ajax({
-      url:"../ajax/handleRequest.php",
-      data: {
-        decision:"remove",
-        borrowid:$(this).val(),
-        },
-      type: 'post',
-      success:function(data){
-        reloadTable();
-      }
-    })
-  });
 
 
   window.onscroll = function() {

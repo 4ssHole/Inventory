@@ -37,6 +37,7 @@
 <script> 
     var accessLevel = <?php echo "'".$_SESSION['Privilege']."';";?>
     var selectedTable = <?php echo "'".$_POST['selectedTable']."';";?>
+    
     var selectItem = '';
     
     $("#customers tr").slice(1).on("click",(
