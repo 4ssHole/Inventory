@@ -25,7 +25,7 @@ body {
 
 
 input[type='checkbox'] {
-    margin: .75em;
+    margin: .75em 0;
 }
 
 .editBar{
@@ -133,9 +133,6 @@ nav ul li a:hover {
 
 .newTable td {
     height: 2.5em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 .LargeSubmitButton {
     position: absolute;

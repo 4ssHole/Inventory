@@ -87,7 +87,6 @@
         for(var i = 0;i<ColumnNames.length;i++) {
             if($("#"+ColumnNames[i]+".editBar").val() != ''){
                 updateArray.push(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editBar").val()+"' ");
-                console.log(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editBar").val()+"' ");
             }
         }
 
@@ -120,7 +119,7 @@
     });
 
     $(document).on('click', '#checkAll',function(){
-        console.log("dsa");
+        console.log("checkall not implemented");
     });
 
 </script>

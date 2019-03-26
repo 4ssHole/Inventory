@@ -43,12 +43,15 @@
   var ColumnNames = []; 
 
   $(document).on('click', "#addButton", function(){
-
-    $('<tr id="Generated"><td colspan=7><div id="addBar"></div></td></tr>').insertAfter($('#customers tr:first-child').closest('tr'));
-    
-    for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#addBar');     
-    $('#addBar').append('<button id="Create" class="NewButton">Add</button>');
-
+    if($("#Generated-addBar").length !== 1){
+      $('<tr id="Generated-addBar"><td colspan=7><div id="addBar"></div></td></tr>').insertAfter($('#customers tr:first-child').closest('tr'));
+      
+      for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#addBar');     
+      $('#addBar').append('<button id="Create" class="NewButton">Add</button>');
+    }
+    else{
+      $("#Generated-addBar").remove();
+    }
   })
 
 
@@ -81,10 +84,6 @@
         $('#test').html(data);
       }  
     });
-  });
-
-  $("#refresh").click(function(){
-    reloadTable();    
   });
 
   $(document).ready(function(){
