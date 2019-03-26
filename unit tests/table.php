@@ -57,9 +57,27 @@
                 $('#rowOptions'+selectItem).append('<input class="editTest" id="'+ColumnNames[i]+'" name="'+ColumnNames[i]+'" placeholder="'+ColumnNames[i]+'" type="text">'); 
             }
             
-            $('#rowOptions'+selectItem).append('<button id="Update" class="NewButton">Update</button><button id="Close" class="NewButton">Close</button>');  
+            $('#rowOptions'+selectItem).append(
+                '<button id="Update" class="NewButton">Update</button>'+
+                '<button id="Close" class="NewButton">Close</button>'+
+                '<button id="singleDelete" class="NewButton" value="'+selectItem+'">sDelete</button>'
+            );  
         }   
     }));
+
+    $(document).on('click', "#singleDelete", function(){
+        var deleteArray = ["'"+$(this).val()+"'"];
+
+        $.ajax({
+            url:'removeItem.php',
+            data: {deleteItems:deleteArray},
+            type: 'post',
+            success:function(data){
+            reloadTable();
+            $('#test').html(data);
+            }  
+        });
+    });
     
 
     $(document).on('click', '#Close',function(){
@@ -91,8 +109,3 @@
     });
 
 </script>
-
-/*
-    todo adding edit options and binding them to one row
-    maybe use item code to identify belonging row
-*/
