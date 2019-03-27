@@ -12,10 +12,13 @@
             $CurrentQuantity = $stmt->fetch();
 
             $pdo->query("UPDATE items SET Quantity=Quantity+'".$CurrentQuantity['Quantity']."' WHERE itemcode ='".$CurrentQuantity['itemcode']."'");
-            $pdo->query("UPDATE borrowed SET request='returned' WHERE borrowid='".$_POST['borrowId']."'");
+            $pdo->query("UPDATE borrowed SET request='returned', ReturnDate=CURRENT_TIMESTAMP WHERE borrowid='".$_POST['borrowId']."'");
         }
         else{
             echo 'item already returned';
         }
+    }
+    else{
+        echo 'item is pending approval';
     }
 ?>

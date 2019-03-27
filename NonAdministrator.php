@@ -43,27 +43,38 @@
       dataType: 'json',
       cache: false,
       success: function(result) { 
-        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);
+        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i])
       }
-    });
-  });
+    })
+  })
 
   $(document).on('click', '#RequestItem',function(){
       var requestedValue = $(this).val();
 
       $.ajax({
-          url:'../ajax/requestItem.php',
+          url:'../ajax/handleRequest.php',
           data: {
             requestedItem:requestedValue,
+            decision:"sendrequest",
             quantityProvided:$(this).parent().find('#Quantity-request'+requestedValue).val()
             },
           type: 'post',
           success:function(data){
               $('#test').html(data);
+              if(data =="pending-request"){
+                console.log("prompt modify")
+              }
+              else if(data =="sent-request"){
+                reloadTable()
+                console.log("tooltip click here to modify your request")
+              }
+              else if(data =="promt-change-quantity"){
+                console.log("request invalid")
+              }
           }  
-      });
+      })
       $(this).closest('tr').remove();
-  });
+  })
 
 
 
@@ -71,13 +82,13 @@
     tableName = "items";
 
     $.ajax({
-      url:"../ajax/table.php",
+      url:"../ajax/UsermodeTable.php",
       data: {selectedTable:tableName},
       type: 'post',
       success:function(data){
-        $('#customers').html(data);
+        $('#customers').html(data)
       }
-    });
+    })
   }
 
 </script>

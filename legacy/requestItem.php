@@ -6,8 +6,6 @@
 
 
     $result = $pdo->query("SELECT * FROM borrowed WHERE itemcode ='".$_POST['requestedItem']."' AND UserNumber='".$_SESSION['UserNumber']."'");
-   // $result->execute();
-
     $itemExists = $result->fetch();
 
     if($itemExists){

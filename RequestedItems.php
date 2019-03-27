@@ -33,7 +33,7 @@
 </div>
 
 <script>
-    $(document).ready(function(){
+  $(document).ready(function(){
     reloadTable();
   });
 
@@ -55,27 +55,30 @@
       url:"../ajax/handleRequest.php",
       data: {
         decision:"approve",
-        borrowid: $(this).val()
+        borrowid: $(this).val(),
+        remarks:$("#remarks"+selectItem).text()
       },
       type: 'post',
       success:function(data){
         reloadTable();
         $('#test').html(data);
+
+        
       }
     })
   });
+
   $(document).on('click', "#Deny", function(){
     $.ajax({
       url:"../ajax/handleRequest.php",
       data: {
         decision:"deny",
         borrowid:$(this).val(),
-        remarks:$(remarks+selectItem).val()
+        remarks:$("#remarks"+selectItem).text()
         },
       type: 'post',
       success:function(data){
         reloadTable();
-        console.log($(remarks+selectItem).val());
       }
     })
   });

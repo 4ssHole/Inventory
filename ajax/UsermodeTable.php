@@ -5,7 +5,7 @@
     include("../Connection.php");
 
     $HeadersArray = array();   
-    $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']." WHERE UserNumber='".$_SESSION['UserNumber']."'");
+    $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']);
 ?>
 <tr>
     <?php 
@@ -18,9 +18,11 @@
 </tr>
 <?php  
     while ($row = $stmt->fetch()) {
-        echo '<tr>';    
+        echo '<tr>';
+        
         foreach ($HeadersArray as $item) 
         echo '<td>'.$row[$item].'</td>';    //row
+
         echo '</tr>';
     }
 ?>
@@ -30,26 +32,32 @@
 
     var accessLevel = <?php echo "'".$_SESSION['Privilege']."';";?>
     var selectedTable = <?php echo "'".$_POST['selectedTable']."';";?>
-
+    
     $("#customers tr").slice(1).on("click",(
         function(){  
+
+            if($(this).closest('tr').find("#rowOptions"+$(this).find(":checkbox").val()).length !== 1){
+            
+            }
             if($(this).closest('tr').next('tr').find("#rowOptions"+$(this).find(":checkbox").val()).length !== 1){
                 selectItem = $(this).find(":checkbox").val();
-
-                $(` <tr id="tr`+selectItem+`">
-                        <td colspan=9>
-                            <div style="height:2.5em" id="rowOptions`+selectItem+`">
-                                <button id="Return" value="`+selectItem+`">Return</button>
-                            </div>
-                        </td>
-                    </tr>`
-                ).insertAfter($(this).closest('tr'));
+                var  insert = 
+                `<tr id="tr`+selectItem+`">
+                    <td colspan=7>
+                        <div style="height:2.5em" id="rowOptions`+selectItem+`">
+                            <label>Quantity : </label>
+                            <input id="Quantity-request`+selectItem+`" class="inputinbar" type="number"/>`+`
+                            <button id="RequestItem" class="row-button" value="`+selectItem+`">Request Item</button>`+`
+                        </div>
+                    </td>
+                </tr>`;
                 
-            }   
+                $(insert).insertAfter($(this).closest('tr'));
+            }
             else{
                 $(this).closest('tr').next().remove();
             }
-        }
+        } 
     ));
 
     var itemcodes = $("#customers tr td:first-child").map(function(){ return $(this).text(); })
