@@ -3,6 +3,14 @@
     ob_start();
     include("../Connection.php");
 
+    if($_POST['decision'] == "get-request"){
+        $result = $pdo->prepare("SELECT * FROM borrowed WHERE borrowid ='".$_POST['requestedItem']."'");
+        $result->execute();
+        $itemExists = $result->fetch();
+
+        echo $itemExists['request'];
+    }
+
     if($_POST['decision'] == "sendrequest"){
         $result = $pdo->prepare("SELECT * FROM borrowed WHERE itemcode ='".$_POST['requestedItem']."' AND UserNumber='".$_SESSION['UserNumber']."'");
         $result->execute();
@@ -32,7 +40,6 @@
         $pdo->query("UPDATE borrowed SET request='recieved' WHERE borrowid='".$_POST['borrowid']."'");
     }
     
-
     if($_POST['decision'] == "approve"){
         $stmt = $pdo->query("SELECT * FROM borrowed WHERE borrowid='".$_POST['borrowid']."'");
         $row = $stmt->fetch();
@@ -51,7 +58,8 @@
     }
     if($_POST['decision'] == "deleteitem"){
         foreach($_POST['deleteItems'] as $item){
-            $pdo->query("UPDATE borrowed SET request='item does not exist' WHERE itemcode='".$item."'");
+            echo "UPDATE borrowed SET request='item no longer available' WHERE itemcode='".$item."'";
+            $pdo->query("UPDATE borrowed SET request='item no longer available' WHERE itemcode='".$item."'");
         }
     }
     if($_POST['decision'] == "addItem"){

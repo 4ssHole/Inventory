@@ -32,6 +32,14 @@
 
     var accessLevel = <?php echo "'".$_SESSION['Privilege']."';";?>
     var selectedTable = <?php echo "'".$_POST['selectedTable']."';";?>
+
+    function getColumns(){
+        var tableColumns = 0;
+        $('#customers tr:nth-child(1) th').each(function () {
+            tableColumns++;
+        });
+        return tableColumns
+    }
     
     $("#customers tr").slice(1).on("click",(
         function(){  
@@ -41,7 +49,7 @@
    
                 if(selectedTable=="borrowed"){
                     insert = ` <tr id="Generated">
-                        <td colspan=9>
+                        <td colspan=`+getColumns()+`>
                             <div style="height:2.5em" id="rowOptions`+selectItem+`">
                                 <label>Remarks : </label>
                                 <div contenteditable="true" id="remarks`+selectItem+`" class="inputinbar" style="display:inline-block; min-width:5em;"></div>
@@ -54,10 +62,9 @@
                 }
                 else if(selectedTable=="items"){
                     $(` <tr id="Generated">
-                            <td colspan=7>
+                            <td colspan=`+getColumns()+`>
                                 <div style="height:2.5em" id="rowOptions`+selectItem+`">
-                                    <button id="Update" class="row-button">Update</button>
-                                    <button id="RequestItem" class="row-button" value="`+selectItem+`">Request Item</button>
+                                    <button id="Update" class="row-button value="`+selectItem+`"">Update</button>
                                     <button id="singleDelete" class="row-button" value="`+selectItem+`">Delete</button>
                                 </div>
                             </td>

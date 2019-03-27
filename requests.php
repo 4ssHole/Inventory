@@ -34,7 +34,7 @@
 
 <script>
     $(document).ready(function(){
-    reloadTable();
+      reloadTable();
   });
 
   function reloadTable(){

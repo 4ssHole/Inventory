@@ -24,11 +24,8 @@
 <div id="test"></div>
 <p class="NavBarSpacer">
 <div class="tablecontrols">  
-
   <button id="addButton" class="NewButton">Add Item</button>
   <button id="Delete" class="NewButton">Delete Selected Items</button>
-  <button name="NewCategory" class="NewButton">Modify Categories</button>
-
 </div>
 
 <div class="tableAndLower">
@@ -44,7 +41,7 @@
 
   $(document).on('click', "#addButton", function(){
     if($("#Generated-addBar").length !== 1){
-      $('<tr id="Generated-addBar"><td colspan=7><div id="addBar"></div></td></tr>').insertAfter($('#customers tr:first-child').closest('tr'));
+      $('<tr id="Generated-addBar"><td colspan='+getColumns()+'><div id="addBar"></div></td></tr>').insertAfter($('#customers tr:first-child').closest('tr'));
       
       for (var i = 0; i < ColumnNames.length; i++) createInputs(ColumnNames[i],'#addBar');     
       $('#addBar').append('<button id="Create" class="NewButton">Add</button>');
@@ -52,6 +49,7 @@
     else{
       $("#Generated-addBar").remove();
     }
+    $('#itemcode').focus();
   })
 
   $(document).on('click', "#Create", function(){
@@ -62,7 +60,9 @@
       url:'../ajax/addItem.php',
       data: addJson,
       type: 'post',
-      success:function(data){reloadTable();$('#test').html(data);}  
+      success:function(data){
+        reloadTable();
+      }  
     });
   });
 
@@ -81,6 +81,7 @@
           {
               updateItems:updateArray,
               selectedItem:selectItem,
+              newItemCode:$("#itemcode.editBar").val(),
           },
           type: 'post',
           success:function(data){
@@ -121,17 +122,16 @@
         decision:"deleteitem",
         deleteItems:deleteArray,
         },
-      type: 'post',    
-      success:function(data){
-        reloadTable();
-        $('#test').html(data);
-      }  
+      type: 'post'
     })
 
     $.ajax({
       url:'../ajax/removeItem.php',
       data: {deleteItems:deleteArray},
-      type: 'post'
+      type: 'post',
+      success:function(data){
+        reloadTable();
+      }  
     });
   }
 
@@ -149,15 +149,15 @@
   }
 
   function createInputs(data,target) {
-    $(target).append('<br><label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
+    $(target).append('<label for="'+data+'">'+data+'<input class="inputinbar-addItem" id="'+data+'" name="'+data+'" type="text">');
   }
 
-  // window.onscroll = function() {
-  //   var header = document.getElementById("myHeader");
-  //   var sticky = header.offsetTop;
-  //   if (window.pageYOffset > sticky) header.classList.add("sticky");
-  //   else header.classList.remove("sticky");
-  // };
+  window.onscroll = function() {
+    var header = document.getElementById("myHeader");
+    var sticky = header.offsetTop;
+    if (window.pageYOffset > sticky) header.classList.add("sticky");
+    else header.classList.remove("sticky");
+  };
 
 </script>
 </body>

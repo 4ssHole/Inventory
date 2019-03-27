@@ -106,12 +106,7 @@ section {
     margin: .15em;
     width: 12.2em;
 }
-.input-login::placeholder{
-    font-family: 'Segoe UI Light', Helvetica, sans-serif;
-    font-style: italic;
-    vertical-align: middle;
-}
-.input-register::placeholder{
+.input-login::placeholder, .input-register::placeholder{
     font-family: 'Segoe UI Light', Helvetica, sans-serif;
     font-style: italic;
     vertical-align: middle;
@@ -127,7 +122,7 @@ section {
     width: 19em;
 }
 
-.button-index {
+.button-index ,.button{
     background-color: rgb(0, 0, 0);
     color: white;
     border: none;
@@ -137,20 +132,12 @@ section {
     font-size: 1.15em;
     font-family: "Segoe UI Light";
 }
-.button-index:hover{
+
+.button-index:hover, .button:hover{
     background-color: rgb(14, 97, 153);
 }
-.button:hover{
-    background-color: rgb(14, 97, 153);
-}
+
 .button{
-    background-color: rgb(0, 0, 0);
-    color: white;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.15em;
-    font-family: "Segoe UI Light";
     padding: 0.35em .5em;
 }
 
@@ -182,24 +169,18 @@ section {
 input[type='checkbox'] {
     margin: .75em 0;
 }
-
-.editBar{
+.editBar, .addBar{
     text-align: center;
     font-family: 'Segoe UI Light';
     background-color: transparent;
-    width:10%;
-    min-width: 2em;
-    height:100%;
     text-overflow: ellipsis;
     white-space: nowrap;
     border: none;
 }
-.inputinbar{
-    height: 90%;
-    text-align: center;
-    border: .1em solid rgb(183, 183, 183);
-    font-family: 'Segoe UI Light';
-    background-color: transparent;
+.editBar{
+    width:10%;
+    min-width: 2em;
+    height:100%;
 }
 .addBar{
     padding: .5em 0;
@@ -207,13 +188,13 @@ input[type='checkbox'] {
     font-family: 'Segoe UI Light';
     font-size: 16px;
     font-weight: normal;
-
+}
+.inputinbar, .inputinbar-addItem{
+    height: 90%;
     text-align: center;
+    border: .1em solid rgb(183, 183, 183);
+    font-family: 'Segoe UI Light';
     background-color: transparent;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border: none;
 }
 
 @media screen and (max-width: 750px) {
@@ -303,21 +284,12 @@ nav ul li a:hover {
     color: black;
     text-decoration: none;
 }
-.row-button{
+.row-button, .NewButton{
     font-size: .8em;
     background: black;
     color: white;
     padding: .5em;
     height: 100%;
-    border: none;
-    margin: 0 .25em;
-    text-decoration: none;
-}
-.NewButton {
-    font-size: .8em;
-    background: black;
-    color: white;
-    padding: .5em;
     border: none;
     margin: 0 .25em;
     text-decoration: none;
