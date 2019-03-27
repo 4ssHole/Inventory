@@ -35,10 +35,6 @@ function DisplayNavBar() {
             <li>
               <a href="requests.php">
                 <img src="img\inventory-icon.png" class="navicons">pending approval</a>
-            </li>
-            <li>
-            <a href="returnItem.php">
-              <img src="img\inventory-icon.png" class="navicons">return item</a>
             </li>';
         }
       ?>

@@ -37,6 +37,7 @@
 <script> 
     var accessLevel = <?php echo "'".$_SESSION['Privilege']."';";?>
     var selectedTable = <?php echo "'".$_POST['selectedTable']."';";?>
+    var page = <?php echo "'".$_POST['page']."';";?>
     
     var selectItem = '';
     
@@ -74,10 +75,12 @@
                     }
                 }
                 else{
-                    if(selectedTable=="return"){
+                    if(page=="requests-user"){
                         $(` <tr id="tr`+selectItem+`">
                                 <td colspan=9>
-                                    <button id="Return" value="`+selectItem+`">Return</button>
+                                    <div id="rowOptions`+selectItem+`">
+                                        <button id="Return" value="`+selectItem+`">Return</button>
+                                    </div>
                                 </td>
                             </tr>`
                         ).insertAfter($(this).closest('tr'));
