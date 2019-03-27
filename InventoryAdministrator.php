@@ -55,7 +55,6 @@
   })
 
   $(document).on('click', "#Create", function(){
-    console.log("rest");
     var addJson = {};
     
     for(var i = 0;i<ColumnNames.length;i++) addJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
@@ -65,20 +64,6 @@
       type: 'post',
       success:function(data){reloadTable();$('#test').html(data);}  
     });
-  });
-
-  $(document).on('click', "#singleDelete", function(){
-      var deleteArray = ["'"+$(this).val()+"'"];
-
-      $.ajax({
-          url:'../ajax/removeItem.php',
-          data: {deleteItems:deleteArray},
-          type: 'post',
-          success:function(data){
-          reloadTable();
-          $('#test').html(data);
-          }  
-      });
   });
 
   $(document).on('click', '#Update',function(){
@@ -105,24 +90,16 @@
       });
   });
 
-
-  $("#Delete").click(function(){
-    var deleteArray = [];
-    
-    $("#customers :checkbox:checked").each(function(){ 
-      deleteArray.push('"'+$(this).val()+'"'); 
-    });
-
-    $.ajax({
-      url:'../ajax/removeItem.php',
-      data: {deleteItems:deleteArray},
-      type: 'post',
-      success:function(data){
-        reloadTable();
-        $('#test').html(data);
-      }  
-    });
+  $(document).on('click', "#singleDelete", function(){
+      deleteWithBorrowed([$(this).val()]);
   });
+
+  $(document).on('click', '#Delete',function(){
+    var deleteArray = [];
+    $("#customers :checkbox:checked").each(function(){ deleteArray.push($(this).val()); });
+    deleteWithBorrowed(deleteArray);
+  });
+
 
   $(document).ready(function(){
     reloadTable();  
@@ -136,6 +113,27 @@
       }
     });
   });
+  
+  function deleteWithBorrowed(deleteArray){
+    $.ajax({
+      url:"../ajax/handleRequest.php",
+      data: {
+        decision:"deleteitem",
+        deleteItems:deleteArray,
+        },
+      type: 'post',    
+      success:function(data){
+        reloadTable();
+        $('#test').html(data);
+      }  
+    })
+
+    $.ajax({
+      url:'../ajax/removeItem.php',
+      data: {deleteItems:deleteArray},
+      type: 'post'
+    });
+  }
 
   function reloadTable(){
     tableName = "items";
@@ -154,12 +152,12 @@
     $(target).append('<br><label for="'+data+'">'+data+'<input id="'+data+'" name="'+data+'" type="text">');
   }
 
-  window.onscroll = function() {
-    var header = document.getElementById("myHeader");
-    var sticky = header.offsetTop;
-    if (window.pageYOffset > sticky) header.classList.add("sticky");
-    else header.classList.remove("sticky");
-  };
+  // window.onscroll = function() {
+  //   var header = document.getElementById("myHeader");
+  //   var sticky = header.offsetTop;
+  //   if (window.pageYOffset > sticky) header.classList.add("sticky");
+  //   else header.classList.remove("sticky");
+  // };
 
 </script>
 </body>

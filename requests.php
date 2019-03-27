@@ -39,10 +39,10 @@
 
   function reloadTable(){
     $.ajax({
-      url:"../ajax/table.php",
+      url:"../ajax/requestsTable.php",
       data: {
         selectedTable:"borrowed",
-        page:"requests-user"
+        page:"requests"
       },
       type: 'post',
       success:function(data){
@@ -51,7 +51,22 @@
     });
   }
 
+  $(document).on('click', '#Return',function(){
+      var ReturnValue = $(this).val();
 
+      $.ajax({
+          url:'../ajax/returnItem.php',
+          data: {
+            borrowId:ReturnValue,
+            return:"return"
+            },
+          type: 'post',
+          success:function(data){
+              $('#test').html(data);
+          }  
+      });
+      $(this).closest('tr').remove();
+  });
 
   window.onscroll = function() {
     var header = document.getElementById("myHeader");

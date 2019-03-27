@@ -16,6 +16,116 @@ body {
     font-size: 1.5em;
 }
 
+section {
+    width: 100%;
+    position: absolute;
+    top: 50%; 
+    right: 50%; 
+    transform: translate(50%, -50%); 
+    height: 15em;
+    box-shadow: 0px 0px 216px 32px rgba(0,0,0,0.5);
+    align-items: center;
+}
+.login-input-container{
+    display:inline-block;
+}
+.intro{
+    font-family: "Segoe UI Light";
+    color:#636363;    
+    font-size: 4.5em;
+    margin-top: .25em;
+    margin-right: .33em;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container-login{
+    bottom: 1em;
+    position: absolute;
+    width:100%;
+    text-align:center;
+}
+
+.text-container{
+    text-align:center;
+}
+.input-login{
+    font-family: "Segoe UI";
+    background: #e2e2e2;
+    font-size: 1.25em;
+    padding: .2em;
+    border: .1em solid rgb(183, 183, 183);
+    margin: .15em;
+    width: 12.2em;
+}
+.input-login::placeholder{
+    font-family: 'Segoe UI Light', Helvetica, sans-serif;
+    font-style: italic;
+    vertical-align: middle;
+}
+.input-register::placeholder{
+    font-family: 'Segoe UI Light', Helvetica, sans-serif;
+    font-style: italic;
+    vertical-align: middle;
+}
+
+.input-register{
+    font-family: "Segoe UI";
+    background: #e2e2e2;
+    font-size: 1.25em;
+    padding: .2em;
+    border: .1em solid rgb(183, 183, 183);
+    margin: .15em;
+    width: 19em;
+}
+
+.button-index {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    padding: .5em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.15em;
+    font-family: "Segoe UI Light";
+}
+.button-index:hover{
+    background-color: rgb(14, 97, 153);
+}
+.button:hover{
+    background-color: rgb(14, 97, 153);
+}
+.button{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.15em;
+    font-family: "Segoe UI Light";
+    padding: 0.35em .5em;
+}
+
+
+.grid-container-register {
+    margin: 1em 10em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: ". ." ". .";
+    grid-gap: .5em;
+}
+ 
+.logoLogin {
+    margin-top: 1em;
+    font-family: 'Segoe UI Semibold';
+    font-size: 1.75em;
+    text-align:center;
+}
+
 .logo a {
     float: left;
     display: block;
@@ -32,10 +142,19 @@ input[type='checkbox'] {
     text-align: center;
     font-family: 'Segoe UI Light';
     background-color: transparent;
-    overflow: hidden;
+    width:10%;
+    min-width: 2em;
+    height:100%;
     text-overflow: ellipsis;
     white-space: nowrap;
     border: none;
+}
+.inputinbar{
+    height: 90%;
+    text-align: center;
+    border: .1em solid rgb(183, 183, 183);
+    font-family: 'Segoe UI Light';
+    background-color: transparent;
 }
 .addBar{
     padding: .5em 0;
@@ -133,89 +252,6 @@ nav ul li a:hover {
 
 .newTable td {
     height: 2.5em;
-}
-.LargeSubmitButton {
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
-    font-size: larger;
-    background: black;
-    color: white;
-    padding: .5em;
-    border: none;
-}
-
-.inputbox {
-    background: #e2e2e2;
-    font-size: .9em;
-    padding: .2em;
-    border: .1em solid rgb(183, 183, 183);
-    margin: .25em 0;
-}
-
-.inputbox::placeholder {
-    font-family: 'Segoe UI Light', Helvetica, sans-serif;
-    font-style: italic;
-    vertical-align: middle;
-}
-
-.button {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    padding: .75em 0;
-}
-
-.button:hover {
-    color: rgb(87, 85, 85);
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.8);
-    /* background with opacity  */
-    visibility: hidden;
-    opacity: 0;
-    z-index: 100;
-}
-
-.overlay:target {
-    visibility: visible;
-    opacity: 1;
-}
-
-.popup {
-    top: 25%;
-    margin: 0 auto;
-    padding: 1em;
-    background: rgb(235, 235, 235);
-    width: 50%;
-    height: 15em;
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    top: .5em;
-    right: .75em;
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-}
-
-.popup .close:hover {
-    color: rgb(0, 0, 0);
-}
-
-.popup .content {
-    max-height: 50%;
-    overflow: auto;
 }
 
 .NewButton {

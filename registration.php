@@ -9,29 +9,28 @@
   <title>Registration</title>
   <script src="jQuery331.js"></script>
   <style type="text/css">
-    @import url("LoginStyles.css");
-
+    @import url("../styles.css");
   </style>
 </head>
 
 <?php
 
-if(isset($_POST["RegisterButton"]))
+if(isset($_POST["button-index"]))
 {
 
   $email = $_POST['userName'];
   $stmt = $pdo->prepare("SELECT * FROM users WHERE UserName=?");
-  $stmt->execute([$email]); 
+  $stmt->execute([$email]);
+
   $user = $stmt->fetch();
   if ($user) {
     echo "User already exists<br/>";
   } else {
-    $insert="INSERT INTO users(UserName,Password,FirstName,LastName)
-    values('".$_POST['userName']."','".$_POST['password']."','".$_POST[firstName]."','".$_POST[lastName]."')";
+    $insert="INSERT INTO users(UserName,Password,FirstName,LastName) values('".$_POST['userName']."','".$_POST['password']."','".$_POST['firstName']."','".$_POST['lastName']."')";
 
     $STH = $pdo->prepare($insert);
     $STH->execute();
-    //header("location:index.php");
+    header("location:index.php");
   } 
 
   $stmt = $pdo->prepare('SELECT * FROM users WHERE UserName="'.$_POST['userName'].'"');
@@ -39,21 +38,41 @@ if(isset($_POST["RegisterButton"]))
 }
 ?>
 <body>
-  <a href="index.php" class="NewButton">Return</a>
-  <section class="section"><div class="logo"align="center">SCIENCE LABORATORY
-</div>
- <form action="#" method="post" style="margin:0 auto; display: inline;">
-<div align="center" style="margin-top: 1.5em;margin-bottom: .3em;">
-<input class="inputbox" name="userName" style="display: inline;width: 15em;margin:0 auto;" type="text" placeholder="User Name">
-<input class="inputbox" name="password" style="display: inline;width: 9.125em;margin:0 auto;" type="password" placeholder="Password">
-</div>
 
-<div align="center" style="margin-top: .3em;margin-bottom: .3em;">
-  <input class="inputbox" name="firstName" style="display: inline;width: 10em;margin:0 auto;" type="text" placeholder="First Name">
-  <input class="inputbox" name="lastName" style="display: inline;width: 12em;margin:0 auto;" type="text" placeholder="Last Name">
-  <button class="button" name="RegisterButton" type="submit" style="margin:0 auto; display: inline;height:1.9em;"><img src="img\enter-button.png" style="width:1em;"></button>
- </form>   
+
+  
+
+  <section class="section">
+    
+    <div class="logoLogin">
+      SCIENCE LABORATORY
+    </div>
+    
+    <form action="#" method="post">
+      <div class="grid-container-register">
+        <div class="grid-item-register"><input class="input-register" style="float: right;" name="userName" type="text" placeholder="User Name"></div>
+        <div class="grid-item-register"><input class="input-register" name="password" type="password" placeholder="Password"></div>
+
+        <div class="grid-item-register"><input class="input-register" style="float: right;" name="firstName" type="text" placeholder="First Name"></div>
+        <div class="grid-item-register">
+          <input class="input-register" style="width: 14em;" name="lastName" type="text" placeholder="Last Name">
+          <button class="button-index" name="button-index" type="submit">
+            register
+            <img style="width: 0.8em;" src="img\enter-button.png">
+          </button>
+        </div>
+      </div>
+    </form>  
+  </section>
+
+<div class="footer-container-login">
+  <button class="button-index" id="returnToIndex">Return</button>
 </div>
-</section>
+<script>
+  $(document).on('click', "#returnToIndex", function(){
+    console.log("test");
+    window.location.href = '..';
+  })
+</script>
 </body>
 </html>

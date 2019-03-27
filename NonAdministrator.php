@@ -23,11 +23,6 @@
 <?php DisplayNavBar();?>
 <div id="test"></div>
 <p class="NavBarSpacer">
-<div class="tablecontrols">  
-
-  <button id="borrow" class="NewButton">Queue for approval</button>
-
-</div>
 
 <div class="tableAndLower">
   <div class="TableContainer" style="margin:1em;">
@@ -60,7 +55,7 @@
           url:'../ajax/requestItem.php',
           data: {
             requestedItem:requestedValue,
-            quantityProvided:$('#Quantity-request'+selectItem).val()
+            quantityProvided:$(this).parent().find('#Quantity-request'+requestedValue).val()
             },
           type: 'post',
           success:function(data){
@@ -84,13 +79,6 @@
       }
     });
   }
-
-  window.onscroll = function() {
-    var header = document.getElementById("myHeader");
-    var sticky = header.offsetTop;
-    if (window.pageYOffset > sticky) header.classList.add("sticky");
-    else header.classList.remove("sticky");
-  };
 
 </script>
 </body>

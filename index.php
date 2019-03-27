@@ -11,7 +11,7 @@
   <title>Inventory System</title>
   <script src="jQuery331.js"></script>
   <style type="text/css">
-    @import url("LoginStyles.css");
+    @import url("../styles.css");
   </style>
 </head>
 
@@ -52,15 +52,15 @@
 <body>
 
 <section class="section">
-  <div class="logo" align="center">SCIENCE LABORATORY</div>  
+  <div class="logoLogin">SCIENCE LABORATORY</div>  
   <main class="flex-center">
     <div class="intro">welcome</div>
     <div style="margin-top: 1.75em;">      
       <form action="" method="post">
 
-        <input type="text" name="UserName" class="inputbox" style="display:block; width:14.25em;" placeholder="User name">
-        <input type="password" name="Password" class="inputbox" style="display:inline; margin-right:0;" placeholder="Password">
-        <button class="button" name="LoginButton" style="height:2em;"> 
+        <input type="text" name="UserName" class="input-login" style="display:block; width:14.25em;" placeholder="User name">
+        <input type="password" name="Password" class="input-login" style="display:inline; margin-right:0;" placeholder="Password">
+        <button class="button" name="LoginButton"> 
           <img src="img\enter-button.png" style="width:1em;"></button>
       
       </form>
@@ -69,10 +69,14 @@
 </section>
 
 
-<div align="center" id="footer">
-  <form action="registration.php">
-    <button class="Registerbutton" align="center" type="submit">register here</button>
-  </form>
+<div class="footer-container-login">
+  <button id="register" class="button-index" type="submit">register here</button>
 </div>
+<script>
+  $(document).on('click', "#register", function(){
+    console.log("test");
+    window.location.href = 'registration.php';
+  })
+</script>
 </body>
 </html>

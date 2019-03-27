@@ -19,13 +19,12 @@
     }
 
     else{
-        echo "sent request";
+        echo "INSERT INTO borrowed (itemcode,UserNumber,Quantity) VALUES ('".$_POST['requestedItem']."', '".$_SESSION['UserNumber']."', '".$_POST['quantityProvided']."')";
         $STH = $pdo->prepare("INSERT INTO borrowed (itemcode,UserNumber,Quantity) VALUES ('".$_POST['requestedItem']."', '".$_SESSION['UserNumber']."', '".$_POST['quantityProvided']."')");
         $STH->execute();
+        echo "sent request";
     }
 ?>
-
-
 
 <!--
     TODO: 

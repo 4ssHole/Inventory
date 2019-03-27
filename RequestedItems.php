@@ -69,11 +69,12 @@
       data: {
         decision:"deny",
         borrowid:$(this).val(),
-        remarks:"test"
+        remarks:$(remarks+selectItem).val()
         },
       type: 'post',
       success:function(data){
         reloadTable();
+        console.log($(remarks+selectItem).val());
       }
     })
   });
@@ -91,13 +92,6 @@
     })
   });
 
-
-  window.onscroll = function() {
-    var header = document.getElementById("myHeader");
-    var sticky = header.offsetTop;
-    if (window.pageYOffset > sticky) header.classList.add("sticky");
-    else header.classList.remove("sticky");
-  };
 </script>
 </body>
 </html>

@@ -19,7 +19,7 @@ function DisplayNavBar() {
           </li>
           <li>
             <a href="UserAccessControl.php">
-              <img src="../img\inventory-icon.png" class="navicons">registered users</a>
+              <img src="../img\inventory-icon.png" class="navicons">manage users</a>
           </li>
           <li>
           <a href="RequestedItems.php">
