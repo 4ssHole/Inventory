@@ -3,7 +3,31 @@
     ob_start();
     include("../Connection.php");
 
+    if($_POST['decision'] == "sendrequest"){
+        $result = $pdo->prepare("SELECT * FROM borrowed WHERE itemcode ='".$_POST['requestedItem']."' AND UserNumber='".$_SESSION['UserNumber']."'");
+        $itemExists = $result->fetch();
+
+        if($itemExists){
+            if($itemExists['ReturnDate'] == null){
+                if($itemExists['request'] == "approved"){
+                    $pdo->query("UPDATE borrowed SET request='pending' WHERE borrowid='".$itemExists['borrowid']."'"); //revokepending
+                }
+                echo 'promptModifyRequest pending';
+            }
+        }
+    }
+
+    else{        
+        $STH = $pdo->prepare("INSERT INTO borrowed (itemcode,UserNumber,Quantity) VALUES ('".$_POST['requestedItem']."', '".$_SESSION['UserNumber']."', '".$_POST['quantityProvided']."')");
+        $STH->execute();
+        echo "sent request";
+    }
+
     if($_POST['decision'] == "approve"){
+        $stmt = $pdo->query("SELECT * FROM borrowed WHERE borrowid='".$_POST['borrowid']."'");
+        $row = $stmt->fetch();
+
+        $pdo->query("UPDATE items SET Quantity=Quantity-'".$row['Quantity']."' WHERE itemcode ='".$row['itemcode']."'");
         $pdo->query("UPDATE borrowed SET request='approved' WHERE borrowid='".$_POST['borrowid']."'");
     }
 

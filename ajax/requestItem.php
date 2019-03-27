@@ -3,9 +3,10 @@
     ob_start();
     include("../Connection.php");
 
-    $sql = "SELECT * FROM borrowed WHERE itemcode ='".$_POST['requestedItem']."' AND UserNumber='".$_SESSION['UserNumber']."'";
-    $result = $pdo->prepare($sql);
-    $result->execute();
+
+
+    $result = $pdo->query("SELECT * FROM borrowed WHERE itemcode ='".$_POST['requestedItem']."' AND UserNumber='".$_SESSION['UserNumber']."'");
+   // $result->execute();
 
     $itemExists = $result->fetch();
 
@@ -18,8 +19,7 @@
         }
     }
 
-    else{
-        echo "INSERT INTO borrowed (itemcode,UserNumber,Quantity) VALUES ('".$_POST['requestedItem']."', '".$_SESSION['UserNumber']."', '".$_POST['quantityProvided']."')";
+    else{        
         $STH = $pdo->prepare("INSERT INTO borrowed (itemcode,UserNumber,Quantity) VALUES ('".$_POST['requestedItem']."', '".$_SESSION['UserNumber']."', '".$_POST['quantityProvided']."')");
         $STH->execute();
         echo "sent request";

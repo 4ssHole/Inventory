@@ -18,8 +18,7 @@
 <?php
   include("Connection.php");
 
-  if(isset($_POST["LoginButton"]))
-  {
+  if(isset($_POST["LoginButton"])){
     $result1= "SELECT * FROM Users WHERE UserName='" .$_POST["UserName"] . "' and Password = '". $_POST["Password"]."'";
     $result = mysqli_query($Users, $result1);
     $count = mysqli_num_rows($result);

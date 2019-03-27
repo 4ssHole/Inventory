@@ -71,7 +71,7 @@ if(!empty($_POST['SelectTable'])) $_SESSION["InitialUserTypeValue"]= $_POST['Sel
   foreach ($all_property as $item){?>
 
   <td>
-    <a class="button" href="?id1=<?php echo ($row[0]);?>#popup1">
+    <a class="button-useraccess" href="?id1=<?php echo ($row[0]);?>#popup1">
       <?php echo $row[$item];?>
     </a>
     <div id="popup1" class="overlay">

@@ -60,6 +60,7 @@
       type: 'post',
       success:function(data){
         reloadTable();
+        $('#test').html(data);
       }
     })
   });

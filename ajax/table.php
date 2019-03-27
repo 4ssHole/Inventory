@@ -54,9 +54,9 @@
                                 <div style="height:2.5em" id="rowOptions`+selectItem+`">
                                     <label>Remarks : </label>
                                     <div contenteditable="true" id="remarks`+selectItem+`" class="inputinbar" style="display:inline-block; min-width:5em;"></div>
-                                    <button id="Approve" class="NewButton" value="`+selectItem+`">Approve</button>
-                                    <button id="Deny" class="NewButton" value="`+selectItem+`">Deny</button>
-                                    <button id="Remove" class="NewButton" value="`+selectItem+`">Remove</button>
+                                    <button id="Approve" class="row-button" value="`+selectItem+`">Approve</button>
+                                    <button id="Deny" class="row-button" value="`+selectItem+`">Deny</button>
+                                    <button id="Remove" class="row-button" value="`+selectItem+`">Remove</button>
                                 </div>
                             </td>
                         </tr>`;
@@ -65,9 +65,9 @@
                         $(` <tr id="Generated">
                                 <td colspan=7>
                                     <div style="height:2.5em" id="rowOptions`+selectItem+`">
-                                        <button id="Update" class="NewButton">Update</button>
-                                        <button id="RequestItem" class="NewButton" value="`+selectItem+`">Request Item</button>
-                                        <button id="singleDelete" class="NewButton" value="`+selectItem+`">Delete</button>
+                                        <button id="Update" class="row-button">Update</button>
+                                        <button id="RequestItem" class="row-button" value="`+selectItem+`">Request Item</button>
+                                        <button id="singleDelete" class="row-button" value="`+selectItem+`">Delete</button>
                                     </div>
                                 </td>
                             </tr>`).insertAfter($(this).closest('tr'));
@@ -83,7 +83,7 @@
                                         <div style="height:2.5em" id="rowOptions`+selectItem+`">
                                             <label>Quantity : </label>
                                             <input id="Quantity-request`+selectItem+`" class="inputinbar" type="number"/>`+`
-                                            <button id="RequestItem" class="NewButton" value="`+selectItem+`">Request Item</button>`+`
+                                            <button id="RequestItem" class="row-button" value="`+selectItem+`">Request Item</button>`+`
                                         </div>
                                     </td>
                                 </tr>`;
