@@ -9,7 +9,7 @@
     if(isset($_POST['requestedItem'])){
         $result = $pdo->query("SELECT Brand,Name,Model FROM items WHERE itemcode ='".$_POST['requestedItem']."'");
         $itemExists = $result->fetch();
-        $itemname = $itemExists['Brand']." ".$itemExists['Name']." ".$itemExists['Model'];
+        $itemname = addslashes($itemExists['Brand']." ".$itemExists['Name']." ".$itemExists['Model']);
     }
 
     if($_POST['decision'] == "get-request"){
@@ -19,7 +19,8 @@
         echo $itemExists['request'];
     }
     if($_POST['decision'] == "sendrequest"){
-        $result = $pdo->query("SELECT * FROM borrowed WHERE item ='".$itemname."' AND Name='".$fullname."'");
+        $sql = "SELECT * FROM borrowed WHERE itemcode ='".$_POST['requestedItem']."' AND Name='".$fullname."'";
+        $result = $pdo->query($sql);
         $itemExists = $result->fetch();
 
         $getQuantity = $pdo->query("SELECT Quantity FROM items WHERE itemcode ='".$_POST['requestedItem']."'");
@@ -38,8 +39,7 @@
         else if($_POST['quantityProvided'] > $ItemQuantity['Quantity']){
             echo "promt-change-quantity";
         } 
-    }
-    
+    }    
     if($_POST['decision'] == "recieved"){
         $pdo->query("UPDATE borrowed SET request='recieved', RecieveDate=CURRENT_TIMESTAMP WHERE borrowid='".$_POST['borrowid']."'");
     }
@@ -78,13 +78,26 @@
     }
     if($_POST['decision'] == "deleteitem"){
         foreach($_POST['deleteItems'] as $item){
-            echo "UPDATE borrowed SET request='item no longer available' WHERE item='".$item."'";
             $pdo->query("UPDATE borrowed SET request='item no longer available' WHERE item='".$item."'");
         }
+        
+        $delete = '\''.implode('\', \'', $_POST['deleteItems']).'\'';
+        $pdo->query('DELETE FROM items WHERE itemcode IN ('.$delete.')');
     }
+
+
     if($_POST['decision'] == "addItem"){
-        foreach($_POST['addItems'] as $item){
-            $pdo->query("UPDATE borrowed SET request='pending' WHERE item='".$item."'");
+        $data = $tableMeta = array();
+    
+        $stmt = $pdo->query("SELECT * FROM items LIMIT 0");
+    
+        for ($i = 0; $i < $stmt->columnCount(); $i++) {
+            $col = $stmt->getColumnMeta($i);    
+            array_push($tableMeta, addslashes($col['name']));
+            array_push($data, addslashes($_POST[$col['name']]));
         }
+        
+        $STH = $pdo->prepare("INSERT INTO items (".implode(', ', $tableMeta).") VALUES (:".implode(', :', $tableMeta).")");
+        $STH->execute(array_values($data));
     }
 ?>

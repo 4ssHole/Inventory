@@ -53,15 +53,24 @@
   })
 
   $(document).on('click', "#Create", function(){
-    var addJson = {};
+    var addArray = [];
     
-    for(var i = 0;i<ColumnNames.length;i++) addJson[ColumnNames[i]] = $("#"+ColumnNames[i]).val(); 
+    for(var i = 0;i<ColumnNames.length;i++){
+      var column = addslashes(ColumnNames[i]);
+      var update = addslashes($("#"+ColumnNames[i]+".editBar").val());
+      
+      addArray.push(column+"= '"+update+"' ");  
+    }
     $.ajax({
-      url:'../ajax/addItem.php',
-      data: addJson,
+      url:'../ajax/handleRequest.php',
+      data: {
+        addArray:addArray,
+        decision:"addItem"
+        },
       type: 'post',
       success:function(data){
         reloadTable();
+        $('#test').html(data);
       }  
     });
   });
@@ -71,7 +80,10 @@
 
       for(var i = 0;i<ColumnNames.length;i++) {
           if($("#"+ColumnNames[i]+".editBar").val() != ''){
-              updateArray.push(ColumnNames[i]+"= '"+$("#"+ColumnNames[i]+".editBar").val()+"' ");
+              var column = addslashes(ColumnNames[i]);
+              var update = addslashes($("#"+ColumnNames[i]+".editBar").val());
+              
+              updateArray.push(column+"= '"+update+"' ");
           }
       }
 
@@ -92,12 +104,16 @@
   });
 
   $(document).on('click', "#singleDelete", function(){
-      deleteWithBorrowed([$(this).val()]);
+      deleteWithBorrowed([addslashes($(this).val())]);
   });
 
   $(document).on('click', '#Delete',function(){
     var deleteArray = [];
-    $("#customers :checkbox:checked").each(function(){ deleteArray.push($(this).val()); });
+   
+    $("#customers :checkbox:checked").each(function(){ 
+      deleteArray.push(addslashes($(this).val())); 
+    });
+    
     deleteWithBorrowed(deleteArray);
   });
 
@@ -114,6 +130,19 @@
       }
     });
   });
+
+  function addslashes(str) {
+    if(str){
+      if(str.trim())
+      {
+        str = str.replace(/\\/g, '\\\\');
+        str = str.replace(/\'/g, '\\\'');
+        str = str.replace(/\"/g, '\\"');
+        str = str.replace(/\0/g, '\\0');
+      }
+    }
+    return str;
+  }
   
   function deleteWithBorrowed(deleteArray){
     $.ajax({
@@ -122,17 +151,12 @@
         decision:"deleteitem",
         deleteItems:deleteArray,
         },
-      type: 'post'
-    })
-
-    $.ajax({
-      url:'../ajax/removeItem.php',
-      data: {deleteItems:deleteArray},
       type: 'post',
       success:function(data){
         reloadTable();
+        $('#test').html(data);
       }  
-    });
+    })
   }
 
   function reloadTable(){
