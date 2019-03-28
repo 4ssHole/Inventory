@@ -25,13 +25,12 @@
     $row  = mysqli_fetch_array($result);
 
     if($row) {
-      $_SESSION["UserNumber"] = $row[0];
-      $_SESSION["UserName"] = $row[1];
-      $_SESSION["Password"] = $row[2];
-      $_SESSION["Privilege"] = $row[3];
-      $_SESSION["FirstName"] = $row[4];
-      $_SESSION["LastName"] = $row[5];
-      $_SESSION["GradeLevel"] = $row[6];
+      $_SESSION["UserName"] = $row[0];
+      $_SESSION["Password"] = $row[1];
+      $_SESSION["Privilege"] = $row[2];
+      $_SESSION["FirstName"] = $row[3];
+      $_SESSION["LastName"] = $row[4];
+      $_SESSION["GradeLevel"] = $row[5];
 
       $_SESSION["FilterValue"] = 'All items';
       $_SESSION['InitialUserTypeValue'] = 'admin';

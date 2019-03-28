@@ -133,12 +133,12 @@ if(!empty($_POST['SelectTable'])) $_SESSION["InitialUserTypeValue"]= $_POST['Sel
 <?php
 
 if(isset($_POST['MakeUserConfirmed'])){
-  mysqli_query($Users, "UPDATE users SET Privilege='user' WHERE UserNumber='".$_GET['id1']."'");
+  mysqli_query($Users, "UPDATE users SET Privilege='user' WHERE UserName='".$_GET['id1']."'");
   header('Location: UserAccessControl.php#');
 }
 
 if(isset($_POST['MakeAdministratorConfirmed'])){
-  mysqli_query($Users, "UPDATE users SET Privilege='admin' WHERE UserNumber='".$_GET['id1']."'");
+  mysqli_query($Users, "UPDATE users SET Privilege='admin' WHERE UserName='".$_GET['id1']."'");
   header('Location: UserAccessControl.php#');
 }
 

@@ -3,21 +3,26 @@
     ob_start();
     include("../Connection.php");
 
+    $fullname = $_SESSION['FirstName']." ".$_SESSION['LastName'];
+    $itemname = "";
+    
+    if(isset($_POST['requestedItem'])){
+        $result = $pdo->query("SELECT Brand,Name,Model FROM items WHERE itemcode ='".$_POST['requestedItem']."'");
+        $itemExists = $result->fetch();
+        $itemname = $itemExists['Brand']." ".$itemExists['Name']." ".$itemExists['Model'];
+    }
+
     if($_POST['decision'] == "get-request"){
-        $result = $pdo->prepare("SELECT * FROM borrowed WHERE borrowid ='".$_POST['requestedItem']."'");
-        $result->execute();
+        $result = $pdo->query("SELECT * FROM borrowed WHERE borrowid ='".$_POST['requestedItem']."'");
         $itemExists = $result->fetch();
 
         echo $itemExists['request'];
     }
-
     if($_POST['decision'] == "sendrequest"){
-        $result = $pdo->prepare("SELECT * FROM borrowed WHERE itemcode ='".$_POST['requestedItem']."' AND UserNumber='".$_SESSION['UserNumber']."'");
-        $result->execute();
+        $result = $pdo->query("SELECT * FROM borrowed WHERE item ='".$itemname."' AND Name='".$fullname."'");
         $itemExists = $result->fetch();
 
-        $getQuantity = $pdo->prepare("SELECT Quantity FROM items WHERE itemcode ='".$_POST['requestedItem']."'");
-        $getQuantity->execute();
+        $getQuantity = $pdo->query("SELECT Quantity FROM items WHERE itemcode ='".$_POST['requestedItem']."'");
         $ItemQuantity = $getQuantity->fetch();
 
         if($itemExists && $itemExists['ReturnDate'] == null){
@@ -27,8 +32,7 @@
             echo 'pending-request';
         }    
         else if($_POST['quantityProvided'] <= $ItemQuantity['Quantity']){      
-            $STH = $pdo->prepare("INSERT INTO borrowed (itemcode,UserNumber,Quantity) VALUES ('".$_POST['requestedItem']."', '".$_SESSION['UserNumber']."', '".$_POST['quantityProvided']."')");
-            $STH->execute();
+            $STH = $pdo->query("INSERT INTO borrowed (itemcode,item,Name,Quantity) VALUES ('".$_POST['requestedItem']."','".$itemname."', '".$fullname."', '".$_POST['quantityProvided']."')");
             echo "sent-request";
         }
         else if($_POST['quantityProvided'] > $ItemQuantity['Quantity']){
@@ -37,9 +41,8 @@
     }
     
     if($_POST['decision'] == "recieved"){
-        $pdo->query("UPDATE borrowed SET request='recieved' WHERE borrowid='".$_POST['borrowid']."'");
+        $pdo->query("UPDATE borrowed SET request='recieved', RecieveDate=CURRENT_TIMESTAMP WHERE borrowid='".$_POST['borrowid']."'");
     }
-    
     if($_POST['decision'] == "approve"){
         $stmt = $pdo->query("SELECT * FROM borrowed WHERE borrowid='".$_POST['borrowid']."'");
         $row = $stmt->fetch();
@@ -54,17 +57,34 @@
         $pdo->query("DELETE FROM borrowed WHERE borrowid='".$_POST['borrowid']."'");
     }
     if($_POST['decision'] == "return"){
-        $pdo->query("UPDATE borrowed SET ReturnDate = CURRENT_TIMESTAMP WHERE borrowid='".$_POST['borrowid']."'");
+        $stmt = $pdo->query("SELECT request FROM borrowed WHERE borrowid='".$_POST['borrowId']."'");
+        $requestStatus = $stmt->fetch();
+    
+        if($requestStatus['request']=="recieved"){
+            if($requestStatus['request']!="returned"){
+                $stmt = $pdo->query("SELECT * FROM borrowed WHERE borrowid='".$_POST['borrowId']."'");
+                $CurrentQuantity = $stmt->fetch();
+    
+                $pdo->query("UPDATE items SET Quantity=Quantity+'".$CurrentQuantity['Quantity']."' WHERE itemcode ='".$CurrentQuantity['itemcode']."'");
+                $pdo->query("UPDATE borrowed SET request='returned', ReturnDate=CURRENT_TIMESTAMP WHERE borrowid='".$_POST['borrowId']."'");
+            }
+            else{
+                echo 'item already returned';
+            }
+        }
+        else{
+            echo 'item is pending approval';
+        }
     }
     if($_POST['decision'] == "deleteitem"){
         foreach($_POST['deleteItems'] as $item){
-            echo "UPDATE borrowed SET request='item no longer available' WHERE itemcode='".$item."'";
-            $pdo->query("UPDATE borrowed SET request='item no longer available' WHERE itemcode='".$item."'");
+            echo "UPDATE borrowed SET request='item no longer available' WHERE item='".$item."'";
+            $pdo->query("UPDATE borrowed SET request='item no longer available' WHERE item='".$item."'");
         }
     }
     if($_POST['decision'] == "addItem"){
         foreach($_POST['addItems'] as $item){
-            $pdo->query("UPDATE borrowed SET request='pending' WHERE itemcode='".$item."'");
+            $pdo->query("UPDATE borrowed SET request='pending' WHERE item='".$item."'");
         }
     }
 ?>

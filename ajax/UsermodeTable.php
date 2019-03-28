@@ -32,6 +32,14 @@
 
     var accessLevel = <?php echo "'".$_SESSION['Privilege']."';";?>
     var selectedTable = <?php echo "'".$_POST['selectedTable']."';";?>
+
+    function getColumns(){
+        var tableColumns = 0;
+        $('#customers tr:nth-child(1) th').each(function () {
+            tableColumns++;
+        });
+        return tableColumns
+    }
     
     $("#customers tr").slice(1).on("click",(
         function(){  
@@ -43,8 +51,12 @@
                 selectItem = $(this).find(":checkbox").val();
                 var  insert = 
                 `<tr id="tr`+selectItem+`">
-                    <td colspan=7>
+                    <td colspan=`+getColumns()+`>
                         <div style="height:2.5em" id="rowOptions`+selectItem+`">
+                            <label>Date From : </label>
+                            <input id="date-from`+selectItem+`" class="inputinbar" type="datetime-local"/>`+`
+                            <label> Till : </label>
+                            <input id="date-till`+selectItem+`" class="inputinbar" type="datetime-local"/>`+`
                             <label>Quantity : </label>
                             <input id="Quantity-request`+selectItem+`" class="inputinbar" type="number"/>`+`
                             <button id="RequestItem" class="row-button" value="`+selectItem+`">Request Item</button>`+`

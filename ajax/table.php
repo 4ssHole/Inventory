@@ -29,8 +29,6 @@
 
 <script> 
     var selectItem = '';
-
-    var accessLevel = <?php echo "'".$_SESSION['Privilege']."';";?>
     var selectedTable = <?php echo "'".$_POST['selectedTable']."';";?>
 
     function getColumns(){

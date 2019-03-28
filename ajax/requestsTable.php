@@ -5,7 +5,7 @@
     include("../Connection.php");
 
     $HeadersArray = array();
-    $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']." WHERE UserNumber='".$_SESSION['UserNumber']."'");
+    $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']." WHERE Name='".$_SESSION['FirstName']." ".$_SESSION['LastName']."'");
 ?>
 <tr>
     <?php
@@ -27,9 +27,6 @@
 
 <script>
     var selectItem = '';
-
-    var accessLevel = <?php echo "'".$_SESSION['Privilege']."';";?>
-    var selectedTable = <?php echo "'".$_POST['selectedTable']."';";?>
 
     function getColumns(){
         var tableColumns = 0;
@@ -76,13 +73,13 @@
                         output = `
                             <button id="Modify" class="row-button" value="`+selectItem+`">Modify</button>
                             <button id="Recieved" class="row-button" value="`+selectItem+`">Recieved</button>
-                            <button id="Cancel" class="row-button" value="`+selectItem+`">Cancel</button>
+                            <button id="Cancel-request" class="row-button" value="`+selectItem+`">Cancel Request</button>
                         `;
                         break;
                     case "pending":
                         output = `
                             <button id="Modify" class="row-button" value="`+selectItem+`">Modify</button>
-                            <button id="Cancel" class="row-button" value="`+selectItem+`">Cancel</button>
+                            <button id="Cancel-request" class="row-button" value="`+selectItem+`">Cancel Request</button>
                         `;
                         break;
                     case "recieved":
@@ -90,12 +87,7 @@
                             <button id="Return" class="row-button" value="`+selectItem+`">Return</button>
                         `;
                         break;
-                    case "denied":
-                        output = `
-                            <button id="Close-bar" class="row-button" value="`+selectItem+`">Close</button>
-                        `;
-                        break;
-                    case "returned":
+                    default:
                         output = `
                             <button id="Close-bar" class="row-button" value="`+selectItem+`">Close</button>
                         `;

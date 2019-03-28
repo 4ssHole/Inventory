@@ -42,7 +42,6 @@
       url:"../ajax/requestsTable.php",
       data: {
         selectedTable:"borrowed",
-        page:"requests"
       },
       type: 'post',
       success:function(data){
@@ -51,18 +50,71 @@
     });
   }
 
+  $(document).on('click', '#Modify',function(){
+    var ReturnValue = $(this).val();
+
+    $.ajax({
+        url:'../ajax/returnItem.php',
+        data: {
+          borrowId:ReturnValue,
+          },
+        type: 'post',
+        success:function(data){
+            $('#test').html(data);
+        }  
+    });
+    $(this).closest('tr').remove();
+  });
+  
+  $(document).on('click', '#Recieved',function(){
+    $.ajax({
+        url:'../ajax/handleRequest.php',
+        data: {
+          borrowid:$(this).val(),
+          decision:"recieved"
+          },
+        type: 'post',
+        success:function(data){
+          reloadTable();
+          $('#test').html(data);
+        }  
+    });
+    $(this).closest('tr').remove();
+  });
+
+  $(document).on('click', '#Cancel-request',function(){
+    var ReturnValue = $(this).val();
+
+    $.ajax({
+        url:'../ajax/returnItem.php',
+        data: {
+          borrowId:ReturnValue,
+          },
+        type: 'post',
+        success:function(data){
+            $('#test').html(data);
+        }  
+    });
+    $(this).closest('tr').remove();
+  });
+
+  $(document).on('click', '#Close-bar',function(){
+    $(this).closest('tr').remove();
+  });
+
   $(document).on('click', '#Return',function(){
       var ReturnValue = $(this).val();
 
       $.ajax({
-          url:'../ajax/returnItem.php',
+          url:'../ajax/handleRequest.php',
           data: {
             borrowId:ReturnValue,
-            return:"return"
+            decision:"return"
             },
           type: 'post',
           success:function(data){
-              $('#test').html(data);
+            reloadTable();
+            $('#test').html(data);
           }  
       });
       $(this).closest('tr').remove();
