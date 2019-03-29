@@ -29,7 +29,8 @@
 if(!empty($_POST['SelectTable'])) $_SESSION["InitialUserTypeValue"]= $_POST['SelectTable'];  
 ?>
 
-<div class="MarginForNavBarPersistance">
+<p class="NavBarSpacer">
+<div class="TableContainer">
 
 <form action="" class="forming" method="post" style="margin:1em;margin-bottom:0;">
   <a>User type : </a>
@@ -83,11 +84,11 @@ if(!empty($_POST['SelectTable'])) $_SESSION["InitialUserTypeValue"]= $_POST['Sel
       if($AdministratorCount > 2) echo 'MAXIMUM NUMBER OF ADMINISTRATORS';
       
       else if($AdministratorCount<=2) echo 'CHANGE USER TO ADMINISTRATOR?
-      <form method="post"><input type="submit" class="LargeSubmitButton" value="Confirm" name="MakeAdministratorConfirmed"></form>';
+      <form method="post"><input type="submit" class="button-index" style="margin:1em" value="Confirm" name="MakeAdministratorConfirmed"></form>';
     }
     else if($_SESSION['InitialUserTypeValue']=="admin"){
       if($AdministratorCount > 1) echo 'CHANGE ADMINISTRATOR TO USER?
-      <form method="post"><input type="submit" class="LargeSubmitButton" value="Confirm" name="MakeUserConfirmed"></form>';
+      <form method="post"><input type="submit" class="button-index" style="margin:1em" value="Confirm" name="MakeUserConfirmed"></form>';
       
       else if($AdministratorCount<=1) echo 'MINIMUM NUMBER OF ADMINISTRATORS';
       

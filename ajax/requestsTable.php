@@ -71,14 +71,12 @@
                 switch(data){
                     case "approved":
                         output = `
-                            <button id="Modify" class="row-button" value="`+selectItem+`">Modify</button>
                             <button id="Recieved" class="row-button" value="`+selectItem+`">Recieved</button>
                             <button id="Cancel-request" class="row-button" value="`+selectItem+`">Cancel Request</button>
                         `;
                         break;
                     case "pending":
                         output = `
-                            <button id="Modify" class="row-button" value="`+selectItem+`">Modify</button>
                             <button id="Cancel-request" class="row-button" value="`+selectItem+`">Cancel Request</button>
                         `;
                         break;

@@ -5,7 +5,14 @@
     include("../Connection.php");
 
     $HeadersArray = array();   
-    $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']);
+    $stmt = null;
+
+    if(isset($_POST['query'])){
+        $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']." WHERE ".$_POST['selectedColumn']." LIKE '".$_POST['query']."'");
+    }
+    else{
+        $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']);
+    }
 ?>
 <tr>
     <?php 

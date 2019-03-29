@@ -18,6 +18,11 @@
 
         echo $itemExists['request'];
     }
+    
+    if($_POST['decision'] == "cancel-request"){
+        $pdo->query("UPDATE borrowed SET request='cancelled' WHERE borrowid='".$_POST['borrowid']."'");
+    }
+
     if($_POST['decision'] == "sendrequest"){
         $sql = "SELECT * FROM borrowed WHERE itemcode ='".$_POST['requestedItem']."' AND Name='".$fullname."'";
         $result = $pdo->query($sql);
@@ -33,7 +38,7 @@
             echo 'pending-request';
         }    
         else if($_POST['quantityProvided'] <= $ItemQuantity['Quantity']){      
-            $STH = $pdo->query("INSERT INTO borrowed (itemcode,item,Name,Quantity) VALUES ('".$_POST['requestedItem']."','".$itemname."', '".$fullname."', '".$_POST['quantityProvided']."')");
+            $STH = $pdo->query("INSERT INTO borrowed (itemcode,item,Name,Quantity,ScheduledBorrow,ScheduledReturn) VALUES ('".$_POST['requestedItem']."','".$itemname."', '".$fullname."', '".$_POST['quantityProvided']."', '".$_POST['scheduleBorrow']."', '".$_POST['scheduleReturn']."')");
             echo "sent-request";
         }
         else if($_POST['quantityProvided'] > $ItemQuantity['Quantity']){

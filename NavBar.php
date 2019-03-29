@@ -6,7 +6,7 @@ function DisplayNavBar() {
   <nav id="myHeader">
     <ul>
       <li>
-        <a href="settings.php">
+        <a>
           <img src="../img\user-icon.png"style="margin-left:0;padding-left:.35em;" class="navicons"><?php echo $UserName; ?></a>
       </li>
       

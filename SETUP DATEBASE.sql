@@ -1,6 +1,6 @@
 /*
 SQLyog Community v13.1.2 (64 bit)
-MySQL - 10.1.37-MariaDB : Database - main
+MySQL - 10.1.34-MariaDB : Database - main
 *********************************************************************
 */
 
@@ -27,7 +27,8 @@ CREATE TABLE `borrowed` (
   `itemcode` varchar(30) NOT NULL,
   `Quantity` int(11) NOT NULL DEFAULT '1',
   `RequestDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `BorrowDate` text NOT NULL,
+  `ScheduledBorrow` text NOT NULL,
+  `ScheduledReturn` text,
   `ReturnDate` datetime DEFAULT NULL,
   `RecieveDate` text,
   `remarks` text,
@@ -35,13 +36,14 @@ CREATE TABLE `borrowed` (
   PRIMARY KEY (`borrowid`),
   KEY `Item` (`item`),
   KEY `User` (`Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
 /*Data for the table `borrowed` */
 
-insert  into `borrowed`(`borrowid`,`Name`,`item`,`itemcode`,`Quantity`,`RequestDate`,`BorrowDate`,`ReturnDate`,`RecieveDate`,`remarks`,`request`) values 
-(72,'test user','Vernier Int\'l Ethanol Sensor ETH-BTA','SHS-SL-100-A',1,'2019-03-28 10:14:35','',NULL,NULL,'','approved'),
-(73,'test user','Vernier Int\'l Ethanol Sensor ETH-BTA','SHS-SL-101-A',5,'2019-03-28 10:16:54','',NULL,NULL,NULL,'pending');
+insert  into `borrowed`(`borrowid`,`Name`,`item`,`itemcode`,`Quantity`,`RequestDate`,`ScheduledBorrow`,`ScheduledReturn`,`ReturnDate`,`RecieveDate`,`remarks`,`request`) values 
+(75,'test user','Vernier Int\'l Ethanol Sensor ETH-BTA','SHS-SL-100-A',2,'2019-03-29 08:59:23','1111-11-11T11:11','2222-02-22T14:22',NULL,NULL,NULL,'cancelled'),
+(76,'Lenz Bolito','Vernier Int\'l Ethanol Sensor ETH-BTA','SHS-SL-101-A',5,'2019-03-29 10:25:32','2019-01-01T17:00','2019-01-04T10:00',NULL,NULL,NULL,'cancelled'),
+(77,'Lenz Bolito','Vernier Int\'l Ethanol Sensor ETH-BTA','SHS-SL-100-A',3,'2019-03-29 11:11:53','111111-11-11T11:11','222222-02-22T14:22',NULL,NULL,NULL,'pending');
 
 /*Table structure for table `items` */
 
@@ -325,10 +327,10 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`UserName`,`Password`,`Privilege`,`FirstName`,`LastName`,`GradeLevel`) values 
-('admin','admin','admin','Ass','Saa',NULL),
-('n','n','user','nguyen','gay',NULL),
-('q','q','user','SecondUser','',NULL),
-('test','1','user','test','user',NULL);
+('admin','admin','admin','Administrator','Administrator',NULL),
+('dsa23','2ds','user','dsa','q',NULL),
+('lenz','lenz','user','Lenz','Bolito',NULL),
+('new','1','user','2','3',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

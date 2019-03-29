@@ -4,9 +4,15 @@
 
     include("../Connection.php");
 
-    $HeadersArray = array();   
-    $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']);
-?>
+    $HeadersArray = array();
+    $stmt = null;
+
+    if(isset($_POST['query'])){
+        $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']." WHERE ".$_POST['selectedColumn']." LIKE '".$_POST['query']."'");
+    }
+    else{
+        $stmt = $pdo->query("SELECT * FROM ".$_POST['selectedTable']);
+    }?>
 <tr>
     <?php 
         for ($i = 0; $i < $stmt->columnCount(); $i++) {
@@ -39,6 +45,30 @@
         return tableColumns
     }
     
+    var table = $('#customers');
+    
+    $('#customers tr th')
+        .wrapInner('<span title="sort this column"/>')
+        .each(function(){
+            
+            var th = $(this),
+                thIndex = th.index(),
+                inverse = false;
+            
+            th.click(function(){
+                table.find('td').filter(function(){
+                    return $(this).index() === thIndex;
+                }).sortElements(function(a, b){     
+                    return $.text([a]) > $.text([b]) ?
+                        inverse ? -1 : 1
+                        : inverse ? 1 : -1;
+                }, function(){// parentNode is the element we want to move
+                    return this.parentNode; 
+                });
+                inverse = !inverse; 
+            });
+        });
+
     $("#customers tr").slice(1).on("click",(
         function(){  
             if($(this).closest('tr').next('tr').find("#rowOptions"+$(this).find(":checkbox").val()).length !== 1){

@@ -56,7 +56,7 @@
     <div style="margin-top: 1.75em;">      
       <form action="" method="post">
 
-        <input type="text" name="UserName" class="input-login" style="display:block; width:14.25em;" placeholder="User name">
+        <input type="text" name="UserName" id="username" class="input-login" style="display:block; width:14.25em;" placeholder="User name">
         <input type="password" name="Password" class="input-login" style="display:inline; margin-right:0;" placeholder="Password">
         <button class="button" name="LoginButton"> 
           <img src="img\enter-button.png" style="width:1em;"></button>
@@ -71,6 +71,10 @@
   <button id="register" class="button-index" type="submit">register here</button>
 </div>
 <script>
+  $(document).ready(function(){
+    $("#username").focus(); 
+  })
+
   $(document).on('click', "#register", function(){
     console.log("test");
     window.location.href = 'registration.php';

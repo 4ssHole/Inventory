@@ -21,20 +21,37 @@
 <div class="logo">SCIENCE LABORATORY</div>
 
 <?php DisplayNavBar();?>
-<div id="test"></div>
 <p class="NavBarSpacer">
 
 <div class="tableAndLower">
   <div class="TableContainer" style="margin:1em;">
-    <table id="customers" class="newTable"></table>
+  <div style="float:right; margin-bottom:1em">
+    <label for="searchbox">Search : </label>
+    <input type="text" id="searchbox">
+    <label for="columnSelect">Category : </label>
+    <select name="columnSelect" id="columnSelect"></select>
   </div>
+    <table id="customers" class="newTable" ></table>
+  </div>
+  <div id="test"></div>
 </div>
 
 <script src="../jquery.color-2.1.2.min.js"></script>
 <script src="../jquery.easing.1.3.js"></script>
 <script> 
-  var ColumnNames = []; 
+  window.onscroll = function() {myFunction()};
 
+  var header = document.getElementById("myHeader");
+  var sticky = header.offsetTop;
+
+  function myFunction() {
+    if (window.pageYOffset > sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
+  
   $(document).ready(function(){
     reloadTable();  
     $.ajax({
@@ -43,7 +60,7 @@
       dataType: 'json',
       cache: false,
       success: function(result) { 
-        for (var i = 0; i < result.length; i++) ColumnNames.push(result[i])
+        for (var i = 0; i < result.length; i++) $("#columnSelect").append(new Option(result[i], result[i]));
       }
     })
   })
@@ -56,6 +73,8 @@
           data: {
             requestedItem:requestedValue,
             decision:"sendrequest",
+            scheduleBorrow:$('#date-from'+selectItem).val(),
+            scheduleReturn:$('#date-till'+selectItem).val(),
             quantityProvided:$(this).parent().find('#Quantity-request'+requestedValue).val()
             },
           type: 'post',
@@ -76,14 +95,27 @@
       $(this).closest('tr').remove();
   })
 
-
-
-  function reloadTable(){
-    tableName = "items";
-
+  $("#searchbox").keyup(function() {
     $.ajax({
       url:"../ajax/UsermodeTable.php",
-      data: {selectedTable:tableName},
+      data: {
+        selectedTable:"items",
+        selectedColumn:$("#columnSelect").val(),
+        query:'%'+$(this).val()+'%'        
+      },
+      type: 'post',
+      success:function(data){
+        $('#customers').html(data)
+      }
+    })
+});
+
+  function reloadTable(){
+    $.ajax({
+      url:"../ajax/UsermodeTable.php",
+      data: {
+        selectedTable:"items"
+      },
       type: 'post',
       success:function(data){
         $('#customers').html(data)

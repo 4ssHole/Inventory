@@ -21,23 +21,42 @@
 <div class="logo">SCIENCE LABORATORY</div>
 
 <?php DisplayNavBar();?>
-<div id="test"></div>
 <p class="NavBarSpacer">
 <div class="tablecontrols">  
   <button id="addButton" class="NewButton">Add Item</button>
   <button id="Delete" class="NewButton">Delete Selected Items</button>
+  <div style="float:right">
+    <label for="searchbox">Search : </label>
+    <input type="text" id="searchbox">
+    <label for="columnSelect">Category : </label>
+    <select name="columnSelect" id="columnSelect"></select>
+  </div>
 </div>
 
 <div class="tableAndLower">
   <div class="TableContainer" style="margin:1em;">
     <table id="customers" class="newTable"></table>
   </div>
+  <div id="test"></div>
 </div>
 
 <script src="../jquery.color-2.1.2.min.js"></script>
 <script src="../jquery.easing.1.3.js"></script>
 <script> 
   var ColumnNames = [];
+
+  window.onscroll = function() {myFunction()};
+
+  var header = document.getElementById("myHeader");
+  var sticky = header.offsetTop;
+
+  function myFunction() {
+    if (window.pageYOffset > sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
 
   $(document).on('click', "#addButton", function(){
     if($("#Generated-addBar").length !== 1){
@@ -117,6 +136,20 @@
     deleteWithBorrowed(deleteArray);
   });
 
+  $("#searchbox").keyup(function() {
+    $.ajax({
+      url:"../ajax/table.php",
+      data: {
+        selectedTable:"items",
+        selectedColumn:$("#columnSelect").val(),
+        query:'%'+$(this).val()+'%'        
+      },
+      type: 'post',
+      success:function(data){
+        $('#customers').html(data)
+      }
+    })
+  });
 
   $(document).ready(function(){
     reloadTable();  
@@ -127,6 +160,7 @@
       cache: false,
       success: function(result) { 
         for (var i = 0; i < result.length; i++) ColumnNames.push(result[i]);
+        for (var i = 0; i < result.length; i++) $("#columnSelect").append(new Option(result[i], result[i]));
       }
     });
   });
@@ -175,13 +209,6 @@
   function createInputs(data,target) {
     $(target).append('<label for="'+data+'">'+data+'<input class="inputinbar-addItem" id="'+data+'" name="'+data+'" type="text">');
   }
-
-  window.onscroll = function() {
-    var header = document.getElementById("myHeader");
-    var sticky = header.offsetTop;
-    if (window.pageYOffset > sticky) header.classList.add("sticky");
-    else header.classList.remove("sticky");
-  };
 
 </script>
 </body>

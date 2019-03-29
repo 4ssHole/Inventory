@@ -23,16 +23,27 @@
 <?php DisplayNavBar();?>
 
 <p class="NavBarSpacer">
-<div id="test"></div>
 
 
-<div class="tableAndLower">
   <div class="TableContainer" style="margin:1em;">
     <table id="customers" class="newTable"></table>
   </div>
-</div>
+  <div id="test"></div>
+
 
 <script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
     $(document).ready(function(){
       reloadTable();
   });
@@ -83,16 +94,16 @@
   });
 
   $(document).on('click', '#Cancel-request',function(){
-    var ReturnValue = $(this).val();
-
     $.ajax({
-        url:'../ajax/returnItem.php',
+        url:'../ajax/handleRequest.php',
         data: {
-          borrowId:ReturnValue,
+            borrowid:$(this).val(),
+            decision:"cancel-request",
           },
         type: 'post',
         success:function(data){
-            $('#test').html(data);
+          reloadTable();
+          $('#test').html(data);
         }  
     });
     $(this).closest('tr').remove();

@@ -23,16 +23,28 @@
 <?php DisplayNavBar();?>
 
 <p class="NavBarSpacer">
-<div id="test"></div>
 
 
 <div class="tableAndLower">
   <div class="TableContainer" style="margin:1em;">
     <table id="customers" class="newTable"></table>
   </div>
+<div id="test"></div>
 </div>
 
 <script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
   $(document).ready(function(){
     reloadTable();
   });
