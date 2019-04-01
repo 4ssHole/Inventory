@@ -136,19 +136,13 @@
     deleteWithBorrowed(deleteArray);
   });
 
+  $("#columnSelect").click(function() {
+    QuerySearch($("#searchbox"));
+  });
+
+
   $("#searchbox").keyup(function() {
-    $.ajax({
-      url:"../ajax/table.php",
-      data: {
-        selectedTable:"items",
-        selectedColumn:$("#columnSelect").val(),
-        query:'%'+$(this).val()+'%'        
-      },
-      type: 'post',
-      success:function(data){
-        $('#customers').html(data)
-      }
-    })
+    QuerySearch($(this));
   });
 
   $(document).ready(function(){
@@ -165,6 +159,20 @@
     });
   });
 
+  function QuerySearch(source){
+    $.ajax({
+      url:"../ajax/table.php",
+      data: {
+        selectedTable:"items",
+        selectedColumn:$("#columnSelect").val(),
+        query:'%'+$(source).val()+'%'        
+      },
+      type: 'post',
+      success:function(data){
+        $('#customers').html(data)
+      }
+    })
+  }
   function addslashes(str) {
     if(str){
       if(str.trim())
@@ -177,7 +185,6 @@
     }
     return str;
   }
-  
   function deleteWithBorrowed(deleteArray){
     $.ajax({
       url:"../ajax/handleRequest.php",
@@ -192,7 +199,6 @@
       }  
     })
   }
-
   function reloadTable(){
     tableName = "items";
 
@@ -205,7 +211,6 @@
       }
     });
   }
-
   function createInputs(data,target) {
     $(target).append('<label for="'+data+'">'+data+'<input class="inputinbar-addItem" id="'+data+'" name="'+data+'" type="text">');
   }
