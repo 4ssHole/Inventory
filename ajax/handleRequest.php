@@ -92,17 +92,7 @@
 
 
     if($_POST['decision'] == "addItem"){
-        $data = $tableMeta = array();
-    
-        $stmt = $pdo->query("SELECT * FROM items LIMIT 0");
-    
-        for ($i = 0; $i < $stmt->columnCount(); $i++) {
-            $col = $stmt->getColumnMeta($i);    
-            array_push($tableMeta, addslashes($col['name']));
-            array_push($data, addslashes($_POST[$col['name']]));
-        }
-        
-        $STH = $pdo->prepare("INSERT INTO items (".implode(', ', $tableMeta).") VALUES (:".implode(', :', $tableMeta).")");
+        $STH = $pdo->prepare("INSERT INTO items (".implode(', ', $_POST['columnsArray']).") VALUES ('".implode("', '", $_POST['addArray'])."')");
         $STH->execute(array_values($data));
     }
 ?>

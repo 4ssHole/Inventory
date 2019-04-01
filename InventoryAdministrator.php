@@ -68,21 +68,26 @@
     else{
       $("#Generated-addBar").remove();
     }
-    $('#itemcode').focus();
+    $('#addItemitemcode').focus();
   })
 
   $(document).on('click', "#Create", function(){
+    var columnsArray = [];
     var addArray = [];
     
     for(var i = 0;i<ColumnNames.length;i++){
       var column = addslashes(ColumnNames[i]);
-      var update = addslashes($("#"+ColumnNames[i]+".editBar").val());
-      
-      addArray.push(column+"= '"+update+"' ");  
+      var update = addslashes($("#addItem"+ColumnNames[i]).val());
+
+      if($("#addItem"+ColumnNames[i]).val() != ''){
+        columnsArray.push(column);  
+        addArray.push(update); 
+      }
     }
     $.ajax({
       url:'../ajax/handleRequest.php',
       data: {
+        columnsArray:columnsArray,
         addArray:addArray,
         decision:"addItem"
         },
@@ -212,7 +217,14 @@
     });
   }
   function createInputs(data,target) {
-    $(target).append('<label for="'+data+'">'+data+'<input class="inputinbar-addItem" id="'+data+'" name="'+data+'" type="text">');
+    if(data != "DateAcquired"){
+      $(target).append('<label for="'+data+'">'+data+'<input class="inputinbar-addItem" id="addItem'+data+'" name="'+data+'" type="text">');
+    }
+    else if(data == "DateAcquired"){
+      $(target).append(`
+      <label for="`+data+`">`+data+`
+      <input class="inputinbar-addItem" id="addItem`+data+`" name="`+data+`" type="date">`);
+    }
   }
 
 </script>
