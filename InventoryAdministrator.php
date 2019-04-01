@@ -20,17 +20,20 @@
 
 <div class="logo">SCIENCE LABORATORY</div>
 
+<div style="float:right" class="searchcontainer">    
+  <label for="searchbox">Search : </label>
+  <input type="text" id="searchbox">
+
+</div>
+
 <?php DisplayNavBar();?>
 <p class="NavBarSpacer">
 <div class="tablecontrols">  
   <button id="addButton" class="NewButton">Add Item</button>
-  <button id="Delete" class="NewButton">Delete Selected Items</button>
-  <div style="float:right">
-    <label for="searchbox">Search : </label>
-    <input type="text" id="searchbox">
-    <label for="columnSelect">Category : </label>
-    <select name="columnSelect" id="columnSelect"></select>
-  </div>
+  <button id="Delete" class="NewButton">Delete Selected Items</button>  
+  
+  <label for="columnSelect">Category : </label>
+  <select name="columnSelect" id="columnSelect"></select>
 </div>
 
 <div class="tableAndLower">

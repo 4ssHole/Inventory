@@ -7,7 +7,7 @@ function DisplayNavBar() {
     <ul>
       <li>
         <a>
-          <img src="../img\user-icon.png"style="margin-left:0;padding-left:.35em;" class="navicons"><?php echo $UserName; ?></a>
+          <img src="../img\user-icon.png" class="navicons"><?php echo $UserName; ?></a>
       </li>
       
       <?php 
@@ -30,11 +30,11 @@ function DisplayNavBar() {
           echo '
             <li>
               <a href="NonAdministrator.php">
-                <img src="img\inventory-icon.png" class="navicons">items</a>
+                <img src="../img\inventory-icon.png" class="navicons">items</a>
             </li>
             <li>
               <a href="requests.php">
-                <img src="img\inventory-icon.png" class="navicons">pending approval</a>
+                <img src="../img\inventory-icon.png" class="navicons">pending approval</a>
             </li>';
         }
       ?>

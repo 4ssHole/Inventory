@@ -53,12 +53,19 @@ body {
     background-color: #e2e2e2;
 }
 
-.logo {
+.logo{
     overflow: hidden;
     text-align: left;
+    display: inline-flex;
     margin: .75em;
     font-family: 'Segoe UI Semibold';
     font-size: 1.5em;
+}
+
+.searchcontainer{
+    display: inline-flex;
+    height: 1.75em;
+    margin: 1.25em;
 }
 
 section {
@@ -209,13 +216,15 @@ input[type='checkbox'] {
 nav {
     width: 100%;
     color: white;
-}
-
-nav ul {
     font-size: 1.2em;
+    height: 2.25em;
     list-style-type: none;
     overflow: hidden;
     background-color: black;
+}
+
+nav ul {
+    margin: 0 .5em;
 }
 
 nav ul li {
@@ -226,13 +235,12 @@ nav ul li {
 nav ul li a {
     color: white;
     display: flex;
-    align-items: center;
-    padding: .5em;
+    padding: 0.4em .5em;
     text-decoration: none;
 }
 
 nav ul li a:hover {
-    background-color: #464646;
+    /* box-shadow: 0 5px 0 0 #0072bc; */
 }
 
 .sticky {
@@ -248,7 +256,6 @@ nav ul li a:hover {
 
 .navicons {
     margin-right: .45em;
-    width: 1.25em;
     height: 1.25em;
 }
 
