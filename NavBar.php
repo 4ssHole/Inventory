@@ -1,49 +1,73 @@
 <?php
 function DisplayNavBar() {
-  $UserName = $_SESSION["FirstName"];
 ?>
 
   <nav id="myHeader">
-    <ul>
-      <li>
-        <a>
-          <img src="../img\user-icon.png" class="navicons"><?php echo $UserName; ?></a>
-      </li>
+    <div class="button-container">
+        <div class="container-item user-button">
+            <div class="button-icon-container">
+                <img src="../img\inventory-icon-test.png" class="navicons">
+            </div>
+            <p><?php echo $_SESSION["FirstName"]; ?></p>
+        </div>
       
       <?php 
+
         if($_SESSION['Privilege'] == "admin"){
           echo '
-          <li>
             <a href="InventoryAdministrator.php">
-              <img src="../img\inventory-icon.png" class="navicons">inventory</a>
-          </li>
-          <li>
+              <div class="container-item">
+                  <div class="button-icon-container">
+                      <img src="../img\inventory-icon-test.png" class="navicons">
+                  </div>inventory
+              </div>
+            </a>
+
             <a href="UserAccessControl.php">
-              <img src="../img\inventory-icon.png" class="navicons">manage users</a>
-          </li>
-          <li>
-          <a href="RequestedItems.php">
-            <img src="../img\inventory-icon.png" class="navicons">requested items</a>
-          </li>';
+              <div class="container-item">
+                <div class="button-icon-container">
+                    <img src="../img\inventory-icon-test.png" class="navicons">
+                </div>manage users
+              </div>
+            </a>
+
+            <a href="RequestedItems.php">
+              <div class="container-item">
+                <div class="button-icon-container">
+                    <img src="../img\inventory-icon-test.png" class="navicons">
+                </div>requested items
+              </div>
+            </a>';
         }
         else{
           echo '
-            <li>
               <a href="NonAdministrator.php">
-                <img src="../img\inventory-icon.png" class="navicons">items</a>
-            </li>
-            <li>
+                <div class="container-item">
+                  <div class="button-icon-container">
+                      <img src="../img\inventory-icon-test.png" class="navicons">
+                  </div>items
+                </div>
+              </a>
+
               <a href="requests.php">
-                <img src="../img\inventory-icon.png" class="navicons">pending approval</a>
-            </li>';
+                <div class="container-item">
+                  <div class="button-icon-container">
+                      <img src="../img\inventory-icon-test.png" class="navicons">
+                  </div>pending approval
+                </div>
+              </a>';
         }
       ?>
-      <li style="float: right;">
-        <a href="index.php">
-          log out<img src="../img\signout-icon.png" style="margin-left:.5em;" class="navicons"></a>
-      </li>
-    </ul>
-</nav>
+      <a href="index.php">
+          <div class="logout-button">
+              <div class="button-icon-container" style="background: #c80000">
+                  <img src="../img\logout.svg" class="navicons">
+              </div>
+              <p>log out</p>
+          </div>
+      </a>
+    </div>
+  </nav>
 <?php
 }
 ?>

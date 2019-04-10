@@ -16,6 +16,11 @@
             font-family: 'Segoe UI Light';
             background-color: #e2e2e2;
         }
+        a{
+            display: contents;
+            color: inherit;
+            text-decoration: inherit;
+        }
 
         nav {
             width: 100%;
@@ -51,7 +56,7 @@
             align-items: center;
             box-shadow: 0 0.156em 0 0 #ffffff00;
 
-            transition: box-shadow .15s;
+            transition: box-shadow .2s;
         }
         .container-item:hover{
             box-shadow: 0 0.156em 0 0 #0072bc
@@ -59,6 +64,7 @@
         .logout-button{
             margin-left: auto;
             align-items: center;
+            transition: all .2s;
         }
         .logout-button:hover{
             box-shadow: 0 0.156em 0 0 #bc0000;
@@ -73,11 +79,16 @@
             color: black;
             width: 1.25em;
             height:1.25em;
-
             margin-right: 0.5em;
-            transition: box-shadow .15s;
         }
-
+        @media only screen and (max-width: 600px) {
+            .logout-button p{
+                display: none;
+            }
+            .logout-button .button-icon-container, .logout-button .navicons, .logout-button p, .logout-button{
+                margin-right: 0;
+            }
+        }
   </style>
 </head>
 <body>
@@ -85,28 +96,30 @@
     
     <nav id="myHeader">
         <div class="button-container">
-            <div class="container-item">
-                <div class="button-icon-container">
-                    <img src="../img\inventory-icon-test.png" class="navicons">
+            <a href="InventoryAdministrator.php">
+                <div class="container-item">
+                    <div class="button-icon-container">
+                        <img src="../img\inventory-icon-test.png" class="navicons">
+                    </div>Jeff
                 </div>
-                
-                Jeff
-            </div>
+            </a>
             
-            <div class="container-item">
-                <div class="button-icon-container">
-                    <img src="../img\inventory-icon-test.png" class="navicons">
+            <a href="InventoryAdministrator.php">
+                <div class="container-item">
+                    <div class="button-icon-container">
+                        <img src="../img\inventory-icon-test.png" class="navicons">
+                    </div>inventory
                 </div>
-                inventory
-            </div>
+            </a>
 
-            
-            <div class="logout-button">
-                <div class="button-icon-container" style="background: #c80000">
-                    <img src="../img\logout.svg" class="navicons">
+            <a href="InventoryAdministrator.php">
+                <div class="logout-button">
+                    <div class="button-icon-container" style="background: #c80000">
+                        <img src="../img\logout.svg" class="navicons">
+                    </div>
+                    <p>log out</p>
                 </div>
-                log out
-            </div>
+            </a>
         </div>
     </nav>
 </body>

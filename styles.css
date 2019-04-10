@@ -1,304 +1,336 @@
-* {
-    margin: 0;
-    padding: 0;
-}
+    * {
+        margin: 0;
+        padding: 0;
 
-.overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.8);
-    /* background with opacity  */
-    visibility: hidden;
-    opacity: 0;
-    z-index: 100;
-}
-
-.overlay:target {
-    visibility: visible;
-    opacity: 1;
-}
-
-.popup {
-    top: 25%;
-    margin: 0 auto;
-    padding: 1em;
-    background: rgb(235, 235, 235);
-    width: 50%;
-    height: 15em;
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    top: .5em;
-    right: .75em;
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-}
-
-.popup .close:hover {
-    color: rgb(0, 0, 0);
-}
-
-.popup .content {
-    max-height: 50%;
-    overflow: auto;
-}
-
-body {
-    font-family: 'Segoe UI Light';
-    background-color: #e2e2e2;
-}
-
-.logo{
-    overflow: hidden;
-    text-align: left;
-    display: inline-flex;
-    margin: .75em;
-    font-family: 'Segoe UI Semibold';
-    font-size: 1.5em;
-}
-
-.searchcontainer{
-    display: inline-flex;
-    height: 1.75em;
-    margin: 1.25em;
-}
-
-section {
-    width: 100%;
-    position: absolute;
-    top: 50%; 
-    right: 50%; 
-    transform: translate(50%, -50%); 
-    height: 15em;
-    box-shadow: 0px 0px 216px 32px rgba(0,0,0,0.5);
-    align-items: center;
-}
-.login-input-container{
-    display:inline-block;
-}
-.intro{
-    font-family: "Segoe UI Light";
-    color:#636363;    
-    font-size: 4.5em;
-    margin-top: .25em;
-    margin-right: .33em;
-}
-
-.flex-center {
-    display: flex;
-    justify-content: center;
-}
-
-.footer-container-login{
-    bottom: 1em;
-    position: absolute;
-    width:100%;
-    text-align:center;
-}
-
-.text-container{
-    text-align:center;
-}
-.input-login{
-    font-family: "Segoe UI";
-    background: #e2e2e2;
-    font-size: 1.25em;
-    padding: .2em;
-    border: .1em solid rgb(183, 183, 183);
-    margin: .15em;
-    width: 12.2em;
-}
-.input-login::placeholder, .input-register::placeholder{
-    font-family: 'Segoe UI Light', Helvetica, sans-serif;
-    font-style: italic;
-    vertical-align: middle;
-}
-
-.input-register{
-    font-family: "Segoe UI";
-    background: #e2e2e2;
-    font-size: 1.25em;
-    padding: .2em;
-    border: .1em solid rgb(183, 183, 183);
-    margin: .15em;
-    width: 19em;
-}
-
-.button-index ,.button{
-    background-color: rgb(0, 0, 0);
-    color: white;
-    border: none;
-    padding: .5em;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.15em;
-    font-family: "Segoe UI Light";
-}
-
-.button-index:hover, .button:hover{
-    background-color: rgb(14, 97, 153);
-}
-
-.button{
-    padding: 0.35em .5em;
-}
-
-
-.grid-container-register {
-    margin: 1em 10em;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: ". ." ". .";
-    grid-gap: .5em;
-}
- 
-.logoLogin {
-    margin-top: 1em;
-    font-family: 'Segoe UI Semibold';
-    font-size: 1.75em;
-    text-align:center;
-}
-
-.logo a {
-    float: left;
-    display: block;
-    color: black;
-    text-decoration: none;
-}
-
-
-input[type='checkbox'] {
-    margin: .75em 0;
-}
-.editBar, .addBar{
-    text-align: center;
-    font-family: 'Segoe UI Light';
-    background-color: transparent;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border: none;
-}
-.editBar{
-    width:10%;
-    min-width: 2em;
-    height:100%;
-}
-.addBar{
-    padding: .5em 0;
-    color: #000;
-    font-family: 'Segoe UI Light';
-    font-size: 16px;
-    font-weight: normal;
-}
-.inputinbar, .inputinbar-addItem{
-    height: 90%;
-    text-align: center;
-    border: .1em solid rgb(183, 183, 183);
-    font-family: 'Segoe UI Light';
-    background-color: transparent;
-}
-
-@media screen and (max-width: 750px) {
-    .hideOnSmall {
-        display: none;
-    } 
-    .navicons {
-        font-size: .8em;
+        transition: all .2s;
     }
-}
 
-nav {
-    width: 100%;
-    color: white;
-    font-size: 1.2em;
-    height: 2.25em;
-    list-style-type: none;
-    overflow: hidden;
-    background-color: black;
-}
+    .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        /* background with opacity  */
+        visibility: hidden;
+        opacity: 0;
+        z-index: 100;
+    }
 
-nav ul {
-    margin: 0 .5em;
-}
+    .overlay:target {
+        visibility: visible;
+        opacity: 1;
+    }
 
-nav ul li {
-    float: left;
-    list-style: none;
-}
+    .popup {
+        top: 25%;
+        margin: 0 auto;
+        padding: 1em;
+        background: rgb(235, 235, 235);
+        width: 50%;
+        height: 15em;
+        position: relative;
+    }
 
-nav ul li a {
-    color: white;
-    display: flex;
-    padding: 0.4em .5em;
-    text-decoration: none;
-}
+    .close {
+        position: absolute;
+        top: .5em;
+        right: .75em;
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+    }
 
-nav ul li a:hover {
-    /* box-shadow: 0 5px 0 0 #0072bc; */
-}
+    .popup .close:hover {
+        color: rgb(0, 0, 0);
+    }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
+    .popup .content {
+        max-height: 50%;
+        overflow: auto;
+    }
 
-.sticky+.NavBarSpacer {
-    margin-top: 5em; /* VALUE IS DEPENDANT ON THE NAVBAR SIZE */
-}
+    body {
+        font-family: 'Segoe UI Light';
+        background-color: #e2e2e2;
+    }
+
+    .logo{
+        display: inline-flex;
+        margin: .75em 1em;
+        font-family: 'Segoe UI Semibold';
+        font-size: 1.5em;
+    }
+
+    .searchcontainer{
+        display: inline-flex;
+        height: 1.75em;
+        margin: 1.25em;
+    }
+
+    section {
+        width: 100%;
+        position: absolute;
+        top: 50%; 
+        right: 50%; 
+        transform: translate(50%, -50%); 
+        height: 15em;
+        box-shadow: 0px 0px 216px 32px rgba(0,0,0,0.5);
+        align-items: center;
+    }
+    .login-input-container{
+        display:inline-block;
+    }
+    .intro{
+        font-family: "Segoe UI Light";
+        color:#636363;    
+        font-size: 4.5em;
+        margin-top: .25em;
+        margin-right: .33em;
+    }
+
+    .flex-center {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-container-login{
+        bottom: 1em;
+        position: absolute;
+        width:100%;
+        text-align:center;
+    }
+
+    .text-container{
+        text-align:center;
+    }
+    .input-login{
+        font-family: "Segoe UI";
+        background: #e2e2e2;
+        font-size: 1.25em;
+        padding: .2em;
+        border: .1em solid rgb(183, 183, 183);
+        margin: .15em;
+        width: 12.2em;
+    }
+    .input-login::placeholder, .input-register::placeholder{
+        font-family: 'Segoe UI Light', Helvetica, sans-serif;
+        font-style: italic;
+        vertical-align: middle;
+    }
+
+    .input-register{
+        font-family: "Segoe UI";
+        background: #e2e2e2;
+        font-size: 1.25em;
+        padding: .2em;
+        border: .1em solid rgb(183, 183, 183);
+        margin: .15em;
+        width: 19em;
+    }
+
+    .button-index ,.button{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        border: none;
+        padding: .5em;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.15em;
+        font-family: "Segoe UI Light";
+    }
+
+    .button-index:hover, .button:hover{
+        background-color: rgb(14, 97, 153);
+    }
+
+    .button{
+        padding: 0.35em .5em;
+    }
 
 
-.navicons {
-    margin-right: .45em;
-    height: 1.25em;
-}
+    .grid-container-register {
+        margin: 1em 10em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: ". ." ". .";
+        grid-gap: .5em;
+    }
+    
+    .logoLogin {
+        margin-top: 1em;
+        font-family: 'Segoe UI Semibold';
+        font-size: 1.75em;
+        text-align:center;
+    }
 
-.newTable {
-    border-collapse: collapse;
-    text-align: center;
-    width: 100%;
-}
+    .logo a {
+        float: left;
+        display: block;
+        color: black;
+        text-decoration: none;
+    }
 
-.newTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
 
-.newTable tr:hover {
-    background-color: rgb(180, 190, 215);
-}
+    input[type='checkbox'] {
+        margin: .75em 0;
+    }
+    .editBar, .addBar{
+        text-align: center;
+        font-family: 'Segoe UI Light';
+        background-color: transparent;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border: none;
+    }
+    .editBar{
+        width:10%;
+        min-width: 2em;
+        height:100%;
+    }
+    .addBar{
+        padding: .5em 0;
+        color: #000;
+        font-family: 'Segoe UI Light';
+        font-size: 16px;
+        font-weight: normal;
+    }
+    .inputinbar, .inputinbar-addItem{
+        height: 90%;
+        text-align: center;
+        border: .1em solid rgb(183, 183, 183);
+        font-family: 'Segoe UI Light';
+        background-color: transparent;
+    }
 
-.newTable th {
-    padding: .5em 0;
-    background-color: rgb(0, 0, 0);
-    color: #ffffff;
-    font-weight: normal;
-}
+    a{
+        display: contents;
+        color: inherit;
+        text-decoration: inherit;
+    }
+    nav {
+        width: 100%;
+        color: white;
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        height: 2.25em;
+        background-color: black;
+    }
 
-.newTable td {
-    height: 2.5em;
-}
+    nav ul {
+        margin: 0 .5em;
+    }
 
-.button-useraccess{
-    color: black;
-    text-decoration: none;
-}
-.row-button, .NewButton{
-    font-size: .8em;
-    background: black;
-    color: white;
-    padding: .5em;
-    height: 100%;
-    border: none;
-    margin: 0 .25em;
-    text-decoration: none;
-}
+    nav ul li {
+        float: left;
+        list-style: none;
+        color: white;
+        display: flex;
+        padding: 0.4em .5em;
+        text-decoration: none;
+    }
 
-.tablecontrols{
-    margin: 1em;
-}
+    .navicons {
+        height: 1.25em;
+        margin-right: 0.5em;
+    }
+    .container-item, .logout-button{
+        display: inline-flex;
+        margin-right: 1em;
+        padding: 0.3em;
+        align-items: center;
+        box-shadow: 0 0.156em 0 0 #ffffff00;
+
+        transition: all .2s;
+    }
+    .container-item:hover{
+        box-shadow: 0 0.156em 0 0 #0072bc
+    }
+    .logout-button{
+        margin-left: auto;
+        margin-right: 0;
+
+        align-items: center;
+        transition: all .2s;
+    }
+    .logout-button:hover{
+        box-shadow: 0 0.156em 0 0 #bc0000;
+    }
+    .button-container{
+        display: inherit;
+        margin: 0 1em;
+        width: 100%;
+    }
+    .button-icon-container{
+        background:white;
+        color: black;
+        width: 1.25em;
+        height:1.25em;
+        margin-right: 0.5em;
+
+        transition: all .2s;
+    }
+    @media only screen and (max-width: 800px) {
+        .logout-button p, .user-button p{
+            display: none;
+        }
+        .logout-button .button-icon-container, .logout-button .navicons, .logout-button p, .logout-button{
+            margin-right: 0;
+        }
+    }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .sticky+.NavBarSpacer {
+        margin-top: 5em; /* VALUE IS DEPENDANT ON THE NAVBAR SIZE */
+    }
+
+    .newTable {
+        border-collapse: collapse;
+        text-align: center;
+        width: 100%;
+    }
+
+    .newTable tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .newTable tr:hover {
+        background-color: rgb(180, 190, 215);
+    }
+
+    .newTable th {
+        padding: .5em 0;
+        background-color: rgb(0, 0, 0);
+        color: #ffffff;
+        font-weight: normal;
+    }
+
+    .newTable td {
+        height: 2.5em;
+    }
+
+    .button-useraccess{
+        color: black;
+        text-decoration: none;
+    }
+    .row-button, .NewButton{
+        font-size: .8em;
+        background: black;
+        color: white;
+        padding: .5em;
+        height: 100%;
+        border: none;
+        margin: 0 .25em;
+        text-decoration: none;
+    }
+
+    .tablecontrols{
+        margin: 1em;
+    }
