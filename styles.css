@@ -273,12 +273,13 @@
         transition: all .2s;
     }
     @media only screen and (max-width: 800px) {
-        .logout-button p, .user-button p{
+        .logout-button p, .user-button{
             display: none;
         }
         .logout-button .button-icon-container, .logout-button .navicons, .logout-button p, .logout-button{
             margin-right: 0;
         }
+        container-item user-button
     }
 
     .sticky {
