@@ -54,7 +54,7 @@
                 if(selectedTable=="borrowed"){
                     insert = ` <tr id="Generated">
                         <td colspan=`+getColumns()+`>
-                            <div style="height:2.5em" id="rowOptions`+selectItem+`">
+                            <div class="rowOptions" id="rowOptions`+selectItem+`">
                                 <label>Remarks : </label>
                                 <div contenteditable="true" id="remarks`+selectItem+`" class="inputinbar" style="display:inline-block; min-width:5em;"></div>
                                 <button id="Approve" class="row-button" value="`+selectItem+`">Approve</button>

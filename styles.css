@@ -1,10 +1,11 @@
     * {
         margin: 0;
         padding: 0;
-
-        transition: all .2s;
     }
-
+    .rowOptions{
+        width: 100%;
+        display: flex;
+    }
     .overlay {
         position: fixed;
         top: 0;
@@ -12,7 +13,6 @@
         left: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.8);
-        /* background with opacity  */
         visibility: hidden;
         opacity: 0;
         z-index: 100;
@@ -245,8 +245,6 @@
         padding: 0.3em;
         align-items: center;
         box-shadow: 0 0.156em 0 0 #ffffff00;
-
-        transition: all .2s;
     }
     .container-item:hover{
         box-shadow: 0 0.156em 0 0 #0072bc
@@ -254,9 +252,7 @@
     .logout-button{
         margin-left: auto;
         margin-right: 0;
-
         align-items: center;
-        transition: all .2s;
     }
     .logout-button:hover{
         box-shadow: 0 0.156em 0 0 #bc0000;
@@ -273,7 +269,7 @@
         height:1.25em;
         margin-right: 0.5em;
 
-        transition: all .2s;
+        transition: all .5s;
     }
     @media only screen and (max-width: 800px) {
         .logout-button p, .user-button{
@@ -282,7 +278,6 @@
         .logout-button .button-icon-container, .logout-button .navicons, .logout-button p, .logout-button{
             margin-right: 0;
         }
-        container-item user-button
     }
     .newTable {
         border-collapse: collapse;
