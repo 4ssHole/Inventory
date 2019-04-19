@@ -217,6 +217,9 @@
         align-items: center;
         height: 2.25em;
         background-color: black;
+
+        position: sticky;
+        top: 0;
     }
 
     nav ul {
@@ -281,17 +284,6 @@
         }
         container-item user-button
     }
-
-    .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
-    }
-
-    .sticky+.NavBarSpacer {
-        margin-top: 5em; /* VALUE IS DEPENDANT ON THE NAVBAR SIZE */
-    }
-
     .newTable {
         border-collapse: collapse;
         text-align: center;

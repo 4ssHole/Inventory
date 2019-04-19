@@ -104,16 +104,11 @@ if(!empty($_POST['SelectTable'])) $_SESSION["InitialUserTypeValue"]= $_POST['Sel
 
 
 <script> 
-  var header = document.getElementById("myHeader");
-  var sticky = header.offsetTop;
-
-  window.onscroll = function() {if (window.pageYOffset > sticky) header.classList.add("sticky");else header.classList.remove("sticky");};
-
   function CheckBoxAll(source) {
     checkboxes = document.getElementsByName('item');  for(var i=0, n=checkboxes.length;i<n;i++) checkboxes[i].checked = source.checked;
   }
 
-    $('#customers').find('tr').click(function(){
+  $('#customers').find('tr').click(function(){
     var x = ($(this).index()-1);
     checkboxes = document.getElementsByClassName("ItemCheckboxes"); 
     
@@ -123,8 +118,6 @@ if(!empty($_POST['SelectTable'])) $_SESSION["InitialUserTypeValue"]= $_POST['Sel
     else{
       $(checkboxes[x]).prop("checked",false);
     }
-
-
   });
 
 </script>

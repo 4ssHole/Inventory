@@ -39,19 +39,6 @@
 <script src="../jquery.color-2.1.2.min.js"></script>
 <script src="../jquery.easing.1.3.js"></script>
 <script> 
-  window.onscroll = function() {myFunction()};
-
-  var header = document.getElementById("myHeader");
-  var sticky = header.offsetTop;
-
-  function myFunction() {
-    if (window.pageYOffset > sticky) {
-      header.classList.add("sticky");
-    } else {
-      header.classList.remove("sticky");
-    }
-  }
-  
   $(document).ready(function(){
     reloadTable();  
     $.ajax({

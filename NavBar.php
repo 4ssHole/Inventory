@@ -2,7 +2,7 @@
 function DisplayNavBar() {
 ?>
 
-  <nav id="myHeader">
+  <nav>
     <div class="button-container">
         <div class="container-item user-button">
             <div class="button-icon-container">
