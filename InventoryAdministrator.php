@@ -27,7 +27,7 @@
 </div>
 
 <?php DisplayNavBar();?>
-<p class="NavBarSpacer">
+
 <div class="tablecontrols">  
   <button id="addButton" class="NewButton">Add Item</button>
   <button id="Delete" class="NewButton">Delete Selected Items</button>  
@@ -36,12 +36,11 @@
   <select name="columnSelect" id="columnSelect"></select>
 </div>
 
-<div class="tableAndLower">
-  <div class="TableContainer" style="margin:1em;">
+<div id="test"></div>
+
+<div class="TableContainer" style="margin:1em;">
     <table id="customers" class="newTable"></table>
   </div>
-  <div id="test"></div>
-</div>
 
 <script src="../jquery.color-2.1.2.min.js"></script>
 <script src="../jquery.easing.1.3.js"></script>
