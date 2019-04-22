@@ -23,7 +23,6 @@
 <div style="float:right" class="searchcontainer">    
   <label for="searchbox">Search : </label>
   <input type="text" id="searchbox">
-
 </div>
 
 <?php DisplayNavBar();?>
@@ -39,8 +38,8 @@
 <div id="test"></div>
 
 <div class="TableContainer" style="margin:1em;">
-    <table id="customers" class="newTable"></table>
-  </div>
+  <table id="customers" class="newTable"></table>
+</div>
 
 <script src="../jquery.color-2.1.2.min.js"></script>
 <script src="../jquery.easing.1.3.js"></script>

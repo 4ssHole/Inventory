@@ -4,13 +4,14 @@ function DisplayNavBar() {
 
   <nav>
     <div class="button-container">
+      <a href="Settings.php">
         <div class="container-item user-button">
             <div class="button-icon-container">
                 <img src="../img\inventory-icon-test.png" class="navicons">
             </div>
             <p><?php echo $_SESSION["FirstName"]; ?></p>
         </div>
-      
+      </a>
       <?php 
 
         if($_SESSION['Privilege'] == "admin"){

@@ -17,12 +17,10 @@
         opacity: 0;
         z-index: 100;
     }
-
     .overlay:target {
         visibility: visible;
         opacity: 1;
     }
-
     .popup {
         top: 25%;
         margin: 0 auto;
@@ -32,7 +30,6 @@
         height: 15em;
         position: relative;
     }
-
     .close {
         position: absolute;
         top: .5em;
@@ -40,34 +37,28 @@
         text-decoration: none;
         color: rgb(0, 0, 0);
     }
-
     .popup .close:hover {
         color: rgb(0, 0, 0);
     }
-
     .popup .content {
         max-height: 50%;
         overflow: auto;
     }
-
     body {
         font-family: 'Segoe UI Light';
         background-color: #e2e2e2;
     }
-
     .logo{
         display: inline-flex;
         margin: .75em 1em;
         font-family: 'Segoe UI Semibold';
         font-size: 1.5em;
     }
-
     .searchcontainer{
         display: inline-flex;
         height: 1.75em;
         margin: 1.25em;
     }
-
     section {
         width: 100%;
         position: absolute;
@@ -88,19 +79,16 @@
         margin-top: .25em;
         margin-right: .33em;
     }
-
     .flex-center {
         display: flex;
         justify-content: center;
     }
-
     .footer-container-login{
         bottom: 1em;
         position: absolute;
         width:100%;
         text-align:center;
     }
-
     .text-container{
         text-align:center;
     }
@@ -118,7 +106,6 @@
         font-style: italic;
         vertical-align: middle;
     }
-
     .input-register{
         font-family: "Segoe UI";
         background: #e2e2e2;
@@ -128,7 +115,6 @@
         margin: .15em;
         width: 19em;
     }
-
     .button-index ,.button{
         background-color: rgb(0, 0, 0);
         color: white;
@@ -139,16 +125,12 @@
         font-size: 1.15em;
         font-family: "Segoe UI Light";
     }
-
     .button-index:hover, .button:hover{
         background-color: rgb(14, 97, 153);
     }
-
     .button{
         padding: 0.35em .5em;
     }
-
-
     .grid-container-register {
         margin: 1em 10em;
         display: grid;
@@ -157,22 +139,18 @@
         grid-template-areas: ". ." ". .";
         grid-gap: .5em;
     }
-    
     .logoLogin {
         margin-top: 1em;
         font-family: 'Segoe UI Semibold';
         font-size: 1.75em;
         text-align:center;
     }
-
     .logo a {
         float: left;
         display: block;
         color: black;
         text-decoration: none;
     }
-
-
     input[type='checkbox'] {
         margin: .75em 0;
     }
@@ -203,7 +181,6 @@
         font-family: 'Segoe UI Light';
         background-color: transparent;
     }
-
     a{
         display: contents;
         color: inherit;
@@ -220,12 +197,25 @@
 
         position: sticky;
         top: 0;
-    }
 
+        animation: w70 .25s ease;
+    }
+    @keyframes w70 {
+        from { width: 100%; }
+        to { width: 100%; }
+    }
+    @keyframes hide {
+        from { width: 4.25em; }
+        to { width: 0; }
+    }
+    @keyframes show {
+        from { width: 0; }
+        to { width: 4.25em; }
+    }
+    /* TODO: make this javascript so it can transition to auto and not a set value */
     nav ul {
         margin: 0 .5em;
     }
-
     nav ul li {
         float: left;
         list-style: none;
@@ -234,7 +224,6 @@
         padding: 0.4em .5em;
         text-decoration: none;
     }
-
     .navicons {
         height: 1.25em;
         margin-right: 0.5em;
@@ -245,6 +234,8 @@
         padding: 0.3em;
         align-items: center;
         box-shadow: 0 0.156em 0 0 #ffffff00;
+        white-space: nowrap;
+        overflow: hidden;
     }
     .container-item:hover{
         box-shadow: 0 0.156em 0 0 #0072bc
@@ -271,12 +262,23 @@
 
         transition: all .5s;
     }
+    .user-button{
+        animation: show .5s ease;
+        transition: all .5s;
+    }
     @media only screen and (max-width: 800px) {
-        .logout-button p, .user-button{
+        .logout-button p{
             display: none;
         }
         .logout-button .button-icon-container, .logout-button .navicons, .logout-button p, .logout-button{
             margin-right: 0;
+        }
+        .user-button {
+            animation: hide .5s ease;
+            width: 0;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
         }
     }
     .newTable {
