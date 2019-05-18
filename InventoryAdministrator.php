@@ -11,6 +11,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inventory System</title>
   <script src="jQuery331.js"></script>
   <link rel="stylesheet" href="styles.css">
@@ -18,7 +19,7 @@
 
 <body>
 
-<div class="logo">SCIENCE LABORATORY</div>
+<header>SCIENCE LABORATORY</header>
 
 <div style="float:right" class="searchcontainer">    
   <label for="searchbox">Search : </label>

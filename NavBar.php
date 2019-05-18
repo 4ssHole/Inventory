@@ -20,7 +20,8 @@ function DisplayNavBar() {
               <div class="container-item">
                   <div class="button-icon-container">
                       <img src="../img\inventory-icon-test.png" class="navicons">
-                  </div>inventory
+                  </div>
+                  <p>inventory</p>
               </div>
             </a>
 
@@ -28,7 +29,8 @@ function DisplayNavBar() {
               <div class="container-item">
                 <div class="button-icon-container">
                     <img src="../img\inventory-icon-test.png" class="navicons">
-                </div>manage users
+                </div>
+                <p>manage users</p>
               </div>
             </a>
 
@@ -36,7 +38,8 @@ function DisplayNavBar() {
               <div class="container-item">
                 <div class="button-icon-container">
                     <img src="../img\inventory-icon-test.png" class="navicons">
-                </div>requested items
+                </div>
+                <p>requested items</p>
               </div>
             </a>';
         }
@@ -46,7 +49,8 @@ function DisplayNavBar() {
                 <div class="container-item">
                   <div class="button-icon-container">
                       <img src="../img\inventory-icon-test.png" class="navicons">
-                  </div>items
+                  </div>
+                  <p>items</p>
                 </div>
               </a>
 
@@ -54,7 +58,8 @@ function DisplayNavBar() {
                 <div class="container-item">
                   <div class="button-icon-container">
                       <img src="../img\inventory-icon-test.png" class="navicons">
-                  </div>pending approval
+                  </div>
+                  <p>pending approval</p>
                 </div>
               </a>';
         }

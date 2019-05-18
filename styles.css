@@ -6,6 +6,9 @@
         width: 100%;
         display: flex;
     }
+    #searchbox{
+        width: 8em;
+    }
     .overlay {
         position: fixed;
         top: 0;
@@ -48,9 +51,9 @@
         font-family: 'Segoe UI Light';
         background-color: #e2e2e2;
     }
-    .logo{
+    header{
         display: inline-flex;
-        margin: .75em 1em;
+        margin: 1rem 0 0 1rem;
         font-family: 'Segoe UI Semibold';
         font-size: 1.5em;
     }
@@ -250,7 +253,7 @@
     }
     .button-container{
         display: inherit;
-        margin: 0 1em;
+        margin: 0 0.8rem;
         width: 100%;
     }
     .button-icon-container{
@@ -270,7 +273,9 @@
         .logout-button p{
             display: none;
         }
-        .logout-button .button-icon-container, .logout-button .navicons, .logout-button p, .logout-button{
+    }
+    @media only screen and (max-width: 710px) {
+        .logout-button .button-icon-container, .navicons, .logout-button p, .logout-button, .button-icon-container{
             margin-right: 0;
         }
         .user-button {
@@ -280,6 +285,11 @@
             padding: 0;
             opacity: 0;
         }
+    }
+    @media only screen and (max-width: 600px) {        
+        .container-item p{
+            display: none;
+        } 
     }
     .newTable {
         border-collapse: collapse;

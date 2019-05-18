@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Inventory System</title>
+  <script src="../jQuery331.js"></script>
+  <link rel="stylesheet" href="../styles.css">
+    <style>
+        *{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+        }
+        .nav{
+            overflow: hidden;
+        }
+        .searchbox{
+            width: 10em;
+        }
+        div p{
+            display: inline;
+        }
+        ul{
+            list-style-type: none;
+        }
+        li{
+            padding: .5rem 1em;
+            background: #f2f2f2;
+        }
+        li:hover, li:nth-child(even):hover {
+            background-color: #b2caec;
+        }
+        li:nth-child(even) {
+            background-color: #e2e2e2;
+        }
+        .modelname{
+            font-size: 1.2em;
+            grid-area: modelname;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        .quantity{
+            grid-area: quantity; 
+            text-align: right;
+            padding-left: 0.25rem;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto min-content;
+            grid-template-rows: 1fr;
+            grid-template-areas: "modelname quantity";
+        }
+    </style>
+</head>
+
+<body>
+
+<header>SCIENCE LABORATORY</header>
+
+<div style="float:right" class="searchcontainer">   
+  <input type="text" class="searchbox" id="searchbox">
+</div>
+
+<nav>
+    <div class="button-container">
+        <a href="Settings.php">
+            <div class="container-item user-button">
+                <div class="button-icon-container">
+                    <img src="../img\inventory-icon-test.png" class="navicons">
+                </div>
+                <p>test</p>
+            </div>
+        </a>
+
+        <a href="InventoryAdministrator.php">
+            <div class="container-item">
+                <div class="button-icon-container">
+                    <img src="../img\inventory-icon-test.png" class="navicons">
+                </div>
+                <p>inventory</p>
+            </div>
+        </a>
+
+        <a href="UserAccessControl.php">
+            <div class="container-item">
+            <div class="button-icon-container">
+                <img src="../img\inventory-icon-test.png" class="navicons">
+            </div>
+            <p>manage users</p>
+            </div>
+        </a>
+
+        <a href="RequestedItems.php">
+            <div class="container-item">
+            <div class="button-icon-container">
+                <img src="../img\inventory-icon-test.png" class="navicons">
+            </div>
+            <p>requested items</p>
+            </div>
+        </a>
+        <a href="index.php">
+            <div class="logout-button">
+                <div class="button-icon-container" style="background: #c80000">
+                    <img src="../img\logout.svg" class="navicons">
+                </div>
+                <p>log out</p>
+            </div>
+        </a>
+    </div>
+</nav>
+
+<div class="tablecontrols">  
+  <button id="addButton" class="NewButton">Add Item</button>
+  <button id="Delete" class="NewButton">Delete Selected Items</button>  
+  
+  <label for="columnSelect">Category : </label>
+  <select name="columnSelect" id="columnSelect"></select>
+</div>
+
+<div id="test"></div>
+
+    <ul>
+        <li>
+            <div class="grid-container">
+                <p class="modelname">Wireless Dynamic Sensor WDSS</p>
+                <p class="quantity">600/1000</p>
+            </div>
+            <div>
+                <p>Vernier International</p>
+                <p style="float:right">SHS-SLS-10000-A23</p>
+            </div>
+        </li>
+        <li>
+            <div class="grid-container">
+                <p class="modelname">Wireless Dynamic Sensor WDSS</p>
+                <p class="quantity">600/1000</p>
+            </div>
+            <div>
+                <p>Vernier International</p>
+                <p style="float:right">SHS-SLS-10000-A23</p>
+            </div>
+        </li>
+        <li>
+            <div class="grid-container">
+                <p class="modelname">Wireless Dynamic Sensor WDSS</p>
+                <p class="quantity">600/1000</p>
+            </div>
+            <div>
+                <p>Vernier International</p>
+                <p style="float:right">SHS-SLS-10000-A23</p>
+            </div>
+        </li>
+    </ul>
+
+
+<script src="../jquery.color-2.1.2.min.js"></script>
+<script src="../jquery.easing.1.3.js"></script>
+<script> 
+ 
+</script>
+</body>
+</html>
