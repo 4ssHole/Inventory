@@ -275,7 +275,7 @@
         }
     }
     @media only screen and (max-width: 710px) {
-        .logout-button .button-icon-container, .navicons, .logout-button p, .logout-button, .button-icon-container{
+        .logout-button .button-icon-container, .logout-button p, .logout-button{
             margin-right: 0;
         }
         .user-button {
@@ -286,7 +286,10 @@
             opacity: 0;
         }
     }
-    @media only screen and (max-width: 600px) {        
+    @media only screen and (max-width: 600px) {     
+        .button-icon-container{
+            margin: 0;
+        }   
         .container-item p{
             display: none;
         } 

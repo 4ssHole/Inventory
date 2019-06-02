@@ -18,7 +18,7 @@
             overflow: hidden;
         }
         .searchbox{
-            width: 10em;
+            width: 10rem;
         }
         div p{
             display: inline;
@@ -27,7 +27,7 @@
             list-style-type: none;
         }
         li{
-            padding: .5rem 1em;
+            padding: .5rem 1rem;
             background: #f2f2f2;
         }
         li:hover, li:nth-child(even):hover {
@@ -36,22 +36,84 @@
         li:nth-child(even) {
             background-color: #e2e2e2;
         }
-        .modelname{
-            font-size: 1.2em;
-            grid-area: modelname;
-            max-width: 100%;
-            overflow: hidden;
-        }
-        .quantity{
-            grid-area: quantity; 
-            text-align: right;
-            padding-left: 0.25rem;
-        }
+
         .grid-container {
+            display: grid;
+            grid-template-columns: min-content auto auto;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas: "checkbox top top" "checkbox bottom bottom";
+        }
+
+        .checkbox-container { 
+            grid-area: checkbox; 
+            display: flex;
+            align-items: center;
+        }
+
+        .bottom {
             display: grid;
             grid-template-columns: auto min-content;
             grid-template-rows: 1fr;
-            grid-template-areas: "modelname quantity";
+            grid-template-areas: "bottom-left bottom-right";
+            grid-area: bottom;
+        }
+
+        .bottom-left { 
+            grid-area: bottom-left; 
+        }
+
+        .bottom-right { 
+            grid-area: bottom-right; 
+        }
+
+        .top {
+            display: grid;
+            grid-template-columns: auto min-content;
+            grid-template-rows: 1fr;
+            grid-template-areas: "top-left top-right";
+            grid-area: top;
+        }
+
+        .top-left { 
+            font-size: 1.2rem;
+            overflow: hidden;
+            grid-area: top-left; 
+        }
+
+        .top-right { 
+            padding-left: 0.25rem;
+            grid-area: top-right; 
+        }
+        input[type="checkbox"]{
+            display: none;
+        }
+        input[type="checkbox"] + .checkbox-label::before{
+            content: "";
+            display: block;
+        
+            padding: .5em;
+            margin-right: .75em;
+            
+            border: 1px solid;   
+        }
+
+        input[type="checkbox"]:checked + .checkbox-label::after{
+            content: "";
+            display: block;
+            margin-left: 3px;
+            margin-top: -15px;
+
+            position: absolute;
+            height: 6px;
+            width: 9px;
+            border-left: 2px solid;
+            border-bottom: 2px solid;
+            
+            transform: rotate(-45deg);
+        }
+        /*Adding focus styles on the outer-box of the fake checkbox*/
+        input[type="checkbox"]:focus + .checkbox-label::before {
+            outline: rgb(59, 153, 252) auto 5px;
         }
     </style>
 </head>
@@ -116,7 +178,7 @@
   <button id="addButton" class="NewButton">Add Item</button>
   <button id="Delete" class="NewButton">Delete Selected Items</button>  
   
-  <label for="columnSelect">Category : </label>
+  <label for="columnSelect">Sort by : </label>
   <select name="columnSelect" id="columnSelect"></select>
 </div>
 
@@ -124,33 +186,21 @@
 
     <ul>
         <li>
-            <div class="grid-container">
-                <p class="modelname">Wireless Dynamic Sensor WDSS</p>
-                <p class="quantity">600/1000</p>
-            </div>
-            <div>
-                <p>Vernier International</p>
-                <p style="float:right">SHS-SLS-10000-A23</p>
-            </div>
-        </li>
-        <li>
-            <div class="grid-container">
-                <p class="modelname">Wireless Dynamic Sensor WDSS</p>
-                <p class="quantity">600/1000</p>
-            </div>
-            <div>
-                <p>Vernier International</p>
-                <p style="float:right">SHS-SLS-10000-A23</p>
-            </div>
-        </li>
-        <li>
-            <div class="grid-container">
-                <p class="modelname">Wireless Dynamic Sensor WDSS</p>
-                <p class="quantity">600/1000</p>
-            </div>
-            <div>
-                <p>Vernier International</p>
-                <p style="float:right">SHS-SLS-10000-A23</p>
+            <div class="grid-container">     
+
+                <label class="checkbox-container">
+                    <input type="checkbox">
+                    <p class="checkbox-label"></p>
+                </label>
+
+                <div class="top">
+                    <div class="top-left">Wireless Dynamic Sensor WDSS</div>
+                    <div class="top-right">600/1000</div>
+                </div>
+                <div class="bottom">
+                    <div class="bottom-left">Vernier International</div>
+                    <div class="bottom-right">SHS-SLS-10000-A23</div>
+                </div>
             </div>
         </li>
     </ul>
