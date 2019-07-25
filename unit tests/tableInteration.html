@@ -1,198 +1,191 @@
 <!doctype html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Inventory System</title>
+        <script src="../jQuery331.js"></script>
+        <link rel="stylesheet" href="../styles.css">
+            <style>
+                *{
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
 
-  <title>Inventory System</title>
-  <script src="../jQuery331.js"></script>
-  <link rel="stylesheet" href="../styles.css">
-    <style>
-        *{
-            white-space: nowrap;
-            text-overflow: ellipsis;
+            }
+            .nav{
+                overflow: hidden;
+            }
+            .searchbox{
+                width: 10rem;
+            }
+            div p{
+                display: inline;
+            }
+            ul{
+                list-style-type: none;
+            }
+            li{
+                padding: .5rem 1rem;
+                background: #f2f2f2;
+            }
+            li:hover, li:nth-child(even):hover {
+                background-color: #b2caec;
+            }
+            li:nth-child(even) {
+                background-color: #e2e2e2;
+            }
 
-        }
-        .nav{
-            overflow: hidden;
-        }
-        .searchbox{
-            width: 10rem;
-        }
-        div p{
-            display: inline;
-        }
-        ul{
-            list-style-type: none;
-        }
-        li{
-            padding: .5rem 1rem;
-            background: #f2f2f2;
-        }
-        li:hover, li:nth-child(even):hover {
-            background-color: #b2caec;
-        }
-        li:nth-child(even) {
-            background-color: #e2e2e2;
-        }
+            .grid-container {
+                display: grid;
+                grid-template-columns: min-content auto auto;
+                grid-template-rows: 1fr 1fr;
+                grid-template-areas: "checkbox top top" "checkbox bottom bottom";
+            }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: min-content auto auto;
-            grid-template-rows: 1fr 1fr;
-            grid-template-areas: "checkbox top top" "checkbox bottom bottom";
-        }
+            .checkbox-container { 
+                grid-area: checkbox; 
+                display: flex;
+                align-items: center;
+            }
 
-        .checkbox-container { 
-            grid-area: checkbox; 
-            display: flex;
-            align-items: center;
-        }
+            .bottom {
+                display: grid;
+                grid-template-columns: auto min-content;
+                grid-template-rows: 1fr;
+                grid-template-areas: "bottom-left bottom-right";
+                grid-area: bottom;
+            }
 
-        .bottom {
-            display: grid;
-            grid-template-columns: auto min-content;
-            grid-template-rows: 1fr;
-            grid-template-areas: "bottom-left bottom-right";
-            grid-area: bottom;
-        }
+            .bottom-left { 
+                grid-area: bottom-left; 
+            }
 
-        .bottom-left { 
-            grid-area: bottom-left; 
-        }
+            .bottom-right { 
+                grid-area: bottom-right; 
+            }
 
-        .bottom-right { 
-            grid-area: bottom-right; 
-        }
+            .top {
+                display: grid;
+                grid-template-columns: auto min-content;
+                grid-template-rows: 1fr;
+                grid-template-areas: "top-left top-right";
+                grid-area: top;
+            }
 
-        .top {
-            display: grid;
-            grid-template-columns: auto min-content;
-            grid-template-rows: 1fr;
-            grid-template-areas: "top-left top-right";
-            grid-area: top;
-        }
+            .top-left { 
+                font-size: 1.2rem;
+                overflow: hidden;
+                grid-area: top-left; 
+            }
 
-        .top-left { 
-            font-size: 1.2rem;
-            overflow: hidden;
-            grid-area: top-left; 
-        }
-
-        .top-right { 
-            padding-left: 0.25rem;
-            grid-area: top-right; 
-        }
-        input[type="checkbox"]{
-            display: none;
-        }
-        input[type="checkbox"] + .checkbox-label::before{
-            content: "";
-            display: block;
-        
-            padding: .5em;
-            margin-right: .75em;
+            .top-right { 
+                padding-left: 0.25rem;
+                grid-area: top-right; 
+            }
+            input[type="checkbox"]{
+                display: none;
+            }
+            input[type="checkbox"] + .checkbox-label::before{
+                content: "";
+                display: block;
             
-            border: 1px solid;   
-        }
+                padding: .5em;
+                margin-right: .75em;
+                
+                border: 1px solid;   
+            }
 
-        input[type="checkbox"]:checked + .checkbox-label::after{
-            content: "";
-            display: block;
-            margin-left: 3px;
-            margin-top: -15px;
+            input[type="checkbox"]:checked + .checkbox-label::after{
+                content: "";
+                display: block;
+                margin-left: 3px;
+                margin-top: -15px;
 
-            position: absolute;
-            height: 6px;
-            width: 9px;
-            border-left: 2px solid;
-            border-bottom: 2px solid;
-            
-            transform: rotate(-45deg);
-        }
-        /*Adding focus styles on the outer-box of the fake checkbox*/
-        input[type="checkbox"]:focus + .checkbox-label::before {
-            outline: rgb(59, 153, 252) auto 5px;
-        }
-    </style>
-</head>
+                position: absolute;
+                height: 6px;
+                width: 9px;
+                border-left: 2px solid;
+                border-bottom: 2px solid;
+                
+                transform: rotate(-45deg);
+            }
+            /*Adding focus styles on the outer-box of the fake checkbox*/
+            input[type="checkbox"]:focus + .checkbox-label::before {
+                outline: rgb(59, 153, 252) auto 5px;
+            }
+        </style>
+    </head>
 
-<body>
+    <body>
 
-<header>SCIENCE LABORATORY</header>
+    <header>SCIENCE LABORATORY</header>
 
-<div style="float:right" class="searchcontainer">   
-  <input type="text" class="searchbox" id="searchbox">
-</div>
-
-<nav>
-    <div class="button-container">
-        <a href="Settings.php">
-            <div class="container-item user-button">
-                <div class="button-icon-container">
-                    <img src="../img\inventory-icon-test.png" class="navicons">
-                </div>
-                <p>test</p>
-            </div>
-        </a>
-
-        <a href="InventoryAdministrator.php">
-            <div class="container-item">
-                <div class="button-icon-container">
-                    <img src="../img\inventory-icon-test.png" class="navicons">
-                </div>
-                <p>inventory</p>
-            </div>
-        </a>
-
-        <a href="UserAccessControl.php">
-            <div class="container-item">
-            <div class="button-icon-container">
-                <img src="../img\inventory-icon-test.png" class="navicons">
-            </div>
-            <p>manage users</p>
-            </div>
-        </a>
-
-        <a href="RequestedItems.php">
-            <div class="container-item">
-            <div class="button-icon-container">
-                <img src="../img\inventory-icon-test.png" class="navicons">
-            </div>
-            <p>requested items</p>
-            </div>
-        </a>
-        <a href="index.php">
-            <div class="logout-button">
-                <div class="button-icon-container" style="background: #c80000">
-                    <img src="../img\logout.svg" class="navicons">
-                </div>
-                <p>log out</p>
-            </div>
-        </a>
+    <div style="float:right" class="searchcontainer">   
+        <input type="text" class="searchbox" id="searchbox">
     </div>
-</nav>
 
-<div class="tablecontrols">  
-  <button id="addButton" class="NewButton">Add Item</button>
-  <button id="Delete" class="NewButton">Delete Selected Items</button>  
-  
-  <label for="columnSelect">Sort by : </label>
-  <select name="columnSelect" id="columnSelect"></select>
-</div>
+    <nav>
+        <div class="button-container">
+            <a href="Settings.php">
+                <div class="container-item user-button">
+                    <div class="button-icon-container">
+                        <img src="../img\inventory-icon-test.png" class="navicons">
+                    </div>
+                    <p>test</p>
+                </div>
+            </a>
 
-<div id="test"></div>
+            <a href="InventoryAdministrator.php">
+                <div class="container-item">
+                    <div class="button-icon-container">
+                        <img src="../img\inventory-icon-test.png" class="navicons">
+                    </div>
+                    <p>inventory</p>
+                </div>
+            </a>
+
+            <a href="UserAccessControl.php">
+                <div class="container-item">
+                <div class="button-icon-container">
+                    <img src="../img\inventory-icon-test.png" class="navicons">
+                </div>
+                <p>manage users</p>
+                </div>
+            </a>
+
+            <a href="RequestedItems.php">
+                <div class="container-item">
+                <div class="button-icon-container">
+                    <img src="../img\inventory-icon-test.png" class="navicons">
+                </div>
+                <p>requested items</p>
+                </div>
+            </a>
+            <a href="index.php">
+                <div class="logout-button">
+                    <div class="button-icon-container" style="background: #c80000">
+                        <img src="../img\logout.svg" class="navicons">
+                    </div>
+                    <p>log out</p>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <div class="tablecontrols">  
+        <button id="addButton" class="NewButton">Add Item</button>
+        <button id="Delete" class="NewButton">Delete Selected Items</button>  
+        
+        <label for="columnSelect">Sort by : </label>
+        <select name="columnSelect" id="columnSelect"></select>
+    </div>
+
+    <div id="test"></div>
 
     <ul>
-        <li>
+        <li id="list-item">
             <div class="grid-container">     
-
-                <label class="checkbox-container">
-                    <input type="checkbox">
-                    <p class="checkbox-label"></p>
-                </label>
-
                 <div class="top">
                     <div class="top-left">Wireless Dynamic Sensor WDSS</div>
                     <div class="top-right">600/1000</div>
@@ -206,10 +199,15 @@
     </ul>
 
 
-<script src="../jquery.color-2.1.2.min.js"></script>
-<script src="../jquery.easing.1.3.js"></script>
-<script> 
- 
-</script>
-</body>
+    <script src="../jquery.color-2.1.2.min.js"></script>
+    <script src="../jquery.easing.1.3.js"></script>
+    <script> 
+    $("#list-item").click(function() {
+        //TODO
+        console.log(this);
+        
+    });
+    </script>
+    </body>
+
 </html>
