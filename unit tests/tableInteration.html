@@ -108,60 +108,42 @@
                 <div class="button-icon-container">
                     <img src="../img\invento    icon-test.png" class="navicons">
                 </div>
-                <p>test</p>
-            </div>
-        </a>
+                <p>manage users</p>
+                </div>
+            </a>
 
-        <a href="InventoryAdministrator.php">
-            <div class="container-item">
+            <a href="RequestedItems.php">
+                <div class="container-item">
                 <div class="button-icon-container">
                     <img src="../img\inventory-icon-test.png" class="navicons">
                 </div>
-                <p>inventory</p>
-            </div>
-        </a>
-
-        <a href="UserAccessControl.php">
-            <div class="container-item">
-            <div class="button-icon-container">
-                <img src="../img\inventory-icon-test.png" class="navicons">
-            </div>
-            <p>manage users</p>
-            </div>
-        </a>
-
-        <a href="RequestedItems.php">
-            <div class="container-item">
-            <div class="button-icon-container">
-                <img src="../img\inventory-icon-test.png" class="navicons">
-            </div>
-            <p>requested items</p>
-            </div>
-        </a>
-        <a href="index.php">
-            <div class="logout-button">
-                <div class="button-icon-container" style="background: #c80000">
-                    <img src="../img\logout.svg" class="navicons">
+                <p>requested items</p>
                 </div>
-                <p>log out</p>
-            </div>
-        </a>
+            </a>
+            <a href="index.php">
+                <div class="logout-button">
+                    <div class="button-icon-container" style="background: #c80000">
+                        <img src="../img\logout.svg" class="navicons">
+                    </div>
+                    <p>log out</p>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <div class="tablecontrols">  
+        <button id="addButton" class="NewButton">Add Item</button>
+        <button id="Delete" class="NewButton">Delete Selected Items</button>  
+        
+        <label for="columnSelect">Sort by : </label>
+        <select name="columnSelect" id="columnSelect"></select>
     </div>
-</nav>
 
-<div class="tablecontrols">  
-  <button id="addButton" class="NewButton">Add Item</button>
-  <button id="Delete" class="NewButton">Delete Selected Items</button>  
-  
-  <label for="columnSelect">Sort by : </label>
-  <select name="columnSelect" id="columnSelect"></select>
-</div>
-
-<div id="test"></div>
+    <div id="test"></div>
 
     <ul>
-        <li>
-            <div class="grid-container">    
+        <li id="list-item">
+            <div class="grid-container">     
                 <div class="top">
                     <div class="top-left masterTooltip">Wireless Dynamic Sensor WDSS</div>
                     <div class="top-right">600/1000</div>
@@ -195,4 +177,15 @@ $(document).ready(function() {
 
 </script>
 </body>
+    <script src="../jquery.color-2.1.2.min.js"></script>
+    <script src="../jquery.easing.1.3.js"></script>
+    <script> 
+    $("#list-item").click(function() {
+        //TODO
+        console.log(this);
+        
+    });
+    </script>
+    </body>
+
 </html>
