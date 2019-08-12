@@ -1,123 +1,118 @@
 <!doctype html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Inventory System</title>
-  <script src="../jQuery331.js"></script>
-  <link rel="stylesheet" href="../styles.css">
-    <style>
-        *{
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        .nav{
-            overflow: hidden;
-        }
-        .searchbox{
-            width: 10rem;
-        }
-        div p{
-            display: inline;
-        }
-        ul{
-            list-style-type: none;
-        }
-        li{
-            padding: .5rem 1rem;
-            background: #f2f2f2;
-        }
-        li:hover, li:nth-child(even):hover {
-            background-color: #b2caec;
-        }
-        li:nth-child(even) {
-            background-color: #e2e2e2;
-        }
+    <title>Inventory System</title>
+    <script src="../jQuery331.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+        <style>
+            *{
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .nav{
+                overflow: hidden;
+            }
+            div p{
+                display: inline;
+            }
+            ul{
+                list-style-type: none;
+            }
+            li{
+                padding: .5rem 1rem;
+                background: #f2f2f2;
+            }
+            li:hover, li:nth-child(even):hover {
+                background-color: #b2caec;
+            }
+            li:nth-child(even) {
+                background-color: #e2e2e2;
+            }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: auto auto;
-            grid-template-rows: 1fr 1fr;
-            grid-template-areas: "top       top" 
-                                 "bottom bottom";
-        }
-        .top, .bottom{
-            display: grid;
-            grid-template-columns: auto min-content;
-            grid-template-rows: 1fr;
-        }
-        .bottom {
-            grid-template-areas: "bottom-left bottom-right";
-            grid-area: bottom;
-        }
-        
-        .top {
-            grid-template-areas: "top-left top-right";
-            grid-area: top;
-        }
+            .grid-container {
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-rows: 1fr 1fr;
+                grid-template-areas: "top       top" 
+                                    "bottom bottom";
+            }
+            .top, .bottom{
+                display: grid;
+                grid-template-columns: auto min-content;
+                grid-template-rows: 1fr;
+            }
+            .bottom {
+                grid-template-areas: "bottom-left bottom-right";
+                grid-area: bottom;
+            }
+            
+            .top {
+                grid-template-areas: "top-left top-right";
+                grid-area: top;
+            }
 
-        .bottom-left, .bottom-right, .top-left, .top-right{
-            overflow: hidden;
-        }
+            .bottom-left, .bottom-right, .top-left, .top-right{
+                overflow: hidden;
+            }
 
-        .bottom-left { 
-            grid-area: bottom-left; 
-        }
+            .bottom-left { 
+                grid-area: bottom-left; 
+            }
 
-        .bottom-right { 
-            grid-area: bottom-right; 
-        }
+            .bottom-right { 
+                grid-area: bottom-right; 
+            }
 
-        .top-left { 
-            font-size: 1.2rem;
-            grid-area: top-left; 
-        }
+            .top-left { 
+                font-size: 1.2rem;
+                grid-area: top-left; 
+            }
 
-        .top-right { 
-            padding-left: 0.25rem;
-            grid-area: top-right; 
-        }
+            .top-right { 
+                padding-left: 0.25rem;
+                grid-area: top-right; 
+            }
 
 
-        .tooltip {
-            display: none;
-            white-space: normal;
-            position: absolute;
-            background-color:#161616;
-            padding:10px;
-            color:#fff;
-            font-size:12px;
-        }
-    </style>
-</head>
+            .tooltip {
+                white-space: normal;
+                position: absolute;
+                background-color:#161616;
+                padding:10px;
+                color:#fff;
+                font-size:12px;
+            }
+        </style>
+    </head>
 
-<body>
+    <body>
 
-<header>SCIENCE LABORATORY</header>
+    <header>
+        <a>SCIENCE LABORATORY</a>
+        <input type="text" class="searchbox" id="searchbox">
+    </header>
 
-<div style="float:right" class="searchcontainer">   
-  <input type="text" class="searchbox" id="searchbox">
-</div>
-
-<nav>
-    <div class="button-container">
-        <a href="Settings.php">
-            <div class="container-item user-button">
-                <div class="button-icon-container">
-                    <img src="../img\invento    icon-test.png" class="navicons">
-                </div>
-                <p>manage users</p>
+    <nav>
+        <div class="button-container">
+            <a href="Settings.php">
+                <div class="container-item user-button">
+                    <div class="button-icon-container">
+                        <img src="../img\inventory-icon-test.png" class="navicons">
+                    </div>
+                    <p>manage users</p>
                 </div>
             </a>
 
             <a href="RequestedItems.php">
                 <div class="container-item">
-                <div class="button-icon-container">
-                    <img src="../img\inventory-icon-test.png" class="navicons">
-                </div>
-                <p>requested items</p>
+                    <div class="button-icon-container">
+                        <img src="../img\inventory-icon-test.png" class="navicons">
+                    </div>
+                    <p>requested items</p>
                 </div>
             </a>
             <a href="index.php">
@@ -145,46 +140,62 @@
         <li id="list-item">
             <div class="grid-container">     
                 <div class="top">
-                    <div class="top-left masterTooltip">Wireless Dynamic Sensor WDSS</div>
-                    <div class="top-right">600/1000</div>
+                    <div class="top-left">
+                        <textcontainer class="enableTooltip">
+                                Wireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS
+                        </textcontainer>
+                    </div>
+                    <div class="top-right">
+                        600/1000
+                    </div>
                 </div>
                 <div class="bottom">
-                    <div class="bottom-left">Vernier International</div>
-                    <div class="bottom-right">SHS-SLS-10000-A23</div>
+                    <div class="bottom-left">
+                        <textcontainer class="enableTooltip">
+                        Vernier International
+                        </textcontainer>
+                    </div>
+                    <div class="bottom-right">
+                        SHS-SLS-10000-A23
+                    </div>
                 </div>
             </div>
         </li>
     </ul>
 
 
-<script src="../jquery.color-2.1.2.min.js"></script>
-<script src="../jquery.easing.1.3.js"></script>
-<script> 
-
-$(document).ready(function() {
-
-    $('.masterTooltip').hover(function(){
-        var title = $(this).text();
-        $('<p class="tooltip"></p>').text(title).appendTo('body').fadeIn('slow');
-    }, function() {
-        $('.tooltip').remove();
-    }).mousemove(function(e) {
-        var mousex = e.pageX + 5; //Get X coordinates
-        var mousey = e.pageY - 50; //Get Y coordinates
-        $('.tooltip').css({ top: mousey, left: mousex })
-    });
-});
-
-</script>
-</body>
     <script src="../jquery.color-2.1.2.min.js"></script>
     <script src="../jquery.easing.1.3.js"></script>
     <script> 
-    $("#list-item").click(function() {
-        //TODO
-        console.log(this);
-        
+
+    $(document).ready(function() {
+
+        $('.enableTooltip').hover(function(){   
+            var title = $(this).text();
+            var e = $(this);
+            console.log(e.offsetWidth);
+            console.log(e.scrollWidth);
+            if (e.offsetWidth < e.scrollWidth){ 
+                alert("Overflow");
+            }
+            
+            $('<p class="tooltip"></p>').text(title).appendTo('body').fadeIn('slow');
+        }, function() {
+            $('.tooltip').remove();
+        }).mousemove(function(e) {
+            var mousex = e.pageX + 5; //Get X coordinates
+            var mousey = e.pageY - 50; //Get Y coordinates
+            $('.tooltip').css({ top: mousey, left: mousex })
+        });
+
+        $("#list-item").click(function() {
+            //TODO
+            console.log(this);
+            
+        });
+
     });
+    
     </script>
     </body>
 

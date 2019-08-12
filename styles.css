@@ -7,7 +7,9 @@
         display: flex;
     }
     #searchbox{
-        width: 8em;
+        width: 8rem;
+        font-size: inherit;
+        float: right;
     }
     .overlay {
         position: fixed;
@@ -27,7 +29,7 @@
     .popup {
         top: 25%;
         margin: 0 auto;
-        padding: 1em;
+        padding: 1rem;
         background: rgb(235, 235, 235);
         width: 50%;
         height: 15em;
@@ -35,8 +37,8 @@
     }
     .close {
         position: absolute;
-        top: .5em;
-        right: .75em;
+        top: .5rem;
+        right: .75rem;
         text-decoration: none;
         color: rgb(0, 0, 0);
     }
@@ -52,16 +54,11 @@
         background-color: #e2e2e2;
     }
     header{
-        display: inline-flex;
-        margin: 1rem 0 0 1rem;
+        margin: 1rem;
         font-family: 'Segoe UI Semibold';
         font-size: 1.5em;
     }
-    .searchcontainer{
-        display: inline-flex;
-        height: 1.75em;
-        margin: 1.25em;
-    }
+
     section {
         width: 100%;
         position: absolute;
