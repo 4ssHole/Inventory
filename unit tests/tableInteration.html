@@ -142,7 +142,7 @@
                 <div class="top">
                     <div class="top-left">
                         <textcontainer class="enableTooltip">
-                                Wireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS
+                                WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS
                         </textcontainer>
                     </div>
                     <div class="top-right">
@@ -171,15 +171,15 @@
     $(document).ready(function() {
 
         $('.enableTooltip').hover(function(){   
-            var title = $(this).text();
-            var e = $(this);
-            console.log(e.offsetWidth);
-            console.log(e.scrollWidth);
-            if (e.offsetWidth < e.scrollWidth){ 
-                alert("Overflow");
-            }
+            console.log(this);
+
+            console.log("offset width" + this.offsetWidth);
+            console.log("scroll width" + this.scrollWidth);
+            console.log("client width" + this.clientWidth);
+
+            //get container width instead?
             
-            $('<p class="tooltip"></p>').text(title).appendTo('body').fadeIn('slow');
+            $('<p class="tooltip"></p>').text($(this).text()).appendTo('body').fadeIn('slow');
         }, function() {
             $('.tooltip').remove();
         }).mousemove(function(e) {
