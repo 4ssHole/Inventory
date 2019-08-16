@@ -86,6 +86,9 @@
                 color:#fff;
                 font-size:12px;
             }
+            /* textcontainer{
+                display: block; /*css truncate will not work if set to block*/
+            } */
         </style>
     </head>
 
@@ -134,8 +137,6 @@
         <select name="columnSelect" id="columnSelect"></select>
     </div>
 
-    <div id="test"></div>
-
     <ul>
         <li id="list-item">
             <div class="grid-container">     
@@ -171,15 +172,12 @@
     $(document).ready(function() {
 
         $('.enableTooltip').hover(function(){   
-            console.log(this);
-
-            console.log("offset width" + this.offsetWidth);
-            console.log("scroll width" + this.scrollWidth);
-            console.log("client width" + this.clientWidth);
-
-            //get container width instead?
             
-            $('<p class="tooltip"></p>').text($(this).text()).appendTo('body').fadeIn('slow');
+            console.log($(this).parent().width());
+            console.log(this.offsetWidth);
+            if(this.offsetWidth > $(this).parent().width()){
+                $('<p class="tooltip"></p>').text($(this).text()).appendTo('body').fadeIn('slow');
+            }
         }, function() {
             $('.tooltip').remove();
         }).mousemove(function(e) {
@@ -189,9 +187,8 @@
         });
 
         $("#list-item").click(function() {
-            //TODO
+            //TODO expand list item
             console.log(this);
-            
         });
 
     });
