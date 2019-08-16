@@ -78,13 +78,15 @@
             }
 
 
-            .tooltip {
+            tooltip {
                 white-space: normal;
                 position: absolute;
-                background-color:#161616;
-                padding:10px;
-                color:#fff;
-                font-size:12px;
+                background-color: #161616;
+                padding: 10px;
+                margin: 3em;
+                color: #fff;
+                top: 50vh;
+                font-size: 0.9rem;
             }
         </style>
     </head>
@@ -139,22 +141,18 @@
             <div class="grid-container">     
                 <div class="top">
                     <div class="top-left">
-                        <textcontainer class="enableTooltip">
-                                WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS
-                        </textcontainer>
+                        <textcontainer>WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS</textcontainer>
                     </div>
                     <div class="top-right">
-                        600/1000
+                        <textcontainer>600/1000</textcontainer>
                     </div>
                 </div>
                 <div class="bottom">
                     <div class="bottom-left">
-                        <textcontainer class="enableTooltip">
-                        Vernier International
-                        </textcontainer>
+                        <textcontainer>Vernier International</textcontainer>
                     </div>
                     <div class="bottom-right">
-                        SHS-SLS-10000-A23
+                        <textcontainer>SHS-SLS-10000-A23</textcontainer>
                     </div>
                 </div>
             </div>
@@ -168,20 +166,17 @@
 
     $(document).ready(function() {
 
-        $('.enableTooltip').hover(function(){   
-            
-            console.log($(this).parent().width());
-            console.log(this.offsetWidth);
+        $('textcontainer').hover(function(){   
             if(this.offsetWidth > $(this).parent().width()){
-                $('<p class="tooltip"></p>').text($(this).text()).appendTo('body').fadeIn('slow');
+                $('<tooltip></tooltip>').text($(this).text()).appendTo('body').fadeIn('slow');
             }
         }, function() {
-            $('.tooltip').remove();
-        }).mousemove(function(e) {
-            var mousex = e.pageX + 5; //Get X coordinates
-            var mousey = e.pageY - 50; //Get Y coordinates
-            $('.tooltip').css({ top: mousey, left: mousex })
-        });
+            $('tooltip').remove();
+        });//.mousemove(function(e) {
+        //     var mousex = e.pageX + 5; //Get X coordinates
+        //     var mousey = e.pageY - 50; //Get Y coordinates
+        //     $('.tooltip').css({ top: mousey, left: mousex })
+        // });
 
         $("#list-item").click(function() {
             //TODO expand list item
