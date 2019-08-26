@@ -37,7 +37,7 @@
                 display: grid;
                 grid-template-columns: auto auto;
                 grid-template-rows: 1fr 1fr;
-                grid-template-areas: "top       top" 
+                grid-template-areas: "top       top"
                                     "bottom bottom";
             }
             .top, .bottom{
@@ -49,7 +49,7 @@
                 grid-template-areas: "bottom-left bottom-right";
                 grid-area: bottom;
             }
-            
+
             .top {
                 grid-template-areas: "top-left top-right";
                 grid-area: top;
@@ -59,22 +59,22 @@
                 overflow: hidden;
             }
 
-            .bottom-left { 
-                grid-area: bottom-left; 
+            .bottom-left {
+                grid-area: bottom-left;
             }
 
-            .bottom-right { 
-                grid-area: bottom-right; 
+            .bottom-right {
+                grid-area: bottom-right;
             }
 
-            .top-left { 
+            .top-left {
                 font-size: 1.2rem;
-                grid-area: top-left; 
+                grid-area: top-left;
             }
 
-            .top-right { 
+            .top-right {
                 padding-left: 0.25rem;
-                grid-area: top-right; 
+                grid-area: top-right;
             }
 
 
@@ -82,100 +82,121 @@
                 white-space: normal;
                 position: absolute;
                 background-color: #161616;
-                padding: 10px; 
+                padding: 10px;
                 color: #fff;
                 font-size: 0.9rem;
             }
+            tooltippoint {
+                position: absolute;
+                margin-top: 30.8px;
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 7px solid rgb(0, 0, 0);
+            }
+
         </style>
     </head>
 
     <body>
 
-    <header>
-        <a>SCIENCE LABORATORY</a>
-        <input type="text" class="searchbox" id="searchbox">
-    </header>
+        <header>
+            <a>SCIENCE LABORATORY</a>
+            <input type="text" class="searchbox" id="searchbox">
+        </header>
 
-    <nav>
-        <div class="button-container">
-            <a href="Settings.php">
-                <div class="container-item user-button">
-                    <div class="button-icon-container">
-                        <img src="../img\inventory-icon-test.png" class="navicons">
+        <nav>
+            <div class="button-container">
+                <a href="Settings.php">
+                    <div class="container-item user-button">
+                        <div class="button-icon-container">
+                            <img src="../img\inventory-icon-test.png" class="navicons">
+                        </div>
+                        <p>manage users</p>
                     </div>
-                    <p>manage users</p>
-                </div>
-            </a>
+                </a>
 
-            <a href="RequestedItems.php">
-                <div class="container-item">
-                    <div class="button-icon-container">
-                        <img src="../img\inventory-icon-test.png" class="navicons">
+                <a href="RequestedItems.php">
+                    <div class="container-item">
+                        <div class="button-icon-container">
+                            <img src="../img\inventory-icon-test.png" class="navicons">
+                        </div>
+                        <p>requested items</p>
                     </div>
-                    <p>requested items</p>
-                </div>
-            </a>
-            <a href="index.php">
-                <div class="logout-button">
-                    <div class="button-icon-container" style="background: #c80000">
-                        <img src="../img\logout.svg" class="navicons">
+                </a>
+                <a href="index.php">
+                    <div class="logout-button">
+                        <div class="button-icon-container" style="background: #c80000">
+                            <img src="../img\logout.svg" class="navicons">
+                        </div>
+                        <p>log out</p>
                     </div>
-                    <p>log out</p>
-                </div>
-            </a>
-        </div>
-    </nav>
-
-    <div class="tablecontrols">  
-        <button id="addButton" class="NewButton">Add Item</button>
-        <button id="Delete" class="NewButton">Delete Selected Items</button>  
-        
-        <label for="columnSelect">Sort by : </label>
-        <select name="columnSelect" id="columnSelect"></select>
-    </div>
-
-    <ul>
-        <li id="list-item">
-            <div class="grid-container">     
-                <div class="top">
-                    <div class="top-left">
-                        <textcontainer>WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS</textcontainer>
-                    </div>
-                    <div class="top-right">
-                        <textcontainer>600/1000</textcontainer>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <div class="bottom-left">
-                        <textcontainer>Vernier International</textcontainer>
-                    </div>
-                    <div class="bottom-right">
-                        <textcontainer>SHS-SLS-10000-A23</textcontainer>
-                    </div>
-                </div>
+                </a>
             </div>
-        </li>
-    </ul>
+        </nav>
 
+        <div class="tablecontrols">
+            <button id="addButton" class="NewButton">Add Item</button>
+            <button id="Delete" class="NewButton">Delete Selected Items</button>
+
+            <label for="columnSelect">Sort by : </label>
+            <select name="columnSelect" id="columnSelect"></select>
+        </div>
+
+        <ul>
+            <li id="list-item">
+                <div class="grid-container">
+                    <div class="top">
+                        <div class="top-left">
+                            <textcontainer>WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS</textcontainer>
+                        </div>
+                        <div class="top-right">
+                            <textcontainer>600/1000</textcontainer>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="bottom-left">
+                            <textcontainer>Vernier International</textcontainer>
+                        </div>
+                        <div class="bottom-right">
+                            <textcontainer>SHS-SLS-10000-A23</textcontainer>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </body>
 
     <script src="../jquery.color-2.1.2.min.js"></script>
     <script src="../jquery.easing.1.3.js"></script>
-    <script> 
+
+    <script>
 
     $(document).ready(function() {
 
-        $('textcontainer').hover(function(){   
+        $('textcontainer').hover(function(){
             var positionY = $(this).offset();
-            
+
             if(this.offsetWidth > $(this).parent().width()){
                 $('<tooltip></tooltip>').text($(this).text()).appendTo('body');
-                $('tooltip').css({ top: positionY["top"]-50+"px"})
+                $('<tooltippoint></tooltippoint>').appendTo('body');
+                
+                $('tooltip').css({ top: positionY["top"]-50+"px"});
             }
         }, function() {
             $('tooltip').remove();
-        });/*.mousemove(function(e) {
-            TODO: add pointy triangle thing to tooltip that follows the x position of the cursor
-        });*/
+            $('tooltippoint').remove();
+        }).mousemove(function(e) { //TODO: add pointy triangle thing to tooltip that follows the x position of the cursor
+            var mouseX = event.pageX+"px";
+            var positionY = $(this).offset()["top"]-40;
+
+            $('tooltippoint').css({ 
+                left: mouseX,
+                top: positionY+"px"
+            });
+        });
 
         $("#list-item").click(function() {
             //TODO expand list item
@@ -183,8 +204,6 @@
         });
 
     });
-    
-    </script>
-    </body>
 
+    </script>
 </html>
