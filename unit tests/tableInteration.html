@@ -96,6 +96,18 @@
                 border-top: 7px solid rgb(0, 0, 0);
             }
 
+            .expanded-list-item{
+                position: relative;
+                z-index: 100000;
+                height: 25em;
+                margin: -2em 0;
+            }
+            /* 
+                TODO: Add transitions after clicking list item
+                transition:height 0.25s ease 0s;
+
+             */
+
         </style>
     </head>
 
@@ -202,12 +214,7 @@
             /*
                 TODO expand list item
             */
-            $(this).css({ 
-                position: "relative",
-                zindex: 100000,
-                height: "25em",
-                margin: "-2em 0"
-            });
+            $(this).toggleClass("expanded-list-item");
         });
 
     });
