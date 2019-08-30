@@ -190,17 +190,24 @@
             $('tooltippoint').remove();
         }).mousemove(function(e) { //TODO: add pointy triangle thing to tooltip that follows the x position of the cursor
             var mouseX = event.pageX+"px";
-            var positionY = $(this).offset()["top"]-40;
+            var positionY = $(this).offset()["top"]-40+"px";
 
             $('tooltippoint').css({ 
                 left: mouseX,
-                top: positionY+"px"
+                top: positionY
             });
         });
 
         $("#list-item").click(function() {
-            //TODO expand list item
-            console.log(this);
+            /*
+                TODO expand list item
+            */
+            $(this).css({ 
+                position: "relative",
+                zindex: 100000,
+                height: "25em",
+                margin: "-2em 0"
+            });
         });
 
     });
