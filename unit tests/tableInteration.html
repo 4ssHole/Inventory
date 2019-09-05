@@ -13,68 +13,51 @@
                 white-space: nowrap;
                 text-overflow: ellipsis;
             }
-            .nav{
-                overflow: hidden;
+
+            list-items{
+                display: list-item; 
             }
-            div p{
-                display: inline;
-            }
-            ul{
-                list-style-type: none;
-            }
-            li{
+            item{
+                display: list-item; 
                 padding: .5rem 1rem;
                 background: #f2f2f2;
             }
-            li:hover, li:nth-child(even):hover {
+            item:hover, item:nth-child(even):hover {
                 background-color: #b2caec;
             }
-            li:nth-child(even) {
+            item:nth-child(even) {
                 background-color: #e2e2e2;
             }
 
-            .grid-container {
+            grid-container {
                 display: grid;
-                grid-template-columns: auto auto;
-                grid-template-rows: 1fr 1fr;
-                grid-template-areas: "top       top"
-                                    "bottom bottom";
-            }
-            .top, .bottom{
-                display: grid;
-                grid-template-columns: auto min-content;
-                grid-template-rows: 1fr;
-            }
-            .bottom {
-                grid-template-areas: "bottom-left bottom-right";
-                grid-area: bottom;
+                grid-template-columns: repeat(2, min-content);
+                grid-template-rows: repeat(2, 1fr);
+                grid-template-areas: 
+                    "Model Quantity"
+                    "Brand ItemCode";
+                /* justify-content: space-between; */
             }
 
-            .top {
-                grid-template-areas: "top-left top-right";
-                grid-area: top;
-            }
-
-            .bottom-left, .bottom-right, .top-left, .top-right{
+            grid{
                 overflow: hidden;
             }
 
-            .bottom-left {
-                grid-area: bottom-left;
+            .Brand {
+                grid-area: Brand;
             }
 
-            .bottom-right {
-                grid-area: bottom-right;
+            .ItemCode {
+                grid-area: ItemCode;
             }
 
-            .top-left {
+            .Model {
                 font-size: 1.2rem;
-                grid-area: top-left;
+                grid-area: Model;
             }
 
-            .top-right {
-                padding-left: 0.25rem;
-                grid-area: top-right;
+            .Quantity {
+                grid-area: Quantity;
             }
 
 
@@ -99,8 +82,15 @@
             .expanded-list-item{
                 position: relative;
                 z-index: 100000;
-                height: 25em;
+                height: 20em;
                 margin: -2em 0;
+            }
+            .expanded-grid-container {
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-rows: 1fr 1fr;
+                grid-template-areas: "bottom bottom"
+                                    "top top";
             }
             /* 
                 TODO: Add transitions after clicking list item
@@ -156,29 +146,28 @@
             <select name="columnSelect" id="columnSelect"></select>
         </div>
 
-        <ul>
-            <li id="list-item">
-                <div class="grid-container">
-                    <div class="top">
-                        <div class="top-left">
+        <!-- <ul> -->
+            <list-items>
+                <item>
+                    <grid-container>
+                        <grid class="Model">
                             <textcontainer>WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS</textcontainer>
-                        </div>
-                        <div class="top-right">
+                        </grid>
+                        <grid class="Quantity">
                             <textcontainer>600/1000</textcontainer>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <div class="bottom-left">
+                        </grid>
+                        
+                        <grid class="Brand">
                             <textcontainer>Vernier International</textcontainer>
-                        </div>
-                        <div class="bottom-right">
+                        </grid>
+                        <grid class="ItemCode">
                             <textcontainer>SHS-SLS-10000-A23</textcontainer>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-
+                        </grid>
+                    </grid-container>
+                </item>  
+            </list-items>
+        <!-- </ul> -->
+        
     </body>
 
     <script src="../jquery.color-2.1.2.min.js"></script>
@@ -210,11 +199,9 @@
             });
         });
 
-        $("#list-item").click(function() {
-            /*
-                TODO expand list item
-            */
+        $("list-items").click(function() {
             $(this).toggleClass("expanded-list-item");
+            $(this).children('.grid-container').toggleClass("expanded-grid-container");
         });
 
     });
