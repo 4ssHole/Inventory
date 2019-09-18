@@ -31,33 +31,22 @@
 
             grid-container {
                 display: grid;
-                grid-template-columns: repeat(2, min-content);
                 grid-template-rows: repeat(2, 1fr);
                 grid-template-areas: 
-                    "Model Quantity"
-                    "Brand ItemCode";
+                    "top"
+                    "bottom";
+                /* justify-content: space-between; */
+            }
+            grid-division {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-areas: 
+                    "top bottom";
                 /* justify-content: space-between; */
             }
 
             grid{
                 overflow: hidden;
-            }
-
-            .Brand {
-                grid-area: Brand;
-            }
-
-            .ItemCode {
-                grid-area: ItemCode;
-            }
-
-            .Model {
-                font-size: 1.2rem;
-                grid-area: Model;
-            }
-
-            .Quantity {
-                grid-area: Quantity;
             }
 
 
@@ -146,27 +135,28 @@
             <select name="columnSelect" id="columnSelect"></select>
         </div>
 
-        <!-- <ul> -->
-            <list-items>
-                <item>
-                    <grid-container>
-                        <grid class="Model">
+        <list-items>
+            <item>
+                <grid-container>
+                    <grid-division>
+                        <grid>
                             <textcontainer>WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS</textcontainer>
                         </grid>
-                        <grid class="Quantity">
+                        <grid>
                             <textcontainer>600/1000</textcontainer>
                         </grid>
-                        
-                        <grid class="Brand">
+                    </grid-division>
+                    <grid-division>
+                        <grid>
                             <textcontainer>Vernier International</textcontainer>
                         </grid>
-                        <grid class="ItemCode">
+                        <grid>
                             <textcontainer>SHS-SLS-10000-A23</textcontainer>
                         </grid>
-                    </grid-container>
-                </item>  
-            </list-items>
-        <!-- </ul> -->
+                    </grid-division>
+                </grid-container>
+            </item>  
+        </list-items>
         
     </body>
 
@@ -199,7 +189,7 @@
             });
         });
 
-        $("list-items").click(function() {
+        $("item").click(function() {
             $(this).toggleClass("expanded-list-item");
             $(this).children('.grid-container').toggleClass("expanded-grid-container");
         });
