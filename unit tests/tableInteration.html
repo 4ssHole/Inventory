@@ -18,9 +18,13 @@
                 display: list-item; 
             }
             item{
+                height: 3.25rem;
                 display: list-item; 
                 padding: .5rem 1rem;
                 background: #f2f2f2;
+
+                transition: height 0.5s ease;
+
             }
             item:hover, item:nth-child(even):hover {
                 background-color: #b2caec;
@@ -29,26 +33,26 @@
                 background-color: #e2e2e2;
             }
 
-            grid-container {
+            grid-container, grid-division {
                 display: grid;
+            }
+            grid-container {
                 grid-template-rows: repeat(2, 1fr);
-                grid-template-areas: 
-                    "top"
-                    "bottom";
-                /* justify-content: space-between; */
             }
             grid-division {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-areas: 
-                    "top bottom";
-                /* justify-content: space-between; */
+                grid-template-columns: auto min-content;
             }
-
             grid{
                 overflow: hidden;
             }
-
+            
+            .text-container-large{
+                font-size: 1.2rem;
+            }
+            .text-container-right{
+                position: relative;
+                bottom: -.2rem;
+            }
 
             tooltip {
                 white-space: normal;
@@ -68,11 +72,13 @@
                 border-top: 7px solid rgb(0, 0, 0);
             }
 
-            .expanded-list-item{
+            .expanded-list-item{    
                 position: relative;
                 z-index: 100000;
                 height: 20em;
                 margin: -2em 0;
+
+                /* transition: height 0.5s ease; */
             }
             .expanded-grid-container {
                 display: grid;
@@ -81,11 +87,8 @@
                 grid-template-areas: "bottom bottom"
                                     "top top";
             }
-            /* 
-                TODO: Add transitions after clicking list item
-                transition:height 0.25s ease 0s;
-
-             */
+            /*  TODO: Add transitions after clicking list item
+                transition: 0.25s ease 0s;*/
 
         </style>
     </head>
@@ -140,18 +143,18 @@
                 <grid-container>
                     <grid-division>
                         <grid>
-                            <textcontainer>WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS</textcontainer>
+                            <text-container class="text-container-large">WDSSWireless Dynamic Sensor WDSSWireless Dynamic Sensor WDSS</text-container>
                         </grid>
                         <grid>
-                            <textcontainer>600/1000</textcontainer>
+                            <text-container class=".text-container-right">600/1000 left</text-container>
                         </grid>
                     </grid-division>
                     <grid-division>
                         <grid>
-                            <textcontainer>Vernier International</textcontainer>
+                            <text-container>Vernier International</text-container>
                         </grid>
                         <grid>
-                            <textcontainer>SHS-SLS-10000-A23</textcontainer>
+                            <text-container>SHS-SLS-10000-A23</text-container>
                         </grid>
                     </grid-division>
                 </grid-container>
@@ -166,8 +169,7 @@
     <script>
 
     $(document).ready(function() {
-
-        $('textcontainer').hover(function(){
+        $('text-container').hover(function(){
             var positionY = $(this).offset();
 
             if(this.offsetWidth > $(this).parent().width()){
@@ -191,7 +193,6 @@
 
         $("item").click(function() {
             $(this).toggleClass("expanded-list-item");
-            $(this).children('.grid-container').toggleClass("expanded-grid-container");
         });
 
     });
