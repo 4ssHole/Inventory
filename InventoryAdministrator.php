@@ -59,7 +59,6 @@
     }
     $('#addItemitemcode').focus();
   })
-
   $(document).on('click', "#Create", function(){
     var columnsArray = [];
     var addArray = [];
@@ -87,7 +86,6 @@
       }  
     });
   });
-
   $(document).on('click', '#Update',function(){
       var updateArray = [];
 
@@ -115,11 +113,9 @@
           }  
       });
   });
-
   $(document).on('click', "#singleDelete", function(){
       deleteWithBorrowed([addslashes($(this).val())]);
   });
-
   $(document).on('click', '#Delete',function(){
     var deleteArray = [];
    
@@ -133,7 +129,6 @@
   $("#columnSelect").click(function() {
     QuerySearch($("#searchbox"));
   });
-
 
   $("#searchbox").keyup(function() {
     QuerySearch($(this));

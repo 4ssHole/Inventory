@@ -72,13 +72,15 @@
 </div>
 <script>
   $(document).ready(function(){
-    $("#username").focus(); 
+    $("#username").focus();   
+    
+    $(document).on('click', "#register", function(){
+      console.log("test");
+      window.location.href = 'registration.php';
+    })
   })
 
-  $(document).on('click', "#register", function(){
-    console.log("test");
-    window.location.href = 'registration.php';
-  })
+
 </script>
 </body>
 </html>
