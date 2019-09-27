@@ -54,6 +54,7 @@
                 bottom: -.2rem;
             }
 
+            /* delete this it runs like shit, bearly works 
             tooltip {
                 white-space: normal;
                 position: absolute;
@@ -70,16 +71,7 @@
                 border-left: 5px solid transparent;
                 border-right: 5px solid transparent;
                 border-top: 7px solid rgb(0, 0, 0);
-            }
-
-            .expanded-list-item{    
-                position: relative;
-                z-index: 100000;
-                height: 20em;
-                margin: -2em 0;
-
-                /* transition: height 0.5s ease; */
-            }
+            } */
             /*  TODO: Add transitions after clicking list item
                 transition: 0.25s ease 0s;*/
 
@@ -162,6 +154,7 @@
     <script>
 
     $(document).ready(function() {
+        /*
         $('text-container').hover(function(){
             var positionY = $(this).offset();
 
@@ -183,9 +176,24 @@
                 top: positionY
             });
         });
+        disabled because its shit */
+
+        var run = true;
 
         $("item").click(function() {
-            $(this).toggleClass("expanded-list-item");
+            if(run){
+                $(this).css({
+                    //position: "absolute",
+                    //zindex: "100000",
+                    //width: "-webkit-fill-available",
+                    height: "15em"
+                }); 
+            }
+            else{
+                $(this).removeAttr("style");
+            }
+
+            run = !run;
         });
 
     });

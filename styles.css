@@ -1,6 +1,8 @@
     * {
         margin: 0;
         padding: 0;
+
+        font-family: 'Segoe UI Local', 'Segoe UI Web (West European)';
     }
     .rowOptions{
         width: 100%;
@@ -50,12 +52,12 @@
         overflow: auto;
     }
     body {
-        font-family: 'Segoe UI Light';
+        font-weight: 100;
         background-color: #e2e2e2;
     }
     header{
         margin: 1rem;
-        font-family: 'Segoe UI Semibold';
+        font-weight: 600;
         font-size: 1.5em;
     }
 
@@ -73,7 +75,7 @@
         display:inline-block;
     }
     .intro{
-        font-family: "Segoe UI Light";
+        font-weight: 100;
         color:#636363;    
         font-size: 4.5em;
         margin-top: .25em;
@@ -93,7 +95,6 @@
         text-align:center;
     }
     .input-login{
-        font-family: "Segoe UI";
         background: #e2e2e2;
         font-size: 1.25em;
         padding: .2em;
@@ -102,12 +103,11 @@
         width: 12.2em;
     }
     .input-login::placeholder, .input-register::placeholder{
-        font-family: 'Segoe UI Light', Helvetica, sans-serif;
+        font-weight: 100;
         font-style: italic;
         vertical-align: middle;
     }
     .input-register{
-        font-family: "Segoe UI";
         background: #e2e2e2;
         font-size: 1.25em;
         padding: .2em;
@@ -123,7 +123,7 @@
         text-align: center;
         text-decoration: none;
         font-size: 1.15em;
-        font-family: "Segoe UI Light";
+        font-weight: 100;
     }
     .button-index:hover, .button:hover{
         background-color: rgb(14, 97, 153);
@@ -141,7 +141,7 @@
     }
     .logoLogin {
         margin-top: 1em;
-        font-family: 'Segoe UI Semibold';
+        font-weight: 600;
         font-size: 1.75em;
         text-align:center;
     }
@@ -156,7 +156,7 @@
     }
     .editBar, .addBar{
         text-align: center;
-        font-family: 'Segoe UI Light';
+        font-weight: 100;
         background-color: transparent;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -170,7 +170,6 @@
     .addBar{
         padding: .5em 0;
         color: #000;
-        font-family: 'Segoe UI Light';
         font-size: 16px;
         font-weight: normal;
     }
@@ -178,7 +177,7 @@
         height: 90%;
         text-align: center;
         border: .1em solid rgb(183, 183, 183);
-        font-family: 'Segoe UI Light';
+        font-weight: 100;
         background-color: transparent;
     }
     a{
@@ -334,3 +333,61 @@
     .tablecontrols{
         margin: 1em;
     }
+
+
+    @font-face {
+        font-family: 'Segoe UI Local';
+        src: local('Segoe UI Light');
+        font-weight: 100;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'Segoe UI Local';
+        src: local('Segoe UI Semilight');
+        font-weight: 300;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'Segoe UI Local';
+        src: local('Segoe UI');
+        font-weight: 400;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'Segoe UI Local';
+        src: local('Segoe UI Semibold');
+        font-weight: 600;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'Segoe UI Web (West European)';
+        src: url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-light.woff2') format('woff2'), url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-light.woff') format('woff');
+        font-weight: 100;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'Segoe UI Web (West European)';
+        src: url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-semilight.woff2') format('woff2'), url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-semilight.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'Segoe UI Web (West European)';
+        src: url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-regular.woff2') format('woff2'), url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'Segoe UI Web (West European)';
+        src: url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-semibold.woff2') format('woff2'), url('https://static2.sharepointonline.com/files/fabric/assets/fonts/segoeui-westeuropean/segoeui-semibold.woff') format('woff');
+        font-weight: 600;
+        font-style: normal;
+      }
+      /* TODO: Clean all, remove unused properties */
